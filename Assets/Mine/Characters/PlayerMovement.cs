@@ -17,13 +17,18 @@ public class PlayerMovement : MonoBehaviour
     //bool jump = false;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing
 
-    //private int carrotCount;
+
+    //TEMPORARY confirm leaving area menu
+    public GameObject moveMenuUI;
+    private bool moveMenuOpen = false;
+    Vector3 nextSpawnPoint;
 
     // Start is called before the first frame update
     private void Start()
     {
         //carrotCount = 0;
         //setCountText();
+        moveMenuUI.SetActive(false);
     }
 
 
@@ -40,6 +45,14 @@ public class PlayerMovement : MonoBehaviour
         {
             //jump = true;
         }*/
+
+        //Close confirm to leave menu and set time back to 1
+        if (Input.GetKeyDown(KeyCode.Escape) && moveMenuOpen)
+        {
+            moveMenuUI.SetActive(false);
+            moveMenuOpen = false;
+            Time.timeScale = 1f;
+        }
     }
 
     private void FixedUpdate()
@@ -98,10 +111,33 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("collided w something " + collision.gameObject.tag);
         if (collision.gameObject.tag == "Door")
         {
+
             Debug.Log("Encountered Door");
+            moveMenuUI.SetActive(true);
+            moveMenuOpen = true;
+            Time.timeScale = 0f;
+
+
+
             GameObject spawnp = collision.gameObject.GetComponentInChildren<ChangeArea>().spawnPoint;
-            Debug.Log("spawnp: " + spawnp.transform.position);
-            rb.transform.position = spawnp.transform.position;
+            nextSpawnPoint = spawnp.transform.position;
+            Debug.Log("spawnp: " + nextSpawnPoint.ToString());
+            //rb.transform.position = spawnp.transform.position;
         }
+    }
+
+    public void LeaveArea()
+    {
+        rb.transform.position = nextSpawnPoint;
+        moveMenuOpen = false;
+        moveMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public void StayInArea()
+    {
+        moveMenuUI.SetActive(false);
+        moveMenuOpen = false;
+        Time.timeScale = 1f;
     }
 }
