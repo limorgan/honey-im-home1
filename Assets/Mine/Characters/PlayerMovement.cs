@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject moveMenuUI;
     private bool moveMenuOpen = false;
     Vector3 nextSpawnPoint;
+    private bool zoomOut = false;
+    public CinemachineVirtualCamera cam1;
+    public CinemachineVirtualCamera cam2;
 
     // Start is called before the first frame update
     private void Start()
@@ -121,9 +125,30 @@ public class PlayerMovement : MonoBehaviour
 
             GameObject spawnp = collision.gameObject.GetComponentInChildren<ChangeArea>().spawnPoint;
             nextSpawnPoint = spawnp.transform.position;
+            bool thisZoomOut = collision.gameObject.GetComponentInChildren<ChangeArea>().zoomOut;
             Debug.Log("spawnp: " + nextSpawnPoint.ToString());
-            //rb.transform.position = spawnp.transform.position;
+            if (zoomOut != thisZoomOut)
+            {
+                ChangeCam();
+                zoomOut = thisZoomOut;
+            }
+            
         }
+    }
+
+    public void ChangeCam()
+    {
+        if (cam1.gameObject.activeSelf)
+        {
+            cam1.gameObject.SetActive(false);
+            cam2.gameObject.SetActive(true);
+        }
+        else
+        {
+            cam2.gameObject.SetActive(false);
+            cam1.gameObject.SetActive(true);
+        }
+
     }
 
     public void LeaveArea()
@@ -131,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
         rb.transform.position = nextSpawnPoint;
         moveMenuOpen = false;
         moveMenuUI.SetActive(false);
-        Time.timeScale = 1f;
+        Time.timeScale = 1f;        
     }
 
     public void StayInArea()
@@ -140,4 +165,6 @@ public class PlayerMovement : MonoBehaviour
         moveMenuOpen = false;
         Time.timeScale = 1f;
     }
+
+    
 }

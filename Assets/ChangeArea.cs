@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ChangeArea : MonoBehaviour
 {
-    public GameObject spawnPoint; 
+    public GameObject spawnPoint;
+    public bool zoomOut = false;
+     
     
     // Start is called before the first frame update
     void Start()

@@ -57,7 +57,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 93.020004
   m_PointLightOuterAngle: 200.35
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 16.63772
+  m_PointLightOuterRadius: 23.4
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
