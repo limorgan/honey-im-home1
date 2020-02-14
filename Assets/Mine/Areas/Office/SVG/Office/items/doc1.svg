@@ -1,0 +1,22 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Created using Krita: http://krita.org -->
+<svg xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:krita="http://krita.org/namespaces/svg/krita"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    width="2949.12pt"
+    height="1555.2pt"
+    viewBox="0 0 2949.12 1555.2">
+<defs>
+  <linearGradient id="gradient0" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="1" spreadMethod="pad">
+   <stop stop-color="#654840" offset="0" stop-opacity="1"/>
+   <stop stop-color="#000000" offset="1" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="gradient1" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="1" spreadMethod="pad">
+   <stop stop-color="#654840" offset="0" stop-opacity="1"/>
+   <stop stop-color="#000000" offset="1" stop-opacity="0"/>
+  </linearGradient>
+ </defs>
+<path id="shape0" transform="translate(1679.76757894737, 292.1472)" fill="#dbb386" fill-rule="evenodd" stroke="#dbb386" stroke-width="13.0464" stroke-linecap="square" stroke-linejoin="bevel" d="M0 71.2118L7.27579 56.4783L4.54737 37.8159L10.1861 17.3528L2.91032 0L395.803 94.9491L561.145 21.4454L552.232 50.4212L558.599 63.8451L549.322 74.977L557.325 89.8742L396.712 170.09L0 71.2118"/><path id="shape1" transform="translate(1683.648, 257.526568421053)" fill="#dbc5ad" fill-rule="evenodd" stroke="#dbc5ad" stroke-width="13.0464" stroke-linecap="square" stroke-linejoin="bevel" d="M0.272842 22.9187L220.365 0L558.963 55.6598L393.62 117.868L0 24.8013"/><path id="shape2" transform="translate(1685.73978947368, 311.303747368421)" fill="url(#gradient0)" fill-rule="evenodd" stroke="#000000" stroke-opacity="0" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M0 0L394.348 96.095L550.323 30.3673L392.62 106.408L0 0"/><path id="shape3" transform="translate(1687.37684210526, 349.201515789474)" fill="url(#gradient1)" fill-rule="evenodd" stroke="#000000" stroke-opacity="0" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M0 0L391.256 86.4364L550.595 20.545L391.71 97.4046L0 0"/><path id="shape4" transform="translate(1823.52505263158, 272.5056)" fill="#b3301e" fill-rule="evenodd" stroke="#b3301e" stroke-width="13.0464" stroke-linecap="square" stroke-linejoin="bevel" d="M2.63747 132.519L0 47.229L195.81 0L254.653 6.79377L49.0206 63.4358L49.6573 148.235L2.63747 132.519"/><path id="shape5" transform="translate(2547.36757894737, 131.752421052632)" fill="#516154" fill-rule="evenodd" stroke="#516154" stroke-width="0.0072" stroke-linecap="square" stroke-linejoin="bevel" d="M0 0.7776L0.136421 0L0 0.7776"/>
+</svg>
