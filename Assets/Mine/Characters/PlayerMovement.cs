@@ -92,4 +92,16 @@ public class PlayerMovement : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("collided w something " + collision.gameObject.tag);
+        if (collision.gameObject.tag == "Door")
+        {
+            Debug.Log("Encountered Door");
+            GameObject spawnp = collision.gameObject.GetComponentInChildren<ChangeArea>().spawnPoint;
+            Debug.Log("spawnp: " + spawnp.transform.position);
+            rb.transform.position = spawnp.transform.position;
+        }
+    }
 }
