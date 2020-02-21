@@ -133,8 +133,7 @@ public class Player : MonoBehaviour {
     public void OpenActionMenu() {
         _actionMenuOpen = true;     
         actionMenu.SetActive(true);
-        //DisableMouseLook();       //don't want to do this in 2D
-        //might want to add a no walking while any menu is open.....
+        //DisableMouseLook();       //not needed in 2D
     }
 
     public void CloseActionMenu() {

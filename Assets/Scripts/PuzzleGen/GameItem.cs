@@ -32,9 +32,9 @@ public class GameItem : MonoBehaviour {
     public void OnGameItemMouseOver(Text UITextRef)
     {
         //Modification 10/01/2020
-        Vector3 location = Camera.main.WorldToScreenPoint(dbItem.itemPrefab.transform.position);
+        
         //Debug.Log(dbItem.name + " located at x = " + location.x + " y = " + location.y);
-        UITextRef.GetComponent<RectTransform>().position = new Vector3(location.x, location.y + 1, 0);
+        
         //End mod
         UITextRef.text = dbItem.description;
     }
