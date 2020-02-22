@@ -7,6 +7,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class Player : MonoBehaviour {
 
     public Text UITextRef;
+    public Text ActionHeader;
     //public Image CrossHair;
     public GameObject actionMenu;
     public GameObject actionMenuContent;
@@ -49,7 +50,8 @@ public class Player : MonoBehaviour {
                 if (hit) {
                     if (hit.collider.GetComponentInParent<GameItem>() != null) {
                         OpenActionMenu();
-                        hit.collider.gameObject.GetComponentInParent<GameItem>().OnGameItemClicked(actionMenuContent, buttonPrefab);
+                        UITextRef.text = "";
+                        hit.collider.gameObject.GetComponentInParent<GameItem>().OnGameItemClicked(actionMenuContent, buttonPrefab, ActionHeader);
                     }
                 }
             } else if (_actionMenuOpen && Input.GetKeyDown(KeyCode.Q)) {
@@ -63,7 +65,8 @@ public class Player : MonoBehaviour {
                     OpenInventory();
             } else if (hit){//Physics.Raycast(ray, out hit)) {
                 if (hit.collider.GetComponentInParent<GameItem>() != null)
-                    hit.collider.gameObject.GetComponentInParent<GameItem>().OnGameItemMouseOver(UITextRef);
+                    if(!_actionMenuOpen && !_inventoryOpen)
+                        hit.collider.gameObject.GetComponentInParent<GameItem>().OnGameItemMouseOver(UITextRef);
             } else {
                 UITextRef.text = "";
             }
@@ -110,7 +113,7 @@ public class Player : MonoBehaviour {
         return _inventory;
     }
 
-    private void OpenInventory() {
+    public void OpenInventory() {
         foreach(GameItem item in _inventory) {
             GameObject inventoryItem = GameObject.Instantiate(buttonPrefab);
             InventoryBtn.CreateComponent(inventoryItem, item);
@@ -119,21 +122,24 @@ public class Player : MonoBehaviour {
         _inventoryOpen = true;
         inventoryMenu.SetActive(true);
         //DisableMouseLook();
+        Time.timeScale = 0f;        //no background movement while menu is open
     }
 
-    private void CloseInventory() {
+    public void CloseInventory() {
         _inventoryOpen = false;
         inventoryMenu.SetActive(false);
         foreach (Transform child in inventoryMenu.transform.Find("Viewport").Find("Content")) {
             GameObject.Destroy(child.gameObject);
         }
         //EnableMouseLook();
+        Time.timeScale = 1f;        //movement back on
     }
 
     public void OpenActionMenu() {
         _actionMenuOpen = true;     
         actionMenu.SetActive(true);
         //DisableMouseLook();       //not needed in 2D
+        Time.timeScale = 0f;        //instead - to avoid background movement while menu is open
     }
 
     public void CloseActionMenu() {
@@ -144,6 +150,7 @@ public class Player : MonoBehaviour {
                 GameObject.Destroy(child.gameObject);
             }
             //EnableMouseLook();
+            Time.timeScale = 1f;        //reenable background movement on closing menu
         }
     }
 

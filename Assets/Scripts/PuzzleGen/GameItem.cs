@@ -56,8 +56,9 @@ public class GameItem : MonoBehaviour {
         Debug.Log("Spawning: " + item.dbItem);
     }
 
-    public void OnGameItemClicked(GameObject actionMenu, GameObject buttonPrefab) {
+    public void OnGameItemClicked(GameObject actionMenu, GameObject buttonPrefab, Text ActionHeader) {
         //Debug.Log("on game item clicked ");
+        ActionHeader.text = name;
         foreach (Rule puzzleRule in PuzzleManager.Instance.RulesFor(this, GetComponentInParent<GameArea>().area)) {
             Debug.Log("rules...");
             if (RuleFulFilled(puzzleRule)) {
