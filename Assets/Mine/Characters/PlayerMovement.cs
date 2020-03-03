@@ -116,20 +116,21 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("collided w something " + collision.gameObject.tag);
         if (collision.gameObject.tag == "Door")
         {
+            if (!collision.gameObject.GetComponentInChildren<ChangeArea>().locked)
+            {
+                //Debug.Log("Encountered Door");
+                moveMenuUI.SetActive(true);
+                moveMenuOpen = true;
+                Time.timeScale = 0f;
 
-            //Debug.Log("Encountered Door");
-            moveMenuUI.SetActive(true);
-            moveMenuOpen = true;
-            Time.timeScale = 0f;
 
 
+                GameObject spawnp = collision.gameObject.GetComponentInChildren<ChangeArea>().spawnPoint;
+                nextSpawnPoint = spawnp.transform.position;
+                thisZoomOut = collision.gameObject.GetComponentInChildren<ChangeArea>().zoomOut;
+                Debug.Log("spawnp: " + nextSpawnPoint.ToString());
 
-            GameObject spawnp = collision.gameObject.GetComponentInChildren<ChangeArea>().spawnPoint;
-            nextSpawnPoint = spawnp.transform.position;
-            thisZoomOut = collision.gameObject.GetComponentInChildren<ChangeArea>().zoomOut;
-            Debug.Log("spawnp: " + nextSpawnPoint.ToString());
-            
-            
+            }
         }
     }
 

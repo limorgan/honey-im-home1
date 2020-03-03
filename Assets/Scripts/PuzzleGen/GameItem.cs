@@ -194,13 +194,13 @@ public class GameItem : MonoBehaviour {
                     Debug.Log("Spawning: " + output.dbItem);
                     if (output.dbItem.GetPropertyWithName("inInventory") != null)
                     {
-                        Debug.Log("trying inventory");
+                        //Debug.Log("trying inventory");
                         if(output.dbItem.GetPropertyWithName("inInventory").value == "True")
                             Player.Instance.AddItemToInventory(itemGO.GetComponent<GameItem>());
                         Debug.Log("straight to inventory...");
                     }
                 } else {
-                    Debug.Log(output.name);
+                    //Debug.Log(output.name);
                     if(output.name == "Speech") {
                         Player.Instance.ShowSpeechBubble(output.GetPropertyWithName("text").value, output.GetPropertyWithName("name").value);
                     }
