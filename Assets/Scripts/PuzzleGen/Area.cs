@@ -38,7 +38,7 @@ public class Area : ScriptableObject {
             s += g.GetTermAsString();
         s += " Connected Areas : ";
         foreach (Area c in connectedTo)
-            s += c.toString();
+            s += c.name;
         return s;
     }
 }

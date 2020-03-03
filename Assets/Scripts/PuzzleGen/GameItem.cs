@@ -75,13 +75,13 @@ public class GameItem : MonoBehaviour {
             action.transform.SetParent(actionMenu.transform);
         }
         //Addition: 10/01/2020
-        if(dbItem.IsCopyable())
+        /*if(dbItem.IsCopyable())
         {
             Debug.Log("Creating copy (i.e. make note...) button. ");
             GameObject action = GameObject.Instantiate(buttonPrefab);
             ActionBtn.CreateComponent(action, this, new Rule("MakeNote"));
             action.transform.SetParent(actionMenu.transform);
-        }
+        }*/
         //end of addition
         if (containedValue) {
             GameObject action = GameObject.Instantiate(buttonPrefab);

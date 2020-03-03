@@ -10,31 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 5
+  m_Name: Rule 9
   m_EditorClassIdentifier: 
   outputs:
-  - name: Door
+  - name: Wesley
     properties:
     - type: 2
-      name: locked
-      value: False
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  inputs:
-  - name: Door
-    properties:
-    - type: 2
-      name: locked
+      name: happy
       value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Idea
+  - name: Speech
+    properties:
+    - type: 0
+      name: name
+      value: Wesley
+    - type: 0
+      name: text
+      value: Cheers for that!
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  inputs:
+  - name: Wesley
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Open
+  - name: Newspaper
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  action: Give newspaper
   parent: {fileID: 0}
   children: []

@@ -10,37 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 6
+  m_Name: Rule 13
   m_EditorClassIdentifier: 
   outputs:
-  - name: Radio
+  - name: NPC
     properties:
     - type: 2
-      name: ison
-      value: True
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  - name: Speech
-    properties:
-    - type: 0
-      name: text
-      value: I'm a Radio
-    - type: 0
-      name: name
-      value: Radio
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  inputs:
-  - name: Radio
-    properties:
-    - type: 2
-      name: ison
+      name: tired
       value: False
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Talk
+  inputs:
+  - name: NPC
+    properties:
+    - type: 2
+      name: tired
+      value: True
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Container
+    properties:
+    - type: 0
+      name: contains
+      value: Coffee
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  action: Wake up
   parent: {fileID: 0}
   children: []

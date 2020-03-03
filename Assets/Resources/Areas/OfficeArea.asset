@@ -14,11 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: OfficeArea
   goals:
-  - name: Idea
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: hi
   - name: Door
     properties:
     - type: 2

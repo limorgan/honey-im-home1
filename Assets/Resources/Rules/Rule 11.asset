@@ -10,31 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 5
+  m_Name: Rule 11
   m_EditorClassIdentifier: 
   outputs:
-  - name: Door
+  - name: NPC
     properties:
     - type: 2
-      name: locked
-      value: False
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  inputs:
-  - name: Door
-    properties:
-    - type: 2
-      name: locked
+      name: tired
       value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Idea
+  - name: Speech
+    properties:
+    - type: 0
+      name: text
+      value: I'm too tired to even speak...
+    - type: 0
+      name: name
+      value: Secretary
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  inputs:
+  - name: NPC
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Open
+  action: Talk
   parent: {fileID: 0}
   children: []

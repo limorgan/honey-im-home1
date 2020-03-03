@@ -14,9 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Elevator
   properties:
-  - type: 0
-    name: isa
-    value: Door
   - type: 2
     name: locked
     value: True

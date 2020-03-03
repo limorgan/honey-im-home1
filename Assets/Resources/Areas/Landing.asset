@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: Landing
   m_EditorClassIdentifier: 
   name: Landing
-  goals: []
+  goals:
+  - name: Elevator
+    properties:
+    - type: 2
+      name: locked
+      value: False
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: I really should get out of this building...but how?
   connectedTo:
-  - {fileID: 11400000, guid: c5dfd47d7bc15b4489bac53722ada490, type: 2}
   - {fileID: 11400000, guid: e7dab48efc5a18e4798353d9dc6076d2, type: 2}
   inGameArea: {fileID: 0}
   maxDepth: 10
