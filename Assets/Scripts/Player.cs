@@ -13,7 +13,9 @@ public class Player : MonoBehaviour {
     public GameObject actionMenuContent;
     public GameObject buttonPrefab;
     public GameObject inventoryMenu;
+    public GameObject speechUI;
     public Text speechBubble;
+    public Text speechBubbleName;
     public Text gameOver;
 
     private bool _actionMenuOpen = false;
@@ -154,18 +156,21 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public void ShowSpeechBubble(string speech) {
+    public void ShowSpeechBubble(string speech, string name) {
         CloseActionMenu();
-        DisableMouseLook();
+        //DisableMouseLook();
         _speechOpen = true;
-        speechBubble.gameObject.SetActive(true);
-        speechBubble.text = speech;
+        speechUI.gameObject.SetActive(true);
+        StopAllCoroutines();
+        StartCoroutine(TypeSentenceSlowly(speech, speechBubble));
+        //speechBubble.text = speech;
+        speechBubbleName.text = name;
     }
 
     public void CloseSpeechBubble() {
         _speechOpen = false;
-        speechBubble.gameObject.SetActive(false);
-        EnableMouseLook();
+        speechUI.gameObject.SetActive(false);
+        //EnableMouseLook();
     }
 
     private void DisableMouseLook() {
@@ -184,5 +189,13 @@ public class Player : MonoBehaviour {
         Cursor.visible = false;
     }
 
-
+    IEnumerator TypeSentenceSlowly(string sentence, Text goal)
+    {//Brackeys, How to make a Dialogue System in Unity https://www.youtube.com/watch?v=_nRzoTzeyxU
+        goal.text = "";
+        foreach (char c in sentence.ToCharArray())
+        {
+            goal.text += c;
+            yield return null;
+        }
+    }
 }
