@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ea09481e588c9d45a95b8185d42d1d1, type: 3}
-  m_Name: DBItem 9
+  m_Name: DBItem 17
   m_EditorClassIdentifier: 
-  name: Door
+  name: Lenny
   properties:
-  - type: 2
-    name: locked
-    value: True
   - type: 0
     name: isa
-    value: Door
-  itemPrefab: {fileID: 5941141160161208229, guid: b3bdd6ebc3925064fbf837a50f31b6d0,
+    value: NPC
+  - type: 0
+    name: isa
+    value: Bartender
+  - type: 0
+    name: isa
+    value: Rabbit
+  itemPrefab: {fileID: 5145109010974491839, guid: 8cf1130c4c3dea144b46cad4964f8106,
     type: 3}
-  description: Door
+  description: Lenny

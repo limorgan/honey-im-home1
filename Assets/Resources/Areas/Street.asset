@@ -10,24 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 493f1bd9197f62d46ad66653acd49ceb, type: 3}
-  m_Name: OfficeArea
+  m_Name: Street
   m_EditorClassIdentifier: 
-  name: OfficeArea
-  goals:
-  - name: Idea
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: hi
-  - name: Door
-    properties:
-    - type: 2
-      name: locked
-      value: False
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 'get out '
+  name: Street
+  goals: []
   connectedTo:
   - {fileID: 11400000, guid: e2e87e817f6bfd446843afee9ab72ea4, type: 2}
+  - {fileID: 11400000, guid: dc312a7573fa4c0439427ba9db62e983, type: 2}
+  - {fileID: 11400000, guid: ca827ee76854df741a8af398671a47bf, type: 2}
   inGameArea: {fileID: 0}
   maxDepth: 10
