@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private bool moveMenuOpen = false;
     Vector3 nextSpawnPoint;
     private bool zoomOut = false;
+    private bool thisZoomOut = false;
     public CinemachineVirtualCamera cam1;
     public CinemachineVirtualCamera cam2;
 
@@ -112,11 +113,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("collided w something " + collision.gameObject.tag);
+        //Debug.Log("collided w something " + collision.gameObject.tag);
         if (collision.gameObject.tag == "Door")
         {
 
-            Debug.Log("Encountered Door");
+            //Debug.Log("Encountered Door");
             moveMenuUI.SetActive(true);
             moveMenuOpen = true;
             Time.timeScale = 0f;
@@ -125,13 +126,9 @@ public class PlayerMovement : MonoBehaviour
 
             GameObject spawnp = collision.gameObject.GetComponentInChildren<ChangeArea>().spawnPoint;
             nextSpawnPoint = spawnp.transform.position;
-            bool thisZoomOut = collision.gameObject.GetComponentInChildren<ChangeArea>().zoomOut;
+            thisZoomOut = collision.gameObject.GetComponentInChildren<ChangeArea>().zoomOut;
             Debug.Log("spawnp: " + nextSpawnPoint.ToString());
-            if (zoomOut != thisZoomOut)
-            {
-                ChangeCam();
-                zoomOut = thisZoomOut;
-            }
+            
             
         }
     }
@@ -153,6 +150,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void LeaveArea()
     {
+        if (zoomOut != thisZoomOut)
+        {
+            ChangeCam();
+            zoomOut = thisZoomOut;
+        }
         rb.transform.position = nextSpawnPoint;
         moveMenuOpen = false;
         moveMenuUI.SetActive(false);

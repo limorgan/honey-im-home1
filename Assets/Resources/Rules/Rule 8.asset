@@ -18,7 +18,7 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: NPC
+  - name: Secretary
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
@@ -35,7 +35,7 @@ MonoBehaviour:
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: NPC
+  - name: Secretary
     properties:
     - type: 2
       name: happy

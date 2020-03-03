@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6370164798333585223}
   - component: {fileID: 3065715387892682948}
   - component: {fileID: 5226538948582371840}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: coffeemachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2600639584813915414}
   - component: {fileID: 5575783303132378069}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Freeform Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}

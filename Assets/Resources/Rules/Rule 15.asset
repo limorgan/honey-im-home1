@@ -10,33 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 12
+  m_Name: Rule 15
   m_EditorClassIdentifier: 
   outputs:
-  - name: Container
+  - name: Carla
     properties:
-    - type: 0
-      name: contains
-      value: Coffee
+    - type: 2
+      name: happy
+      value: False
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: CoffeeMachine
-    properties: []
+  - name: Speech
+    properties:
+    - type: 0
+      name: name
+      value: Carla
+    - type: 0
+      name: text
+      value: I'm dying to leave...I just can't seem to be able to find my bag....
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: CoffeeMachine
+  - name: Carla
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Container
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  action: Get Coffee
+  action: Talk
   parent: {fileID: 0}
   children: []

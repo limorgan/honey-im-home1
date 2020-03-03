@@ -60,7 +60,7 @@ public class GameItem : MonoBehaviour {
         //Debug.Log("on game item clicked ");
         ActionHeader.text = name;
         foreach (Rule puzzleRule in PuzzleManager.Instance.RulesFor(this, GetComponentInParent<GameArea>().area)) {
-            Debug.Log("rules...");
+            //Debug.Log("rules...");
             if (RuleFulFilled(puzzleRule)) {
                 GameObject action = GameObject.Instantiate(buttonPrefab);
                 ActionBtn.CreateComponent(action, this, puzzleRule);
@@ -140,17 +140,36 @@ public class GameItem : MonoBehaviour {
         int spawnIndex = 0;
         // Check for property change and new items
         foreach (Term output in rule.outputs) {
+            //Debug.Log("output terms: " + output.ToString() + "number of input rules: " + rule.inputs.Count);
             bool found = false;
             foreach (Term input in rule.inputs) {
+                //Debug.Log("output term: " + output.name + " input term: " + input.name);
                 if (output.name == input.name) {
+                    //Debug.Log("number of output properties " + output.properties.Count);
                     found = true;
                     foreach (Property outputProperty in output.properties) {
                         Property property = input.gameItem.GetProperty(outputProperty.name);
-                        if (property != null && property.name != "contains") {
+                        //Debug.Log("output property name: " + outputProperty.name);
+                        if (property != null && property.name != "contains")
+                        {                                
+                            /*if (outputProperty.name == "inInventory")
+                            {
+                                Debug.Log("inInventory property exists");
+                                if (outputProperty.value == "True")
+                                {
+                                    GameObject itemGO = (GameObject)Instantiate(output.dbItem.itemPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                                    Player.Instance.AddItemToInventory(itemGO.GetComponent<GameItem>());
+                                }
+                            }
+                            else
+                            {*/
                             property.value = outputProperty.value;
                             Debug.Log("Property to change: " + property.name);
-                            break;
-                        } else {
+                            break;        //this means only the first property to be changed will be changed?! 
+                            //}
+                            
+                        }
+                        else {
                             input.gameItem.properties.Add(outputProperty);
                         }
                         //Check if there is a better match, given the properties
@@ -160,18 +179,26 @@ public class GameItem : MonoBehaviour {
             // Spawn new item
             if (!found) {
                 if(output.dbItem != null) {
+                    Debug.Log("spawning item on exectution of rule: " + output.dbItem.name);
                     GameObject itemGO;
                     if(objectsToDestroy.Count > spawnIndex) {
                         Transform transform = objectsToDestroy[spawnIndex].transform;
                         itemGO = (GameObject)Instantiate(output.dbItem.itemPrefab, transform.position + new Vector3(0, 1, 0), transform.rotation);
                         spawnIndex++;
                     } else {
-                        Vector3 position = Player.Instance.transform.position + Player.Instance.transform.forward;
+                        Vector3 position = Player.Instance.transform.position + new Vector3(5, 15, 0); //Player.Instance.transform.forward; changed to x axis
                         itemGO = (GameObject)Instantiate(output.dbItem.itemPrefab, position, Quaternion.identity);
-                    }
+                    }                    
                     itemGO.GetComponent<GameItem>().Setup(output.dbItem.name, output.dbItem);
                     itemGO.transform.SetParent(this.gameObject.transform.parent);
                     Debug.Log("Spawning: " + output.dbItem);
+                    if (output.dbItem.GetPropertyWithName("inInventory") != null)
+                    {
+                        Debug.Log("trying inventory");
+                        if(output.dbItem.GetPropertyWithName("inInventory").value == "True")
+                            Player.Instance.AddItemToInventory(itemGO.GetComponent<GameItem>());
+                        Debug.Log("straight to inventory...");
+                    }
                 } else {
                     Debug.Log(output.name);
                     if(output.name == "Speech") {

@@ -23,7 +23,10 @@ MonoBehaviour:
     description: 
   inputs:
   - name: Carla
-    properties: []
+    properties:
+    - type: 2
+      name: happy
+      value: False
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 

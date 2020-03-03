@@ -79,7 +79,7 @@ public class Term {
         return termAsString;
     }
 
-    public string toString()
+    public string ToString()
     {
         return this.GetTermAsString();
     }

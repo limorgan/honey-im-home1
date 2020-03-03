@@ -41,19 +41,19 @@ public class PuzzleManager : MonoBehaviour {
     }
 
     public List<Rule> RulesFor(GameItem gameItem, Area area) {
-        Debug.Log("puzzle manager - rules for " + gameItem.name + " in " + area.name);
+        //Debug.Log("puzzle manager - rules for " + gameItem.name + " in " + area.name);
         List<Rule> rules = new List<Rule>();
         List<Rule> test_rules = _leaves[area];
-        foreach (Rule r in test_rules)
+        /*foreach (Rule r in test_rules)
             Debug.Log("elements in dictionary leaves: " + r.outputs[0].GetTermAsString() + " " + r.inputs[0].GetTermAsString());
-        Debug.Log("end of first foreach puzzman");
+        Debug.Log("end of first foreach puzzman");*/
         foreach(Rule rule in _leaves[area]) {
             if (rule.inputs[0].dbItem != null)
             {
                 //Debug.Log("we have leaves? " + rule.inputs[0].dbItem.name + " =? " + gameItem.dbItem.name);
                 if (rule.inputs[0].dbItem.name == gameItem.dbItem.name)
                 {
-                    Debug.Log("and item applies to rule...");
+                    //Debug.Log("and item applies to rule...");
                     if (!rules.Contains(rule))
                     {
                         Debug.Log("Found: " + gameItem.dbItem.name + " " + rule.action);
@@ -81,12 +81,12 @@ public class PuzzleManager : MonoBehaviour {
     }
 
     public void ExecuteRule(Rule rule, Area area) {
-        Debug.Log("Started execute rule of " + rule.GetRuleAsString() + " in" + area.toString());
+        /*Debug.Log("Started to execute rule of " + rule.GetRuleAsString() + " in" + area.toString());
         foreach (Rule r in _leaves[area])
         {
             Debug.Log("Rule in " + area.name + " : " + r.GetRuleAsString());
         }
-        Debug.Log("Done with rules in _leaves. ");
+        Debug.Log("Done with rules in _leaves. ");*/
         if (_leaves[area].Contains(rule)) {
             Debug.Log("Execute: " + rule.parent.outputs[0].name);
             _leaves[area].Remove(rule);

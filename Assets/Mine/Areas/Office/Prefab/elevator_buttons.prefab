@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3588913183468399621}
   - component: {fileID: 3588913183468399618}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 3588913185012083258}
   - component: {fileID: 3588913185012083261}
   - component: {fileID: 8996485359020897141}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: elevator_buttons
   m_TagString: Door
   m_Icon: {fileID: 0}

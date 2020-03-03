@@ -20,6 +20,9 @@ MonoBehaviour:
   - type: 0
     name: isa
     value: Secretary
+  - type: 2
+    name: tired
+    value: True
   itemPrefab: {fileID: 6008975616227936920, guid: 767ab51acda6bfb4787e78e073b11b10,
     type: 3}
   description: Wesley

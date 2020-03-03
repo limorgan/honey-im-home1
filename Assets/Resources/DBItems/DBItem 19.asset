@@ -17,6 +17,9 @@ MonoBehaviour:
   - type: 2
     name: paidfor
     value: False
+  - type: 2
+    name: spawnable
+    value: False
   itemPrefab: {fileID: 3676822999186450039, guid: baf4b541167fdd8439dfc89ff62448de,
     type: 3}
   description: Coffee Machine
