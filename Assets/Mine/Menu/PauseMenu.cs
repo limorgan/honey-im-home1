@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUi;
     public GameObject pauseButton;
+    public GameObject inventoryButton;
 
     void Start()
     {
@@ -31,12 +32,16 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
         pauseButton.SetActive(true);
+        if (inventoryButton != null)
+            inventoryButton.SetActive(true);
     }
 
     public void Pause()
     {
         pauseMenuUi.SetActive(true);
         pauseButton.SetActive(false);
+        if (inventoryButton != null)
+            inventoryButton.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }

@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     //public CharacterController2D controller;
     public Animator animator;
     public Text countText;
+    
 
     //float horizontalMove = 0f;
     //float verticalMove = 0f;
@@ -27,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     private bool thisZoomOut = false;
     public CinemachineVirtualCamera cam1;
     public CinemachineVirtualCamera cam2;
+    //private GameObject currentArea;
+    //private GameObject nextArea;
 
     // Start is called before the first frame update
     private void Start()
@@ -113,10 +116,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        GameObject collider = collision.gameObject;
         //Debug.Log("collided w something " + collision.gameObject.tag);
-        if (collision.gameObject.tag == "Door")
+        if (collider.tag == "Door")
         {
-            if (!collision.gameObject.GetComponentInChildren<ChangeArea>().locked)
+            if (!collider.GetComponentInChildren<ChangeArea>().locked)
             {
                 //Debug.Log("Encountered Door");
                 moveMenuUI.SetActive(true);
@@ -124,10 +128,12 @@ public class PlayerMovement : MonoBehaviour
                 Time.timeScale = 0f;
 
 
-
-                GameObject spawnp = collision.gameObject.GetComponentInChildren<ChangeArea>().spawnPoint;
+                
+                GameObject spawnp = collider.GetComponentInChildren<ChangeArea>().spawnPoint;
                 nextSpawnPoint = spawnp.transform.position;
-                thisZoomOut = collision.gameObject.GetComponentInChildren<ChangeArea>().zoomOut;
+                thisZoomOut = collider.GetComponentInChildren<ChangeArea>().zoomOut;
+                //this.currentArea = collider.GetComponentInChildren<ChangeArea>().currentArea;
+                //this.nextArea = collider.GetComponentInChildren<ChangeArea>().nextArea;
                 Debug.Log("spawnp: " + nextSpawnPoint.ToString());
 
             }

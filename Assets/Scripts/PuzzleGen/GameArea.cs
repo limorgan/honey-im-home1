@@ -22,10 +22,11 @@ public class GameArea : MonoBehaviour {
         if (NPC)
         {
             if (_NPCSpawnPoints.Length == 0)    //if no NPC spawn points are given, use regular spawn points
-                return getNextSpawnPt();            
+                return getNextSpawnPt();
+            _NPCindex++;
             if (_NPCindex > _NPCSpawnPoints.Length - 1)
                 _NPCindex = 0;
-            return _NPCSpawnPoints[_NPCindex++].transform.position;
+            return _NPCSpawnPoints[_NPCindex].transform.position;
 
         }
         else
@@ -35,10 +36,11 @@ public class GameArea : MonoBehaviour {
     public Vector3 getNextSpawnPt() {
         if (_spawnPoints.Length == 0)
             Debug.Log("no spawn points");
-        //_index++;
+        _index++;
         if (_index > _spawnPoints.Length - 1)
             _index = 0;
-        return _spawnPoints[_index++].transform.position;
+        Debug.Log("Spawn point " + _index + ": " + _spawnPoints[_index].transform.position);
+        return _spawnPoints[_index].transform.position;
     }
 
     public Vector3 getRandomSpawnPt(bool NPC)

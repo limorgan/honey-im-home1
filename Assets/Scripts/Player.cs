@@ -11,17 +11,22 @@ public class Player : MonoBehaviour {
     //public Image CrossHair;
     public GameObject actionMenu;
     public GameObject actionMenuContent;
+    public GameObject noActionMessage;
+    public float noActionFadeTime;
     public GameObject buttonPrefab;
     public GameObject inventoryMenu;
+    public GameObject inventoryButton;
     public GameObject speechUI;
     public Text speechBubble;
     public Text speechBubbleName;
     public Text gameOver;
+    public AudioSource spawnNoise;
 
     private bool _actionMenuOpen = false;
     private bool _inventoryOpen = false;
     private bool _speechOpen = false;
     private bool _gameOver = false;
+    public bool noAction;
     [SerializeField]
     private List<GameItem> _inventory;
     private Item _dbItem;
@@ -41,6 +46,7 @@ public class Player : MonoBehaviour {
         _inventory = new List<GameItem>();
         _dbItem = ItemDatabase.GetObject("Player");
         _properties = _dbItem.properties;
+        noActionMessage.SetActive(false);
     }
 
     void Update() {
@@ -51,10 +57,11 @@ public class Player : MonoBehaviour {
                 Vector2 v = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
                 if (hit) {
                     if (hit.collider.GetComponentInParent<GameItem>() != null) {
-                        OpenActionMenu();
-                        UITextRef.text = "";
                         hit.collider.gameObject.GetComponentInParent<GameItem>().OnGameItemClicked(actionMenuContent, buttonPrefab, ActionHeader);
-                    }
+                        Debug.Log("Player _noAction: " + noAction);
+                        OpenActionMenu();
+                        //UITextRef.text = "";
+                        }
                 }
             } else if (_actionMenuOpen && Input.GetKeyDown(KeyCode.Q)) {
                 CloseActionMenu();
@@ -122,7 +129,9 @@ public class Player : MonoBehaviour {
             inventoryItem.transform.SetParent(inventoryMenu.transform.Find("Viewport").Find("Content"));
         }
         _inventoryOpen = true;
+        actionMenu.SetActive(false);
         inventoryMenu.SetActive(true);
+        inventoryButton.SetActive(false);
         //DisableMouseLook();
         Time.timeScale = 0f;        //no background movement while menu is open
     }
@@ -130,6 +139,7 @@ public class Player : MonoBehaviour {
     public void CloseInventory() {
         _inventoryOpen = false;
         inventoryMenu.SetActive(false);
+        inventoryButton.SetActive(true);
         foreach (Transform child in inventoryMenu.transform.Find("Viewport").Find("Content")) {
             GameObject.Destroy(child.gameObject);
         }
@@ -138,14 +148,22 @@ public class Player : MonoBehaviour {
     }
 
     public void OpenActionMenu() {
-        _actionMenuOpen = true;     
-        actionMenu.SetActive(true);
-        //DisableMouseLook();       //not needed in 2D
-        Time.timeScale = 0f;        //instead - to avoid background movement while menu is open
+        if (noAction)
+        {
+            appear(noActionMessage, noActionFadeTime);
+            noAction = false;
+        }
+        else
+        {
+            _actionMenuOpen = true;
+            actionMenu.SetActive(true);
+            //DisableMouseLook();       //not needed in 2D
+            Time.timeScale = 0f;        //instead - to avoid background movement while menu is open
+        }
     }
 
     public void CloseActionMenu() {
-        if (!_speechOpen) {
+        if (!_speechOpen) {            
             _actionMenuOpen = false;
             actionMenu.SetActive(false);
             foreach (Transform child in actionMenuContent.transform) {
@@ -202,5 +220,17 @@ public class Player : MonoBehaviour {
             goal.text += c;
             yield return null;
         }
+    }
+
+    IEnumerator CloseSlowly(GameObject obj, float timeInS)
+    {
+        yield return new WaitForSeconds(timeInS);
+        obj.SetActive(false);
+    }
+
+    public void appear(GameObject obj, float time)
+    {
+        obj.SetActive(true);
+        StartCoroutine(CloseSlowly(obj, time));
     }
 }

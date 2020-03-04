@@ -59,9 +59,13 @@ public class GameItem : MonoBehaviour {
     public void OnGameItemClicked(GameObject actionMenu, GameObject buttonPrefab, Text ActionHeader) {
         //Debug.Log("on game item clicked ");
         ActionHeader.text = name;
+        bool noAction = true;   //keep track of whether or not there are any actions
+        Debug.Log("GameItem: noAction starts as " + noAction);
         foreach (Rule puzzleRule in PuzzleManager.Instance.RulesFor(this, GetComponentInParent<GameArea>().area)) {
             //Debug.Log("rules...");
             if (RuleFulFilled(puzzleRule)) {
+                Debug.Log("GameItem: noAction updated to " + noAction);
+                noAction = false;
                 GameObject action = GameObject.Instantiate(buttonPrefab);
                 ActionBtn.CreateComponent(action, this, puzzleRule);
                 action.transform.SetParent(actionMenu.transform);
@@ -69,6 +73,8 @@ public class GameItem : MonoBehaviour {
         }
         //Debug.Log("past foreach in gameitem");
         if (dbItem.IsCarryable()) {
+            noAction = false;
+            Debug.Log("GameItem: noAction updated to " + noAction);
             Debug.Log("Creating Pick up button. ");
             GameObject action = GameObject.Instantiate(buttonPrefab);
             ActionBtn.CreateComponent(action, this, new Rule("PickUp"));
@@ -84,10 +90,14 @@ public class GameItem : MonoBehaviour {
         }*/
         //end of addition
         if (containedValue) {
+            noAction = false;
+            Debug.Log("GameItem: noAction updated to " + noAction);
             GameObject action = GameObject.Instantiate(buttonPrefab);
             ActionBtn.CreateComponent(action, this, new Rule("TakeOut"));
             action.transform.SetParent(actionMenu.transform);
         }
+        Player.Instance.noAction = noAction;
+        Debug.Log("No action in GameItem: " + noAction + " Player: " + Player.Instance.noAction);
     }
 
     public void ExecuteRule(Rule rule) {
@@ -192,6 +202,8 @@ public class GameItem : MonoBehaviour {
                     itemGO.GetComponent<GameItem>().Setup(output.dbItem.name, output.dbItem);
                     itemGO.transform.SetParent(this.gameObject.transform.parent);
                     Debug.Log("Spawning: " + output.dbItem);
+                    if(Player.Instance.spawnNoise != null)  // 04/03 play spawn noise
+                        Player.Instance.spawnNoise.Play();
                     if (output.dbItem.GetPropertyWithName("inInventory") != null)
                     {
                         //Debug.Log("trying inventory");
