@@ -202,7 +202,10 @@ public class GameItem : MonoBehaviour {
                 } else {
                     //Debug.Log(output.name);
                     if(output.name == "Speech") {
-                        Player.Instance.ShowSpeechBubble(output.GetPropertyWithName("text").value, output.GetPropertyWithName("name").value);
+                        if (output.GetPropertyWithName("name") != null)
+                            Player.Instance.ShowSpeechBubble(output.GetPropertyWithName("text").value, output.GetPropertyWithName("name").value);
+                        else
+                            Player.Instance.ShowSpeechBubble(output.GetPropertyWithName("text").value);
                     }
                     if(output.name == "Player") {
                         Player.Instance.Execute(output);

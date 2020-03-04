@@ -23,6 +23,19 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+  - name: Photo
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Speech
+    properties:
+    - type: 0
+      name: text
+      value: Is it that time of the year again already? How could I forget our anniversary?
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
   inputs:
   - name: CalendarAnniv
     properties: []

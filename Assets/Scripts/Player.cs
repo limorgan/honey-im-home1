@@ -167,6 +167,11 @@ public class Player : MonoBehaviour {
         speechBubbleName.text = name;
     }
 
+    public void ShowSpeechBubble(string speech)     //speech bubble when the name field is not filled out
+    {
+        ShowSpeechBubble(speech, "");
+    }
+
     public void CloseSpeechBubble() {
         _speechOpen = false;
         speechUI.gameObject.SetActive(false);

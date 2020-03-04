@@ -30,8 +30,17 @@ public class Generator : MonoBehaviour {
             }
         }
         if (!found) {
+            // 04/03 specific spawn points for NPCs?
+            Vector3 nextSpawnPoint = new Vector3(0,0,0);
+            if (item.GetPropertyWithName("isa") != null)
+            {
+                if (item.GetPropertyWithName("isa").value == "NPC")
+                    nextSpawnPoint = gameArea.getNextSpawnPt(true);
+            }
+            else
+                nextSpawnPoint = gameArea.getNextSpawnPt();
             GameObject itemGO = (GameObject)Instantiate(item.itemPrefab,
-                gameArea.getNextSpawnPt(), Quaternion.identity);
+                nextSpawnPoint, Quaternion.identity);            //gameArea.getNextSpawnPt() replaced by nextSpawnPoint
             itemGO.transform.SetParent(gameArea.gameObject.transform);
             itemGO.GetComponent<GameItem>().Setup(item.name, item);
         }

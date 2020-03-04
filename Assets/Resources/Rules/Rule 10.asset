@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rule 10
   m_EditorClassIdentifier: 
   outputs:
-  - name: Carla
+  - name: Secretary
     properties:
     - type: 2
       name: happy
@@ -21,8 +21,19 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+  - name: Speech
+    properties:
+    - type: 0
+      name: name
+      value: Secretary
+    - type: 0
+      name: text
+      value: Thank you! Now I can leave...is there anything I can do for you?
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
   inputs:
-  - name: Carla
+  - name: Secretary
     properties:
     - type: 2
       name: happy

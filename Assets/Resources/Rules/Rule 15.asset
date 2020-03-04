@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rule 15
   m_EditorClassIdentifier: 
   outputs:
-  - name: Carla
+  - name: Secretary
     properties:
     - type: 2
       name: happy
@@ -33,7 +33,7 @@ MonoBehaviour:
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: Carla
+  - name: Secretary
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}

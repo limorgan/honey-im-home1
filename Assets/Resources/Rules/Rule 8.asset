@@ -27,10 +27,10 @@ MonoBehaviour:
     properties:
     - type: 0
       name: name
-      value: '?'
+      value: Secretary
     - type: 0
       name: text
-      value: No worries!
+      value: Of course! There you go!
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
