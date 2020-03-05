@@ -7,6 +7,7 @@ public class ChangeArea : MonoBehaviour
     public GameObject spawnPoint;
     public bool zoomOut = false;
     public bool locked = true;
+    public string nextAreaName = "";
     //public GameObject currentArea;
     //public GameObject nextArea;
      

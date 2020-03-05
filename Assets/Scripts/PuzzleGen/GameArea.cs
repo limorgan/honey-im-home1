@@ -67,4 +67,9 @@ public class GameArea : MonoBehaviour {
             debug_str += g.toString() + " ";
         return debug_str;
     }
+
+    /*public string getHint()
+    {
+        return area.getCurrentGoal().description;   //returns the area goal only - not for the individual rules...
+    }*/
 }

@@ -20,6 +20,9 @@ MonoBehaviour:
   - type: 0
     name: isa
     value: Bartender
+  - type: 2
+    name: spawnable
+    value: False
   itemPrefab: {fileID: 1048581574796601165, guid: 2d226cb47a3110f47a77bff1781e809a,
     type: 3}
   description: Edie

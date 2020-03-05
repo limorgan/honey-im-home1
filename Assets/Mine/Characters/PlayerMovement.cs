@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 nextSpawnPoint;
     private bool zoomOut = false;
     private bool thisZoomOut = false;
+    //private string nextAreaName;
     public CinemachineVirtualCamera cam1;
     public CinemachineVirtualCamera cam2;
     //private GameObject currentArea;
@@ -83,26 +84,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    /*private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Item"))
-        {
-            //other.gameObject.SetActive(false);
-            //carrotCount++;
-            //setCountText();
-        }
-
-        if (other.gameObject.CompareTag("Deathzone"))
-        {
-
-        }
-    }
-
-    void setCountText()
-    {
-        countText.text = "Carrots: " + carrotCount.ToString();
-    }*/
-
+    
     private void Flip()
     {
         // Switch the way the player is labelled as facing.
@@ -163,6 +145,8 @@ public class PlayerMovement : MonoBehaviour
             zoomOut = thisZoomOut;
         }
         rb.transform.position = nextSpawnPoint;
+        //Player.Instance.areaText.text = nextAreaName;
+        Player.Instance.updateAreaName(PuzzleManager.Instance.getCurrentAreaName());
         moveMenuOpen = false;
         moveMenuUI.SetActive(false);
         Time.timeScale = 1f;        

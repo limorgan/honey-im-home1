@@ -7,7 +7,7 @@ public class Term {
     public List<Property> properties;
     public Item dbItem;
     public GameItem gameItem;
-    public string description;
+    public string description = "";
 
     public Term() {
         properties = new List<Property>();

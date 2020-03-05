@@ -98,7 +98,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3588913185012083262}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -177.82, y: 11.31, z: 7.3072915}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7692308, y: 0.7692308, z: 1}
   m_Children:
   - {fileID: 3588913183468399621}
@@ -168,6 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 0}
   zoomOut: 1
+  locked: 1
+  nextAreaName: 
 --- !u!61 &3588913185012083261
 BoxCollider2D:
   m_ObjectHideFlags: 0

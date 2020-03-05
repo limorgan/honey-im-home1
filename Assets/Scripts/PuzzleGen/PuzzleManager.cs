@@ -37,6 +37,7 @@ public class PuzzleManager : MonoBehaviour {
         _leaves.Add(area, new List<Rule>());
         _puzzleRules.Add(area, new List<Rule>());
         FindLeaves(root, area);
+        _currentArea = area;    // 05/03 updating otherwise not used private variable _currentArea
         //Debug.Log("Rule generated: " + root.GetRuleAsString());
     }
 
@@ -94,6 +95,7 @@ public class PuzzleManager : MonoBehaviour {
                 _leaves[area].Add(rule.parent);
             else {
                 Debug.Log("Finished this area!");
+                Player.Instance.showFinishMessage(_currentArea.name);
                 foreach (Area connectedArea in area.connectedTo) {
                     GenerateForArea(connectedArea);
                 }
@@ -132,5 +134,15 @@ public class PuzzleManager : MonoBehaviour {
             }
         }
         return true;
+    }
+
+    public string getHint()
+    {
+        return _currentArea.getHint();
+    }
+
+    public string getCurrentAreaName()
+    {
+        return _currentArea.name;
     }
 }

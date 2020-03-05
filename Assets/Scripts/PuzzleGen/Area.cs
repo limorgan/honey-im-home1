@@ -9,6 +9,8 @@ public class Area : ScriptableObject {
     public Transform inGameArea;
     public int maxDepth;
 
+    private Term currentGoal;        //05/03 added to make hint system 
+
     public Area() {
         goals = new List<Term>();
         connectedTo = new List<Area>();
@@ -29,6 +31,21 @@ public class Area : ScriptableObject {
 
     public void DeleteConnectedArea(int index) {
         connectedTo.RemoveAt(index);
+    }
+
+    public void setCurrentGoal(Term goal)
+    {
+        currentGoal = goal;
+    }
+
+    public Term getCurrentGoal()
+    {
+        return currentGoal;
+    }
+
+    public string getHint()
+    {
+        return currentGoal.description;
     }
 
     public string toString()

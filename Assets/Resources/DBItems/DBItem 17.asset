@@ -23,6 +23,9 @@ MonoBehaviour:
   - type: 0
     name: isa
     value: Rabbit
+  - type: 2
+    name: spawnable
+    value: False
   itemPrefab: {fileID: 5145109010974491839, guid: 8cf1130c4c3dea144b46cad4964f8106,
     type: 3}
   description: Lenny

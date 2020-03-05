@@ -11,8 +11,8 @@ public class Player : MonoBehaviour {
     //public Image CrossHair;
     public GameObject actionMenu;
     public GameObject actionMenuContent;
-    public GameObject noActionMessage;
-    public float noActionFadeTime;
+    public GameObject message;
+    public float messageTime;
     public GameObject buttonPrefab;
     public GameObject inventoryMenu;
     public GameObject inventoryButton;
@@ -20,7 +20,11 @@ public class Player : MonoBehaviour {
     public Text speechBubble;
     public Text speechBubbleName;
     public Text gameOver;
+    public Text areaText;
+    public GameObject hintSystem;
     public AudioSource spawnNoise;
+    public AudioSource dropNoise;
+    public AudioSource completeNoise;
 
     private bool _actionMenuOpen = false;
     private bool _inventoryOpen = false;
@@ -31,6 +35,7 @@ public class Player : MonoBehaviour {
     private List<GameItem> _inventory;
     private Item _dbItem;
     private List<Property> _properties;
+    private string noActionMessage = "No action currently available";
 
     private static Player _instance;
     public static Player Instance { get { return _instance; } }
@@ -46,7 +51,10 @@ public class Player : MonoBehaviour {
         _inventory = new List<GameItem>();
         _dbItem = ItemDatabase.GetObject("Player");
         _properties = _dbItem.properties;
-        noActionMessage.SetActive(false);
+        message.SetActive(false);       //ensuring all pop-up menu items are deactivated on start
+        hintSystem.SetActive(false);
+        actionMenu.SetActive(false);
+        inventoryMenu.SetActive(false);
     }
 
     void Update() {
@@ -104,7 +112,8 @@ public class Player : MonoBehaviour {
                 _inventory.RemoveAt(i);
             }
         }
-        item.transform.position = (this.transform.position) + this.transform.forward * 2f;
+        item.transform.position = (this.transform.position) + new Vector3(3, 15, 0); //this.transform.forward * 2f; Appears to the side of character
+        dropNoise.Play();   //plays drop noise
         item.gameObject.SetActive(true);
     }
 
@@ -150,7 +159,8 @@ public class Player : MonoBehaviour {
     public void OpenActionMenu() {
         if (noAction)
         {
-            appear(noActionMessage, noActionFadeTime);
+            message.GetComponentInChildren<Text>().text = noActionMessage;
+            Appear(message, messageTime);
             noAction = false;
         }
         else
@@ -196,6 +206,34 @@ public class Player : MonoBehaviour {
         //EnableMouseLook();
     }
 
+    public void ShowHint()
+    {
+        hintSystem.SetActive(true);
+        StopAllCoroutines();
+        StartCoroutine(TypeSentenceSlowly(PuzzleManager.Instance.getHint(), hintSystem.GetComponentInChildren<Text>()));
+        Debug.Log("hint: " + PuzzleManager.Instance.getHint() + " current text: " + hintSystem.GetComponentInChildren<Text>().text);
+        //hintSystem.GetComponentInChildren<Text>().text = PuzzleManager.Instance.getHint();
+    }
+
+    public void CloseHint()
+    {
+        hintSystem.SetActive(false);
+        hintSystem.GetComponentInChildren<Text>().text = "";
+    }
+
+    public void updateAreaName(string nextArea)
+    {
+        areaText.text = nextArea;
+    }
+
+    public void showFinishMessage(string name)
+    {
+        /*message.GetComponentInChildren<Text>().text = "This area is completed [" + name + "]";
+        Appear(message, messageTime);*/
+        //other option: play finished sound: 
+        completeNoise.Play();
+    }
+
     private void DisableMouseLook() {
         //CrossHair.enabled = false;
         UITextRef.enabled = false;
@@ -228,7 +266,7 @@ public class Player : MonoBehaviour {
         obj.SetActive(false);
     }
 
-    public void appear(GameObject obj, float time)
+    public void Appear(GameObject obj, float time)
     {
         obj.SetActive(true);
         StartCoroutine(CloseSlowly(obj, time));
