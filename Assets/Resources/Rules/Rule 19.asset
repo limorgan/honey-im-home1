@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 4
+  m_Name: Rule 19
   m_EditorClassIdentifier: 
   outputs:
-  - name: Idea
+  - name: Player
     properties:
     - type: 0
       name: wants
@@ -35,17 +35,17 @@ MonoBehaviour:
     properties:
     - type: 0
       name: text
-      value: Is it that time of the year again already? How could I forget our anniversary?
+      value: Huh, it's our anniversary? Already? Must pick something up...
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: CalendarAnniv
+  - name: Photo
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Photo
+  - name: CalendarAnniv
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
