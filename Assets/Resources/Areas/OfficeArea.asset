@@ -26,3 +26,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e2e87e817f6bfd446843afee9ab72ea4, type: 2}
   inGameArea: {fileID: 0}
   maxDepth: 10
+  areaObject: {fileID: 0}

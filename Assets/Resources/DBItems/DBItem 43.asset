@@ -10,19 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ea09481e588c9d45a95b8185d42d1d1, type: 3}
-  m_Name: DBItem
+  m_Name: DBItem 43
   m_EditorClassIdentifier: 
-  name: Cup
+  name: Watch
   properties:
   - type: 2
     name: carryable
-    value: True
-  - type: 0
-    name: isa
-    value: Container
-  - type: 2
-    name: liquids
-    value: True
-  itemPrefab: {fileID: 1082419027471869300, guid: b826e863e4adaf34d84d022775bf94a9,
+    value: False
+  itemPrefab: {fileID: 8784811806414200711, guid: 87b0a5633ad4c1942b9f37528a7c7f28,
     type: 3}
-  description: Cup
+  description: Watch

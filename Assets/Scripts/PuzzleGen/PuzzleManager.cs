@@ -31,6 +31,7 @@ public class PuzzleManager : MonoBehaviour {
     }
 
     public void GenerateForArea(Area area) {
+        area.areaObject.SetActive(true);
         Debug.Log("Area: " + area.ToString());
         Rule root = Generator.GeneratePuzzleStartingFrom(area, _accessibleAreas);
         Debug.Log("Root rule: " + root.GetRuleAsString());

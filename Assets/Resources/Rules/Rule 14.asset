@@ -23,6 +23,17 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+  - name: Speech
+    properties:
+    - type: 0
+      name: name
+      value: Secretary
+    - type: 0
+      name: text
+      value: Sure...off you go now!
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
   inputs:
   - name: Secretary
     properties:

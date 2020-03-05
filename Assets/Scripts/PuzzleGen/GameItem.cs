@@ -31,11 +31,6 @@ public class GameItem : MonoBehaviour {
 
     public void OnGameItemMouseOver(Text UITextRef)
     {
-        //Modification 10/01/2020
-        
-        //Debug.Log(dbItem.name + " located at x = " + location.x + " y = " + location.y);
-        
-        //End mod
         UITextRef.text = dbItem.description;
     }
 
@@ -197,6 +192,7 @@ public class GameItem : MonoBehaviour {
                         spawnIndex++;
                     } else {
                         Vector3 position = Player.Instance.transform.position + new Vector3(5, 15, 0); //Player.Instance.transform.forward; changed to x axis
+                        position.z = 0;     // items kept spawning with bizarre z values
                         itemGO = (GameObject)Instantiate(output.dbItem.itemPrefab, position, Quaternion.identity);
                     }                    
                     itemGO.GetComponent<GameItem>().Setup(output.dbItem.name, output.dbItem);

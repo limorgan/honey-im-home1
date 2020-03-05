@@ -10,6 +10,7 @@ public class Area : ScriptableObject {
     public int maxDepth;
 
     private Term currentGoal;        //05/03 added to make hint system 
+    public GameObject areaObject;
 
     public Area() {
         goals = new List<Term>();

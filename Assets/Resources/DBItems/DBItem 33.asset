@@ -20,6 +20,9 @@ MonoBehaviour:
   - type: 0
     name: isa
     value: Container
+  - type: 2
+    name: liquids
+    value: True
   itemPrefab: {fileID: 1828878947093104458, guid: 2729e3c32bd9ba845b7e885207ba827c,
     type: 3}
   description: Decanter
