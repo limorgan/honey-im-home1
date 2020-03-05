@@ -679,8 +679,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5424280654410574828}
   - component: {fileID: 4101827651424332530}
-  - component: {fileID: 513722547243277023}
   - component: {fileID: 5616557993908497643}
+  - component: {fileID: 5499716810677233555}
   m_Layer: 0
   m_Name: cf
   m_TagString: Untagged
@@ -726,32 +726,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &513722547243277023
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8982966874634455305}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.063495636, y: 4.9842706}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 11.667038, y: 10.968642}
-  m_EdgeRadius: 0
 --- !u!114 &5616557993908497643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,3 +742,35 @@ MonoBehaviour:
   dbItem: {fileID: 0}
   properties: []
   containedValue: {fileID: 0}
+--- !u!60 &5499716810677233555
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982966874634455305}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -2.1071348, y: 7.79721}
+      - {x: -1.720352, y: 5.7622285}
+      - {x: -3.0284069, y: 5.284273}
+      - {x: -1.9026659, y: 1.5325149}
+      - {x: -0.5537999, y: 1.6379782}
+      - {x: 1.0975755, y: 1.6719646}
+      - {x: -0.90821683, y: 8.551798}

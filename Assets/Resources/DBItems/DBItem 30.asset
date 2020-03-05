@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: DBItem 30
   m_EditorClassIdentifier: 
   name: Payphone
-  properties: []
+  properties:
+  - type: 2
+    name: paidfor
+    value: False
+  - type: 0
+    name: 
+    value: 
   itemPrefab: {fileID: 6979538827461453931, guid: 49ff5ec08c61c3d43b31481e75cf59c5,
     type: 3}
   description: Payphone

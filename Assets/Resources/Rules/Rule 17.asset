@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
+  m_Name: Rule 17
+  m_EditorClassIdentifier: 
+  outputs:
+  - name: Taxi
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Payphone
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Speech
+    properties:
+    - type: 0
+      name: text
+      value: Taxi is on its way, time to go home...
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  inputs:
+  - name: Payphone
+    properties:
+    - type: 2
+      name: paidfor
+      value: True
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  action: Call Taxi
+  parent: {fileID: 0}
+  children: []

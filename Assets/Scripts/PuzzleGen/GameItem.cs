@@ -191,7 +191,7 @@ public class GameItem : MonoBehaviour {
                         itemGO = (GameObject)Instantiate(output.dbItem.itemPrefab, transform.position + new Vector3(0, 1, 0), transform.rotation);
                         spawnIndex++;
                     } else {
-                        Vector3 position = Player.Instance.transform.position + new Vector3(5, 15, 0); //Player.Instance.transform.forward; changed to x axis
+                        Vector3 position = Player.Instance.transform.position + new Vector3(0, 20, 0); //Player.Instance.transform.forward; changed to x axis
                         position.z = 0;     // items kept spawning with bizarre z values
                         itemGO = (GameObject)Instantiate(output.dbItem.itemPrefab, position, Quaternion.identity);
                     }                    

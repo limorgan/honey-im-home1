@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 493f1bd9197f62d46ad66653acd49ceb, type: 3}
-  m_Name: Street
+  m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
+  m_Name: Rule 6
   m_EditorClassIdentifier: 
-  name: Street
-  goals:
+  outputs:
   - name: Wallet
     properties:
     - type: 0
@@ -21,9 +20,13 @@ MonoBehaviour:
       value: Change
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
-    description: Might need a bit of cash to go to the pub...
-  connectedTo:
-  - {fileID: 11400000, guid: dc312a7573fa4c0439427ba9db62e983, type: 2}
-  inGameArea: {fileID: 0}
-  maxDepth: 10
-  areaObject: {fileID: 0}
+    description: 
+  inputs:
+  - name: Wallet
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  action: Keep safe
+  parent: {fileID: 0}
+  children: []
