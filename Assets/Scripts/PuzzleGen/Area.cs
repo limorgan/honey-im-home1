@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+
 [System.Serializable]
 public class Area : ScriptableObject {
     public new string name;
