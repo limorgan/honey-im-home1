@@ -25,7 +25,15 @@ MonoBehaviour:
     properties:
     - type: 0
       name: text
-      value: I suppose I could leave the office for now...
+      value: I suppose I could leave the office for now...I need to find a story...
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Idea
+    properties:
+    - type: 2
+      name: anniversary
+      value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -38,11 +46,16 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Idea
-    properties: []
+  - name: Envelope
+    properties:
+    - type: 0
+      name: contains
+      value: Document
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   action: Open
+  hint: 
   parent: {fileID: 0}
   children: []
+  reversible: 0

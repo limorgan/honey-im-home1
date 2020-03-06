@@ -50,5 +50,7 @@ MonoBehaviour:
     gameItem: {fileID: 0}
     description: 
   action: Wake up
+  hint: 
   parent: {fileID: 0}
   children: []
+  reversible: 0

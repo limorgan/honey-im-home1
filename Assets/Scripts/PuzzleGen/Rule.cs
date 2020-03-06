@@ -7,8 +7,10 @@ public class Rule : ScriptableObject {
     public List<Term> outputs;
     public List<Term> inputs;
     public string action;
+    public string hint;
     public Rule parent;
     public List<Rule> children;
+    public bool reversible; // 06/03 order of input items does not matter
 
     public Rule(){
         outputs = new List<Term>();
@@ -119,6 +121,64 @@ public class Rule : ScriptableObject {
         }
         return ruleAsString;
     }
+
+    public List<Rule> InputPermutation()        // 06/03 gives all permutations of the input terms
+    {
+        List<Rule> permutations = new List<Rule>();
+        if (inputs.Count <= 1)
+            permutations.Add(this);
+        else
+        {
+            List<List<Term>> inputPermutations = InputPermutation(this.inputs, 0, this.inputs.Count - 1);
+            Rule modRule = this;
+            foreach (List<Term> modInput in inputPermutations)
+            {
+                modRule.inputs = modInput;
+                permutations.Add(modRule);
+            }
+        }
+        return permutations;
+    }
+
+    public List<List<Term>> InputPermutation(List<Term> input, int i, int j)
+    {
+        List<List<Term>> permutations = new List<List<Term>>();
+        /*permutations.Add(input);
+        if (input.Count <= 1)
+            return permutations;
+        else if (input.Count == 2)
+        {
+            input.Reverse();
+            permutations.Add(input);
+            return permutations;
+        }
+        else
+            return */
+        if (i == j)
+        {
+            permutations.Add(input);
+            return permutations;
+        }
+        else
+        {
+            for(int k = i; k <= j; k++)
+            {
+                input = SwapInputTerms(input, i, k);
+                InputPermutation(input, i + 1, j);
+                input = SwapInputTerms(input, i, k);
+            }
+        }
+        return null;
+    }
+
+    public List<Term> SwapInputTerms(List<Term> input, int i, int j)
+    {
+        Term temp = input[i];
+        input.Insert(i, input[j]);
+        input.Insert(j, temp);
+        return input;
+    }
+    
 
     public string toString()
     {

@@ -28,7 +28,10 @@ MonoBehaviour:
     description: 
   inputs:
   - name: CoffeeMachine
-    properties: []
+    properties:
+    - type: 2
+      name: paidfor
+      value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -41,5 +44,7 @@ MonoBehaviour:
     gameItem: {fileID: 0}
     description: 
   action: Get Coffee
+  hint: 
   parent: {fileID: 0}
   children: []
+  reversible: 0

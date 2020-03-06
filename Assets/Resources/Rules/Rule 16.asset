@@ -13,17 +13,30 @@ MonoBehaviour:
   m_Name: Rule 16
   m_EditorClassIdentifier: 
   outputs:
-  - name: output
-    properties: []
+  - name: CoffeeMachine
+    properties:
+    - type: 2
+      name: paidfor
+      value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: input
+  - name: CoffeeMachine
+    properties:
+    - type: 2
+      name: paidfor
+      value: False
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Change
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: 
+  action: Insert Coins
+  hint: 
   parent: {fileID: 0}
   children: []
+  reversible: 0

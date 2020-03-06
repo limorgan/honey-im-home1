@@ -9,6 +9,7 @@ public class Area : ScriptableObject {
     public List<Area> connectedTo;
     public Transform inGameArea;
     public int maxDepth;
+    private bool isFinalScene = false;
 
     private Term currentGoal;        //05/03 added to make hint system 
     public GameObject areaObject;
@@ -48,6 +49,16 @@ public class Area : ScriptableObject {
     public string getHint()
     {
         return currentGoal.description;
+    }
+
+    public void setFinal(bool final)        // 06/03 setting the area to be the last area
+    {
+        isFinalScene = final;               
+    }
+
+    public bool isFinal()                   // returns whether or not the area is the last one
+    {
+        return isFinalScene;
     }
 
     public string toString()

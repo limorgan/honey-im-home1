@@ -41,5 +41,7 @@ MonoBehaviour:
     gameItem: {fileID: 0}
     description: 
   action: Call Taxi
+  hint: 
   parent: {fileID: 0}
   children: []
+  reversible: 0

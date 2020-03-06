@@ -90,7 +90,8 @@ public class Intro : MonoBehaviour
             goal.text += c;
             if (odd)
             {
-                typingAudio.Play();
+                if(typingAudio != null)
+                    typingAudio.Play();
                 odd = false;
             }
             else

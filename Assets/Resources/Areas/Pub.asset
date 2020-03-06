@@ -19,7 +19,13 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: Quick stop into the pub and need to find a way home then...
-  connectedTo: []
+  - name: 
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  connectedTo:
+  - {fileID: 11400000, guid: dba5ef4086bd9844bbe8a68f991f46b0, type: 2}
   inGameArea: {fileID: 0}
   maxDepth: 10
   areaObject: {fileID: 0}

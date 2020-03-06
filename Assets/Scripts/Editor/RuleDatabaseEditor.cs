@@ -22,8 +22,8 @@ public class RuleDatabaseEditor : EditorWindow {
     }
 
     void OnGUI() {
-        GUILayout.BeginArea(new Rect(10, 10, 700, 700), EditorStyles.helpBox);
-        _scrollPositionBottom = EditorGUILayout.BeginScrollView(_scrollPositionBottom);
+        GUILayout.BeginArea(new Rect(10, 10, 1200, 500), EditorStyles.helpBox);
+        _scrollPositionBottom = EditorGUILayout.BeginScrollView(_scrollPositionBottom, true, true);
 
         EditorGUILayout.LabelField("Rules:", EditorStyles.boldLabel);
         if (GUILayout.Button("Add New Rule", GUILayout.ExpandWidth(false))) {
@@ -109,6 +109,15 @@ public class RuleDatabaseEditor : EditorWindow {
                 if (GUILayout.Button("+", GUILayout.ExpandWidth(false))) {
                     rule.AddInput();
                 }
+
+                // === REVERSIBLE === 
+                EditorGUILayout.LabelField("Rule does not rely on order:", EditorStyles.boldLabel);
+                rule.reversible = EditorGUILayout.Toggle(rule.reversible);
+
+                // === HINT ===
+                EditorGUILayout.LabelField("Hint:", EditorStyles.boldLabel);
+                rule.hint = EditorGUILayout.TextArea(rule.hint);
+
                 if (GUILayout.Button("Delete Rule", GUILayout.ExpandWidth(false))) {
                     RuleDatabase.DeleteAsset(ruleIndx);
                 }

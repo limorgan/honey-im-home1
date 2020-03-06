@@ -47,6 +47,7 @@ public class Generator : MonoBehaviour {
 
     static public Rule GeneratePuzzleStartingFrom(Area area, List<Area> accessibleAreas) {
         Rule root = new Rule();
+        area.setFinal(false);
         //Find all existing items in the scene
         List<Item> itemsInTheScene = new List<Item>();
         GameItem[] existingGameItems = GameObject.Find(area.name).GetComponentsInChildren<GameItem>();
@@ -63,6 +64,8 @@ public class Generator : MonoBehaviour {
             if (GenerateInputs(goal, root, 0, area, accessibleAreas, itemsInTheScene))
             {
                 area.setCurrentGoal(goal);
+                if (goal.GetPropertyWithName("gameover") != null && goal.GetPropertyWithName("gameover").value == "True")   //setting area to be final
+                    area.setFinal(true);
                 Debug.Log("SUCCESS");
             }
             else

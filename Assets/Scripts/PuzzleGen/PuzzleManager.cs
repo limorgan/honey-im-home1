@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class PuzzleManager : MonoBehaviour {
 
@@ -42,28 +43,15 @@ public class PuzzleManager : MonoBehaviour {
         //Debug.Log("Rule generated: " + root.GetRuleAsString());
     }
 
-    public List<Rule> RulesFor(GameItem gameItem, Area area) {
-        //Debug.Log("puzzle manager - rules for " + gameItem.name + " in " + area.name);
+    public List<Rule> RulesFor(GameItem gameItem, Area area) {      
         List<Rule> rules = new List<Rule>();
         List<Rule> test_rules = _leaves[area];
-        /*foreach (Rule r in test_rules)
-            Debug.Log("elements in dictionary leaves: " + r.outputs[0].GetTermAsString() + " " + r.inputs[0].GetTermAsString());
-        Debug.Log("end of first foreach puzzman");*/
         foreach(Rule rule in _leaves[area]) {
-            if (rule.inputs[0].dbItem != null)
-            {
-                //Debug.Log("we have leaves? " + rule.inputs[0].dbItem.name + " =? " + gameItem.dbItem.name);
-                if (rule.inputs[0].dbItem.name == gameItem.dbItem.name)
-                {
-                    //Debug.Log("and item applies to rule...");
-                    if (!rules.Contains(rule))
-                    {
-                        Debug.Log("Found: " + gameItem.dbItem.name + " " + rule.action);
-                        rule.inputs[0].gameItem = gameItem;
-                        rules.Add(rule);
-                    }
-                }
-            }
+            addApplicableRule(rule, gameItem, rules);
+            /*if (rule.reversible) {
+                foreach (Rule modRule in rule.InputPermutation())
+                    addApplicableRule(modRule, gameItem, rules);
+            }*/
             /*foreach(Rule gameOver in _gameOverRules) {
                 if(!rules.Contains(rule))
                     rules.Add(gameOver);
@@ -76,10 +64,25 @@ public class PuzzleManager : MonoBehaviour {
                 if (FindItemsForOutputs(dbRules[i]) && !rules.Contains(dbRules[i])) {
                     rules.Add(dbRules[i]);
                 }
-            }
-            Debug.Log("use.");
+            }            
         }
         return rules;
+    }
+
+    private void addApplicableRule(Rule rule, GameItem gameItem, List<Rule> rules)
+    {
+        if (rule.inputs[0].dbItem != null)
+        {
+            if (rule.inputs[0].dbItem.name == gameItem.dbItem.name)
+            {
+                if (!rules.Contains(rule))
+                {
+                    Debug.Log("Found: " + gameItem.dbItem.name + " " + rule.action);
+                    rule.inputs[0].gameItem = gameItem;
+                    rules.Add(rule);
+                }
+            }
+        }
     }
 
     public void ExecuteRule(Rule rule, Area area) {
@@ -97,8 +100,14 @@ public class PuzzleManager : MonoBehaviour {
             else {
                 Debug.Log("Finished this area!");
                 Player.Instance.showFinishMessage(_currentArea.name);
-                foreach (Area connectedArea in area.connectedTo) {
-                    GenerateForArea(connectedArea);
+                if (area.isFinal())
+                    TriggerEnd();
+                else
+                {
+                    foreach (Area connectedArea in area.connectedTo)
+                    {
+                        GenerateForArea(connectedArea);
+                    }
                 }
             }
         }
@@ -145,5 +154,10 @@ public class PuzzleManager : MonoBehaviour {
     public string getCurrentAreaName()
     {
         return _currentArea.name;
+    }
+
+    public void TriggerEnd()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

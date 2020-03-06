@@ -13,43 +13,27 @@ MonoBehaviour:
   m_Name: Rule 19
   m_EditorClassIdentifier: 
   outputs:
-  - name: Player
+  - name: Envelope
     properties:
     - type: 0
-      name: wants
-      value: Present
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  - name: CalendarAnniv
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  - name: Photo
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  - name: Speech
-    properties:
-    - type: 0
-      name: text
-      value: Huh, it's our anniversary? Already? Must pick something up...
+      name: contains
+      value: Document
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: Photo
+  - name: Envelope
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: CalendarAnniv
+  - name: Document
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Put 2 and 2 together
+  action: Gather Information
+  hint: 
   parent: {fileID: 0}
   children: []
+  reversible: 0

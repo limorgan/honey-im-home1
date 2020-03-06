@@ -23,6 +23,9 @@ MonoBehaviour:
   - type: 2
     name: carryable
     value: True
+  - type: 1
+    name: size
+    value: 1
   itemPrefab: {fileID: 1726506164656354749, guid: 9d3e87477bdb02842a27bb1c64bf1d69,
     type: 3}
   description: Document

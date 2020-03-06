@@ -23,6 +23,12 @@ MonoBehaviour:
   - type: 2
     name: spawnable
     value: False
+  - type: 0
+    name: isa
+    value: Machine
+  - type: 2
+    name: indestructible
+    value: True
   itemPrefab: {fileID: 2112240497354545656, guid: b3ac58c54ce887d42aea45cd7e6923b5,
     type: 3}
   description: Jukebox

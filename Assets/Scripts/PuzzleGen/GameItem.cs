@@ -55,18 +55,14 @@ public class GameItem : MonoBehaviour {
         //Debug.Log("on game item clicked ");
         ActionHeader.text = name;
         bool noAction = true;   //keep track of whether or not there are any actions
-        Debug.Log("GameItem: noAction starts as " + noAction);
         foreach (Rule puzzleRule in PuzzleManager.Instance.RulesFor(this, GetComponentInParent<GameArea>().area)) {
-            //Debug.Log("rules...");
             if (RuleFulFilled(puzzleRule)) {
-                Debug.Log("GameItem: noAction updated to " + noAction);
                 noAction = false;
                 GameObject action = GameObject.Instantiate(buttonPrefab);
                 ActionBtn.CreateComponent(action, this, puzzleRule);
                 action.transform.SetParent(actionMenu.transform);
             }
         }
-        //Debug.Log("past foreach in gameitem");
         if (dbItem.IsCarryable()) {
             noAction = false;
             Debug.Log("GameItem: noAction updated to " + noAction);
@@ -101,16 +97,7 @@ public class GameItem : MonoBehaviour {
             Player.Instance.CloseActionMenu();
             return;
         }
-
-        if (rule.action == "MakeNote")
-        {
-            GameItem c = copy(this);
-            Debug.Log("copy name: " + c.name + " dbItem: " + c.dbItem.name);
-            Spawn(c);
-            Player.Instance.AddItemToInventory(this);
-            Player.Instance.CloseActionMenu();
-            return;
-        }
+        
 
         PuzzleManager.Instance.ExecuteRule(rule, GetComponentInParent<GameArea>().area);
 
@@ -133,7 +120,7 @@ public class GameItem : MonoBehaviour {
                     }
                 }
             }
-            if (!found) {
+            if (!found && this.isDestructible()) {
                 Debug.Log("Destroying: " + rule.inputs[i].name);
                 if (i == 0) objectsToDestroy.Add(this.gameObject);
                 else {
@@ -154,20 +141,8 @@ public class GameItem : MonoBehaviour {
                     found = true;
                     foreach (Property outputProperty in output.properties) {
                         Property property = input.gameItem.GetProperty(outputProperty.name);
-                        //Debug.Log("output property name: " + outputProperty.name);
                         if (property != null && property.name != "contains")
-                        {                                
-                            /*if (outputProperty.name == "inInventory")
-                            {
-                                Debug.Log("inInventory property exists");
-                                if (outputProperty.value == "True")
-                                {
-                                    GameObject itemGO = (GameObject)Instantiate(output.dbItem.itemPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-                                    Player.Instance.AddItemToInventory(itemGO.GetComponent<GameItem>());
-                                }
-                            }
-                            else
-                            {*/
+                        {
                             property.value = outputProperty.value;
                             Debug.Log("Property to change: " + property.name);
                             break;        //this means only the first property to be changed will be changed?! 
@@ -281,6 +256,15 @@ public class GameItem : MonoBehaviour {
                 return property;
         }
         return null;
+    }
+
+    public bool isDestructible()
+    {
+        Property destructible = this.GetProperty("indestructible");
+        if (destructible != null)
+            if (destructible.value == "True")
+                return false;
+        return true;
     }
 
     public string toString()

@@ -20,6 +20,12 @@ MonoBehaviour:
   - type: 2
     name: spawnable
     value: False
+  - type: 0
+    name: isa
+    value: Machine
+  - type: 2
+    name: indestructible
+    value: True
   itemPrefab: {fileID: 3676822999186450039, guid: baf4b541167fdd8439dfc89ff62448de,
     type: 3}
   description: Coffee Machine

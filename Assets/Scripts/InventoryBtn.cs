@@ -2,9 +2,11 @@
 using System.Collections;
 using UnityEngine.UI;
 
+[System.Serializable]
 public class InventoryBtn : MonoBehaviour {
 
     private GameItem _gameItem;
+    //public Image imageSpot;
 
     void Start() {
         Button btn = gameObject.GetComponent<Button>();

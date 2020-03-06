@@ -21,7 +21,8 @@ MonoBehaviour:
       value: False
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
-    description: 'get out '
+    description: I need to see if there's anything here to give me a clue on what
+      I needed to do...
   connectedTo:
   - {fileID: 11400000, guid: e2e87e817f6bfd446843afee9ab72ea4, type: 2}
   inGameArea: {fileID: 0}
