@@ -18,6 +18,7 @@ public class Intro : MonoBehaviour
     public GameObject currentInterface;
     public float characterPrintDelay;
     public GameObject continueButton;
+    public AudioSource typingAudio;
 
     public void Start()
     {
@@ -73,6 +74,7 @@ public class Intro : MonoBehaviour
         foreach (char c in sentence.ToCharArray())
         {
             goal.text += c;
+            typingAudio.Play();
             yield return null;
         }
     }
@@ -82,9 +84,17 @@ public class Intro : MonoBehaviour
         if (delay == 0)
             TypeSentenceSlowly(sentence, goal);
         goal.text = "";
+        bool odd = true;
         foreach (char c in sentence.ToCharArray())
         {
             goal.text += c;
+            if (odd)
+            {
+                typingAudio.Play();
+                odd = false;
+            }
+            else
+                odd = true;
             yield return new WaitForSeconds(delay);
         }
     }
