@@ -20,6 +20,11 @@ MonoBehaviour:
   - type: 2
     name: copyable
     value: True
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 1740740633994021055, guid: e5da093a6da0b45468a9ad624b7c3946,
     type: 3}
   description: Photo
+  longDescription: A photo from a couple of years ago. Probably our anniversary? June
+    6th...

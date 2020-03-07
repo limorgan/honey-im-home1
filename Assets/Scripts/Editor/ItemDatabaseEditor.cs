@@ -25,6 +25,8 @@ public class ItemDatabaseEditor : EditorWindow {
         GUILayout.Space(10);
         GUILayout.BeginHorizontal();
         GUILayout.Label("Item Database Editor", EditorStyles.boldLabel);
+        GUIStyle wordWrapStyle = new GUIStyle(EditorStyles.textArea);
+        wordWrapStyle.wordWrap = true;
 
         if (GUILayout.Button("Add Item")) {
             ItemDatabase.CreateAsset();
@@ -92,6 +94,19 @@ public class ItemDatabaseEditor : EditorWindow {
                 GUILayout.Space(10);
                 EditorGUILayout.LabelField("Description:", EditorStyles.boldLabel);
                 dbAsset.description = EditorGUILayout.TextArea(dbAsset.description, GUILayout.MaxWidth(400));
+                GUILayout.Space(10);
+
+                //"Inspect" option:                 
+                if (dbAsset.GetPropertyWithName("inspectable") != null)
+                    if (dbAsset.GetPropertyWithName("inspectable").value == "True")
+                    {
+                        EditorGUILayout.LabelField("Long description: ", EditorStyles.boldLabel);
+                        //GUILayout.BeginArea(new Rect(50, 50, 200, 200));
+                        EditorStyles.textArea.wordWrap = true;
+                        dbAsset.longDescription = EditorGUILayout.TextArea(dbAsset.longDescription, wordWrapStyle);
+                        //GUILayout.EndArea();
+                    }
+
                 GUILayout.Space(10);
                 EditorGUILayout.LabelField("Prefab:", EditorStyles.boldLabel);
                 dbAsset.itemPrefab = (GameObject)EditorGUILayout.ObjectField(dbAsset.itemPrefab, typeof(GameObject), false);

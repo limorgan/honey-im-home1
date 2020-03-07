@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea09481e588c9d45a95b8185d42d1d1, type: 3}
   m_Name: DBItem 5
   m_EditorClassIdentifier: 
-  name: Calendar
+  name: UFO
   properties:
   - type: 2
-    name: copyable
+    name: spawnable
+    value: False
+  - type: 2
+    name: inspectable
     value: True
-  itemPrefab: {fileID: 4650856287470671337, guid: 81d19fe9277c8c24f8d517cd967c5c4e,
-    type: 3}
-  description: Calendar
+  itemPrefab: {fileID: 0}
+  description: UFO
+  longDescription: Just the usual...things do seem a little off...

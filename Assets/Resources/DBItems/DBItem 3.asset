@@ -23,6 +23,10 @@ MonoBehaviour:
   - type: 2
     name: carryable
     value: True
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 4258098326250604847, guid: e508be04d1e688e4296968516cb62f9d,
     type: 3}
   description: Stout
+  longDescription: This will do too.

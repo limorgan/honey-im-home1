@@ -20,6 +20,10 @@ MonoBehaviour:
   - type: 1
     name: size
     value: 1
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 7661363217566060990, guid: 1b0ef57ef9e725c47a29e57f45d96726,
     type: 3}
   description: Crowbar
+  longDescription: 'Good for breaking things. '

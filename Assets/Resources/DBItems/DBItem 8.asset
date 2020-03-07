@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea09481e588c9d45a95b8185d42d1d1, type: 3}
   m_Name: DBItem 8
   m_EditorClassIdentifier: 
-  name: CalendarAnniv
+  name: Calendar
   properties:
   - type: 2
     name: carryable
@@ -20,6 +20,10 @@ MonoBehaviour:
   - type: 2
     name: copyable
     value: True
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 5489296764963432308, guid: 3c3b6985db7ef734fbe298c110c49cb1,
     type: 3}
   description: Calendar
+  longDescription: Time is flying...6th of June, alreay??

@@ -21,6 +21,14 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+  - name: Speech
+    properties:
+    - type: 0
+      name: text
+      value: Let's see...looks like there might be something in here...
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
   inputs:
   - name: Car
     properties: []

@@ -20,6 +20,10 @@ MonoBehaviour:
   - type: 0
     name: isa
     value: Paper
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 8196224939395094166, guid: 8555aea5989298e4b9483145158b9841,
     type: 3}
   description: Napkins
+  longDescription: 'Super-thin wrinkly paper. '

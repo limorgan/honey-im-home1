@@ -20,6 +20,10 @@ MonoBehaviour:
   - type: 2
     name: spawnable
     value: False
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 2360899439180300973, guid: 838129f0e0c26b24888fe53d997b9ba5,
     type: 3}
   description: Gate
+  longDescription: The park might look a bit dodgy, but it is a handy shortcut home...

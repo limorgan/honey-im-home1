@@ -17,6 +17,10 @@ MonoBehaviour:
   - type: 2
     name: carryable
     value: True
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 8784811806414200711, guid: 87b0a5633ad4c1942b9f37528a7c7f28,
     type: 3}
   description: Watch
+  longDescription: Ouch. It's late. Very late.

@@ -20,6 +20,11 @@ MonoBehaviour:
   - type: 2
     name: ison
     value: False
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 4818193272589500049, guid: 38c56605e4c046748a6c14b0843c2a17,
     type: 3}
   description: Radio
+  longDescription: A bit of music after a long day is always a good idea...might remind
+    me of something. Or not...

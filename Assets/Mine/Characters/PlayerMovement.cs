@@ -147,6 +147,7 @@ public class PlayerMovement : MonoBehaviour
         rb.transform.position = nextSpawnPoint;
         //Player.Instance.areaText.text = nextAreaName;
         Player.Instance.updateAreaName(PuzzleManager.Instance.getCurrentAreaName());
+        Player.Instance.closeAllMenus();
         moveMenuOpen = false;
         moveMenuUI.SetActive(false);
         Time.timeScale = 1f;        

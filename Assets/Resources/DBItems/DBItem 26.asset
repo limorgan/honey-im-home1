@@ -23,3 +23,4 @@ MonoBehaviour:
   itemPrefab: {fileID: 2559373731006611323, guid: 2263c4785018313479a3ba53bb9aa0f0,
     type: 3}
   description: Cocktail
+  longDescription: 

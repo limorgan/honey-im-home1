@@ -26,3 +26,4 @@ MonoBehaviour:
   itemPrefab: {fileID: 2605611325481011133, guid: 9a9f2bb33a9524b43930dbdc7dd3c853,
     type: 3}
   description: Jimmy
+  longDescription: 

@@ -29,6 +29,11 @@ MonoBehaviour:
   - type: 2
     name: indestructible
     value: True
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 2112240497354545656, guid: b3ac58c54ce887d42aea45cd7e6923b5,
     type: 3}
   description: Jukebox
+  longDescription: Sturdy. Questionable collection of records. But there has to be
+    a decent one in there...

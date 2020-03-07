@@ -16,6 +16,14 @@ public class Property {
             value = "0";
     }
 
+    // 06/03 overloading constructor for one-step constructor
+    public Property(PropertyType type, string name, string value)
+    {
+        this.type = type;
+        this.name = name;
+        this.value = value.ToString();
+    }
+
     public bool Equals(Property otherProperty) {
         return otherProperty.name == this.name && otherProperty.value == this.value;
     }

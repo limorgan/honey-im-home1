@@ -20,6 +20,11 @@ MonoBehaviour:
   - type: 0
     name: isa
     value: Container
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 1530951365467347576, guid: 0030568b4e224e34c86bbc6330ceac5c,
     type: 3}
   description: Wallet
+  longDescription: Keeps change safe, better than just having it in your pocket. Do
+    I even have any change?

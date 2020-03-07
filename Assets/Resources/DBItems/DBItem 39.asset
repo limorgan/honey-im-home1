@@ -20,6 +20,10 @@ MonoBehaviour:
   - type: 0
     name: isa
     value: Pen
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 5613240140370265201, guid: 3aae43e358b2cab41af87854e83967a1,
     type: 3}
   description: Lipstick
+  longDescription: Not very hygenic, but could be used for something else...

@@ -17,6 +17,11 @@ MonoBehaviour:
   - type: 2
     name: carryable
     value: True
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 3976758656610010072, guid: 1d56db7bbf41f624897dde6b73858aa7,
     type: 3}
   description: Idea
+  longDescription: 'The physical form of an idea. A lightbulb. Original. Might help
+    me figure out where to go from here. '

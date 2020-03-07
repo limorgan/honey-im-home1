@@ -17,6 +17,10 @@ MonoBehaviour:
   - type: 2
     name: carryable
     value: True
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 4701228165054640484, guid: 43acd24123e2d1848b7b24f1f90be10d,
     type: 3}
   description: Newspaper
+  longDescription: 'Too much scary stuff in here. '

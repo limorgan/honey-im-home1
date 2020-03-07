@@ -17,6 +17,10 @@ MonoBehaviour:
   - type: 2
     name: carryable
     value: True
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 2389990530251869597, guid: 1116e7089b733e343821b07f91d72aa9,
     type: 3}
   description: Key
+  longDescription: 'The master key. Opens everything. '

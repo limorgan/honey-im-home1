@@ -23,6 +23,11 @@ MonoBehaviour:
   - type: 2
     name: liquids
     value: True
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 1828878947093104458, guid: 2729e3c32bd9ba845b7e885207ba827c,
     type: 3}
   description: Decanter
+  longDescription: It might be a bit unorthodox to drink straight from the bottle...but
+    when you really need a container (or drink)...

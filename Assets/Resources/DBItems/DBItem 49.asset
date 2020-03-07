@@ -29,3 +29,4 @@ MonoBehaviour:
   itemPrefab: {fileID: 198633469456086548, guid: 13b3d49432e2a9445b959f39f1f4ffe5,
     type: 3}
   description: Car
+  longDescription: 

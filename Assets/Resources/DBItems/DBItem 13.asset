@@ -20,3 +20,4 @@ MonoBehaviour:
   itemPrefab: {fileID: 7268824414271422916, guid: 2b2780bddbbe81f4980016dac02c761f,
     type: 3}
   description: Stanley
+  longDescription: 

@@ -102,6 +102,10 @@ public class Player : MonoBehaviour {
 
     public void AddItemToInventory(GameItem item) {
         item.gameObject.SetActive(false);
+        if (item.dbItem.GetPropertyWithName("inInventory") == null)
+            item.dbItem.properties.Add(new Property(PropertyType.BoolProperty, "inInventory", "True"));
+        else
+            item.dbItem.GetPropertyWithName("inInventory").value = "True";
         _inventory.Add(item);
     }
 
@@ -111,6 +115,7 @@ public class Player : MonoBehaviour {
                 _inventory.RemoveAt(i);
             }
         }
+        item.dbItem.GetPropertyWithName("inInventory").value = "False";             // property showing if in inventory or not.  
         item.transform.position = (this.transform.position) + new Vector3(3, 15, 0); //this.transform.forward * 2f; Appears to the side of character
         dropNoise.Play();   //plays drop noise
         item.gameObject.SetActive(true);
@@ -269,5 +274,13 @@ public class Player : MonoBehaviour {
     {
         obj.SetActive(true);
         StartCoroutine(CloseSlowly(obj, time));
+    }
+
+    public void closeAllMenus()
+    {
+        CloseInventory();
+        CloseActionMenu();
+        CloseSpeechBubble();
+        message.SetActive(false);
     }
 }

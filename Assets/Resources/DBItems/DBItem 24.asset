@@ -25,3 +25,4 @@ MonoBehaviour:
     value: 1
   itemPrefab: {fileID: 0}
   description: Coffee
+  longDescription: 

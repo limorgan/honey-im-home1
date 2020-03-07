@@ -29,3 +29,4 @@ MonoBehaviour:
   itemPrefab: {fileID: 5432537799034391204, guid: 35074b207d9585b40b3c7f06aa6944aa,
     type: 3}
   description: Ruby
+  longDescription: 

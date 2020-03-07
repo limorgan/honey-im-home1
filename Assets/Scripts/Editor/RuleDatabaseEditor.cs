@@ -9,6 +9,8 @@ public class RuleDatabaseEditor : EditorWindow {
     private Vector2 _scrollPositionBottom = Vector2.zero;
     private List<bool> foldedOut = new List<bool>();
     private PropertyType _newPropertyType = PropertyType.StringProperty;
+    
+    
 
     [MenuItem("Window/Rules Editor %#e")]
     static void Init() {
@@ -22,6 +24,8 @@ public class RuleDatabaseEditor : EditorWindow {
     }
 
     void OnGUI() {
+        
+
         GUILayout.BeginArea(new Rect(10, 10, 1200, 500), EditorStyles.helpBox);
         _scrollPositionBottom = EditorGUILayout.BeginScrollView(_scrollPositionBottom, true, true);
 
@@ -110,13 +114,13 @@ public class RuleDatabaseEditor : EditorWindow {
                     rule.AddInput();
                 }
 
-                // === REVERSIBLE === 
+                /* // === REVERSIBLE === 
                 EditorGUILayout.LabelField("Rule does not rely on order:", EditorStyles.boldLabel);
                 rule.reversible = EditorGUILayout.Toggle(rule.reversible);
 
                 // === HINT ===
                 EditorGUILayout.LabelField("Hint:", EditorStyles.boldLabel);
-                rule.hint = EditorGUILayout.TextArea(rule.hint);
+                rule.hint = EditorGUILayout.TextArea(rule.hint);*/
 
                 if (GUILayout.Button("Delete Rule", GUILayout.ExpandWidth(false))) {
                     RuleDatabase.DeleteAsset(ruleIndx);

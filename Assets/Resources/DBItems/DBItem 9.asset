@@ -20,6 +20,10 @@ MonoBehaviour:
   - type: 0
     name: isa
     value: Door
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 5941141160161208229, guid: b3bdd6ebc3925064fbf837a50f31b6d0,
     type: 3}
   description: Door
+  longDescription: Ah yes, what a great invention.

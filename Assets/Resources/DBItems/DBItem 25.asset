@@ -20,6 +20,11 @@ MonoBehaviour:
   - type: 0
     name: isa
     value: Paper
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 4895658856398085526, guid: eb6984b91fe332e4580f6e7c44a8b646,
     type: 3}
   description: Coasters
+  longDescription: Could definitely do something with this...paper is useful after
+    all...

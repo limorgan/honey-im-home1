@@ -17,6 +17,10 @@ MonoBehaviour:
   - type: 2
     name: carryable
     value: True
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 5204340863003690758, guid: 2e5cf1ecccf230c47b59e1503f7d0e40,
     type: 3}
   description: Hat
+  longDescription: 'Makes me look kind of silly. '

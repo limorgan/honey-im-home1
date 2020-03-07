@@ -20,3 +20,4 @@ MonoBehaviour:
   itemPrefab: {fileID: 9214644014116034777, guid: 2c40eba27d199364984d2121e4b24f42,
     type: 3}
   description: Home
+  longDescription: 

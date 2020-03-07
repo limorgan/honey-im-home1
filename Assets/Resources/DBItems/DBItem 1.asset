@@ -20,3 +20,4 @@ MonoBehaviour:
   itemPrefab: {fileID: 5411488970069789499, guid: b72c69b2dfde81c4d96d7f79747a450b,
     type: 3}
   description: My Goodness My Guinness...
+  longDescription: 

@@ -78,6 +78,15 @@ public class GameItem : MonoBehaviour {
             ActionBtn.CreateComponent(action, this, new Rule("MakeNote"));
             action.transform.SetParent(actionMenu.transform);
         }*/
+        //Addition: 07/03/2020 --- "Inspect" button which, if available, displays a "hint" associated with the item
+        if (dbItem.IsInspectable())
+        {
+            noAction = false;
+            Debug.Log("Creating inspect button. ");
+            GameObject action = GameObject.Instantiate(buttonPrefab);
+            ActionBtn.CreateComponent(action, this, new Rule("Inspect"));
+            action.transform.SetParent(actionMenu.transform);
+        }
         //end of addition
         if (containedValue) {
             noAction = false;
@@ -92,6 +101,12 @@ public class GameItem : MonoBehaviour {
         if (rule.action == "PickUp") {
             Player.Instance.AddItemToInventory(this);
             Player.Instance.CloseActionMenu();
+            return;
+        }
+
+        if (rule.action == "Inspect")
+        {
+            Player.Instance.ShowSpeechBubble(dbItem.longDescription, dbItem.name);
             return;
         }
         

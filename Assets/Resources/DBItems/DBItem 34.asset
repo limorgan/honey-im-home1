@@ -23,6 +23,11 @@ MonoBehaviour:
   - type: 0
     name: isa
     value: Paper
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 1691818272930879178, guid: 6d1485e334f99164baa57814eec616fd,
     type: 3}
   description: Envelope
+  longDescription: A place to put important documents. Or useless ones if you want
+    to pretend they're actually important.

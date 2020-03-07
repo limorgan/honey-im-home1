@@ -17,6 +17,11 @@ MonoBehaviour:
   - type: 2
     name: locked
     value: True
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 3588913185012083262, guid: aa8a787ecb64f224fb4abc15f45bcf54,
     type: 3}
   description: Elevator
+  longDescription: 'Don''t know when they introduced the card system but it''s caused
+    me some amount of trouble...just keep losing that ID. Stuck here. '

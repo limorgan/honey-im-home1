@@ -7,10 +7,15 @@ public class Item : ScriptableObject{
 	public List<Property> properties;
     public GameObject itemPrefab;
     public string description;
+    public string longDescription;
 
     public Item() {
         if (properties == null)
             properties = new List<Property>();
+
+        Property inspectable = new Property(PropertyType.BoolProperty);         // 07/03 added inspectable as a default property...
+        properties.Add(inspectable);
+
         name = "NewItem";
     }
 
@@ -124,6 +129,14 @@ public class Item : ScriptableObject{
         if (GetPropertyWithName("spawnable") == null)
             return true;
         return false;
+    }
+
+    public bool IsInspectable()
+    {
+        if (GetPropertyWithName("inspectable") != null && GetPropertyWithName("inspectable").value == "True")
+            return true;
+        else
+            return false;
     }
 
     public string toString()

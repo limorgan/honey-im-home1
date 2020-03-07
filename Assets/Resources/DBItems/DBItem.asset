@@ -26,3 +26,4 @@ MonoBehaviour:
   itemPrefab: {fileID: 1082419027471869300, guid: b826e863e4adaf34d84d022775bf94a9,
     type: 3}
   description: Cup
+  longDescription: 

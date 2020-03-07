@@ -29,3 +29,4 @@ MonoBehaviour:
   itemPrefab: {fileID: 5145109010974491839, guid: 8cf1130c4c3dea144b46cad4964f8106,
     type: 3}
   description: Lenny
+  longDescription: 
