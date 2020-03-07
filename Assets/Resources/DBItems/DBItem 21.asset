@@ -17,6 +17,9 @@ MonoBehaviour:
   - type: 2
     name: carryable
     value: True
+  - type: 2
+    name: inInventory
+    value: True
   itemPrefab: {fileID: 2104351924192256125, guid: 3676105f3cdfe584f92376093a08a1c9,
     type: 3}
   description: ID Card

@@ -65,7 +65,6 @@ public class GameItem : MonoBehaviour {
         }
         if (dbItem.IsCarryable()) {
             noAction = false;
-            Debug.Log("GameItem: noAction updated to " + noAction);
             Debug.Log("Creating Pick up button. ");
             GameObject action = GameObject.Instantiate(buttonPrefab);
             ActionBtn.CreateComponent(action, this, new Rule("PickUp"));
@@ -82,13 +81,11 @@ public class GameItem : MonoBehaviour {
         //end of addition
         if (containedValue) {
             noAction = false;
-            Debug.Log("GameItem: noAction updated to " + noAction);
             GameObject action = GameObject.Instantiate(buttonPrefab);
             ActionBtn.CreateComponent(action, this, new Rule("TakeOut"));
             action.transform.SetParent(actionMenu.transform);
         }
         Player.Instance.noAction = noAction;
-        Debug.Log("No action in GameItem: " + noAction + " Player: " + Player.Instance.noAction);
     }
 
     public void ExecuteRule(Rule rule) {

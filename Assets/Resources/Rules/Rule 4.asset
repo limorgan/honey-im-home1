@@ -14,10 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outputs:
   - name: Idea
-    properties:
-    - type: 2
-      name: anniversary
-      value: True
+    properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 

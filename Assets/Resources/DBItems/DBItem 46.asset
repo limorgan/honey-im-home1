@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ea09481e588c9d45a95b8185d42d1d1, type: 3}
-  m_Name: DBItem 43
+  m_Name: DBItem 46
   m_EditorClassIdentifier: 
-  name: Watch
+  name: Gate
   properties:
   - type: 2
-    name: carryable
+    name: locked
     value: True
-  itemPrefab: {fileID: 8784811806414200711, guid: 87b0a5633ad4c1942b9f37528a7c7f28,
+  - type: 2
+    name: spawnable
+    value: False
+  itemPrefab: {fileID: 2360899439180300973, guid: 838129f0e0c26b24888fe53d997b9ba5,
     type: 3}
-  description: Watch
+  description: Gate

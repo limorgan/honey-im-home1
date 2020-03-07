@@ -24,5 +24,5 @@ MonoBehaviour:
     description: Definitely time to get home now...
   connectedTo: []
   inGameArea: {fileID: 0}
-  maxDepth: 0
+  maxDepth: 10
   areaObject: {fileID: 0}

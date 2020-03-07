@@ -66,7 +66,6 @@ public class Player : MonoBehaviour {
                 if (hit) {
                     if (hit.collider.GetComponentInParent<GameItem>() != null) {
                         hit.collider.gameObject.GetComponentInParent<GameItem>().OnGameItemClicked(actionMenuContent, buttonPrefab, ActionHeader);
-                        Debug.Log("Player _noAction: " + noAction);
                         OpenActionMenu();
                         //UITextRef.text = "";
                         }

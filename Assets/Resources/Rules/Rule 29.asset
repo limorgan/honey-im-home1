@@ -10,44 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 23
+  m_Name: Rule 29
   m_EditorClassIdentifier: 
   outputs:
-  - name: Idea
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  - name: CalendarAnniv
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  - name: Photo
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  - name: Speech
+  - name: Car
     properties:
     - type: 0
-      name: text
-      value: It looks like...surely not...it's hardly our anniversary already??
+      name: contains
+      value: Crowbar
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: Photo
+  - name: Car
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: CalendarAnniv
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  action: Look closer
+  action: Check boot
   hint: 
   parent: {fileID: 0}
   children: []

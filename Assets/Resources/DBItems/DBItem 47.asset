@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ea09481e588c9d45a95b8185d42d1d1, type: 3}
-  m_Name: DBItem 43
+  m_Name: DBItem 47
   m_EditorClassIdentifier: 
-  name: Watch
+  name: Key
   properties:
   - type: 2
     name: carryable
     value: True
-  itemPrefab: {fileID: 8784811806414200711, guid: 87b0a5633ad4c1942b9f37528a7c7f28,
+  itemPrefab: {fileID: 2389990530251869597, guid: 1116e7089b733e343821b07f91d72aa9,
     type: 3}
-  description: Watch
+  description: Key

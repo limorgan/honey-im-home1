@@ -13,6 +13,13 @@ MonoBehaviour:
   m_Name: DBItem 44
   m_EditorClassIdentifier: 
   name: Taxi
-  properties: []
-  itemPrefab: {fileID: 0}
-  description: 
+  properties:
+  - type: 2
+    name: liquids
+    value: False
+  - type: 0
+    name: isa
+    value: Container
+  itemPrefab: {fileID: 2324057410419385254, guid: 31d57743a889e2e4da68873199e1f1db,
+    type: 3}
+  description: Taxi

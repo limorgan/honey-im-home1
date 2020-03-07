@@ -10,13 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ea09481e588c9d45a95b8185d42d1d1, type: 3}
-  m_Name: DBItem 43
+  m_Name: DBItem 49
   m_EditorClassIdentifier: 
-  name: Watch
+  name: Car
   properties:
+  - type: 0
+    name: isa
+    value: Car
+  - type: 0
+    name: isa
+    value: Container
   - type: 2
-    name: carryable
-    value: True
-  itemPrefab: {fileID: 8784811806414200711, guid: 87b0a5633ad4c1942b9f37528a7c7f28,
+    name: liquids
+    value: False
+  - type: 2
+    name: spawnable
+    value: False
+  itemPrefab: {fileID: 198633469456086548, guid: 13b3d49432e2a9445b959f39f1f4ffe5,
     type: 3}
-  description: Watch
+  description: Car

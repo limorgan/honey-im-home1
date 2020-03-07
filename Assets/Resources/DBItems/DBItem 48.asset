@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ea09481e588c9d45a95b8185d42d1d1, type: 3}
-  m_Name: DBItem 43
+  m_Name: DBItem 48
   m_EditorClassIdentifier: 
-  name: Watch
+  name: Crowbar
   properties:
   - type: 2
     name: carryable
     value: True
-  itemPrefab: {fileID: 8784811806414200711, guid: 87b0a5633ad4c1942b9f37528a7c7f28,
+  - type: 1
+    name: size
+    value: 1
+  itemPrefab: {fileID: 7661363217566060990, guid: 1b0ef57ef9e725c47a29e57f45d96726,
     type: 3}
-  description: Watch
+  description: Crowbar
