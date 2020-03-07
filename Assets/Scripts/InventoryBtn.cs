@@ -14,8 +14,16 @@ public class InventoryBtn : MonoBehaviour {
     }
 
     public void OnMouseDown() {
-        Player.Instance.RemoveItemFromInventory(_gameItem);
-        Destroy(this.gameObject);
+        if (!_gameItem.selected)
+        {
+            Player.Instance.SelectItemFromInventory(_gameItem);
+        }
+        else
+        {
+            Player.Instance.DeselectItemFromInventory(_gameItem);
+        }
+        /*Player.Instance.RemoveItemFromInventory(_gameItem);
+        Destroy(this.gameObject);*/
     }
 
     public static InventoryBtn CreateComponent(GameObject where, GameItem gameItem) {

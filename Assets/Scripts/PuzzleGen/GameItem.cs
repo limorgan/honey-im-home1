@@ -9,6 +9,7 @@ public class GameItem : MonoBehaviour {
     public Item dbItem;
     public List<Property> properties;
     public GameItem containedValue;
+    public bool selected;
 
     private bool _pickedUp = false;
 
@@ -63,7 +64,7 @@ public class GameItem : MonoBehaviour {
                 action.transform.SetParent(actionMenu.transform);
             }
         }
-        if (dbItem.IsCarryable()) {
+        if (dbItem.IsCarryable() && !selected) {
             noAction = false;
             Debug.Log("Creating Pick up button. ");
             GameObject action = GameObject.Instantiate(buttonPrefab);
@@ -94,6 +95,17 @@ public class GameItem : MonoBehaviour {
             ActionBtn.CreateComponent(action, this, new Rule("TakeOut"));
             action.transform.SetParent(actionMenu.transform);
         }
+        if(selected)
+        {
+            noAction = false;
+            GameObject action = GameObject.Instantiate(buttonPrefab);
+            ActionBtn.CreateComponent(action, this, new Rule("Drop"));
+            action.transform.SetParent(actionMenu.transform);
+
+            GameObject action2 = GameObject.Instantiate(buttonPrefab);
+            ActionBtn.CreateComponent(action2, this, new Rule("Deselect"));
+            action2.transform.SetParent(actionMenu.transform);
+        }
         Player.Instance.noAction = noAction;
     }
 
@@ -110,6 +122,20 @@ public class GameItem : MonoBehaviour {
             return;
         }
         
+        if (rule.action == "Drop")
+        {
+            Player.Instance.DeselectItemFromInventory(this);
+            Player.Instance.RemoveItemFromInventory(this);
+            Player.Instance.CloseActionMenu();
+            return;
+        }
+
+        if (rule.action == "Deselect")
+        {
+            Player.Instance.DeselectItemFromInventory(this);
+            Player.Instance.CloseActionMenu();
+            return;
+        }
 
         PuzzleManager.Instance.ExecuteRule(rule, GetComponentInParent<GameArea>().area);
 

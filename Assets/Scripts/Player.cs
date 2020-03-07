@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
     public GameObject inventoryMenu;
     public GameObject inventoryButton;
     public GameObject speechUI;
+    public GameObject selectedItemField;
     public Text speechBubble;
     public Text speechBubbleName;
     public Text gameOver;
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour {
     private Item _dbItem;
     private List<Property> _properties;
     private string noActionMessage = "No action currently available";
+    private GameItem selectedItem;
 
     private static Player _instance;
     public static Player Instance { get { return _instance; } }
@@ -51,10 +53,7 @@ public class Player : MonoBehaviour {
         _inventory = new List<GameItem>();
         _dbItem = ItemDatabase.GetObject("Player");
         _properties = _dbItem.properties;
-        message.SetActive(false);       //ensuring all pop-up menu items are deactivated on start
-        hintSystem.SetActive(false);
-        actionMenu.SetActive(false);
-        inventoryMenu.SetActive(false);
+        closeAllMenus();
     }
 
     void Update() {
@@ -79,12 +78,14 @@ public class Player : MonoBehaviour {
                     CloseInventory();
                 else
                     OpenInventory();
-            } else if (hit){//Physics.Raycast(ray, out hit)) {
+            } else if (hit){
                 if (hit.collider.GetComponentInParent<GameItem>() != null)
                     if(!_actionMenuOpen && !_inventoryOpen)
                         hit.collider.gameObject.GetComponentInParent<GameItem>().OnGameItemMouseOver(UITextRef);
             } else {
                 UITextRef.text = "";
+                if (selectedItem != null)
+                    selectedItemField.SetActive(true);                    
             }
 
         }
@@ -131,11 +132,50 @@ public class Player : MonoBehaviour {
         return false;
     }
 
+    public void SelectItemFromInventory(GameItem item)
+    {
+        for (int i = _inventory.Count - 1; i >= 0; i--)
+        {
+            if (_inventory[i] == item)
+            {
+                if (!item.selected)
+                {
+                    if(selectedItem != null)
+                        DeselectItemFromInventory(selectedItem);  //deselected currently selected item
+                    selectedItem = item;
+                    item.selected = true;
+                    SelectedItemButton.CreateComponent(selectedItemField, item);
+                    selectedItemField.SetActive(true);
+                    CloseInventory();
+                }
+            }
+        }
+    }
+
+    public void DeselectItemFromInventory(GameItem item)
+    {
+        for (int i = _inventory.Count - 1; i >= 0; i--)
+        {
+            if (_inventory[i] == item)
+            {
+                if (!item.selected)
+                    return;
+                item.selected = false;
+                selectedItem = null;
+                GameObject.Destroy(selectedItemField.GetComponentInChildren<SelectedItemButton>());
+                selectedItemField.SetActive(false);
+                //actionMenuContent = null;
+            }
+        }
+    }
+
     public List<GameItem> GetInventory() {
         return _inventory;
     }
 
     public void OpenInventory() {
+        if (_actionMenuOpen)
+            CloseActionMenu();
         foreach(GameItem item in _inventory) {
             GameObject inventoryItem = GameObject.Instantiate(buttonPrefab);
             InventoryBtn.CreateComponent(inventoryItem, item);
@@ -174,6 +214,12 @@ public class Player : MonoBehaviour {
             //DisableMouseLook();       //not needed in 2D
             Time.timeScale = 0f;        //instead - to avoid background movement while menu is open
         }
+    }
+
+    public void OpenActionMenu(GameItem item)
+    {
+        item.OnGameItemClicked(actionMenuContent, buttonPrefab, ActionHeader);
+        OpenActionMenu();
     }
 
     public void CloseActionMenu() {
@@ -282,5 +328,6 @@ public class Player : MonoBehaviour {
         CloseActionMenu();
         CloseSpeechBubble();
         message.SetActive(false);
+        hintSystem.SetActive(false);
     }
 }
