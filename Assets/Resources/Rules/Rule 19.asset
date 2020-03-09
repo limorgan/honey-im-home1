@@ -15,9 +15,9 @@ MonoBehaviour:
   outputs:
   - name: Envelope
     properties:
-    - type: 0
-      name: contains
-      value: Document
+    - type: 2
+      name: full
+      value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -37,3 +37,4 @@ MonoBehaviour:
   parent: {fileID: 0}
   children: []
   reversible: 0
+  selectedInput: 0

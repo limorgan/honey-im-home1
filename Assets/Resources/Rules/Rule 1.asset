@@ -42,3 +42,4 @@ MonoBehaviour:
   parent: {fileID: 0}
   children: []
   reversible: 1
+  selectedInput: 0

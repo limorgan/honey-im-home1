@@ -27,6 +27,12 @@ public class Property {
     public bool Equals(Property otherProperty) {
         return otherProperty.name == this.name && otherProperty.value == this.value;
     }
+
+    public void RemoveProperty()
+    {
+        this.name = "";
+        this.value = "";
+    }
 }
 
 

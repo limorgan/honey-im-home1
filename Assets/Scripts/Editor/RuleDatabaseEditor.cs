@@ -116,11 +116,15 @@ public class RuleDatabaseEditor : EditorWindow {
 
                 /* // === REVERSIBLE === 
                 EditorGUILayout.LabelField("Rule does not rely on order:", EditorStyles.boldLabel);
-                rule.reversible = EditorGUILayout.Toggle(rule.reversible);
+                rule.reversible = EditorGUILayout.Toggle(rule.reversible);*/
 
-                // === HINT ===
-                EditorGUILayout.LabelField("Hint:", EditorStyles.boldLabel);
-                rule.hint = EditorGUILayout.TextArea(rule.hint);*/
+
+                // === InIventory === 
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("Input doesn't need to be selected:", EditorStyles.boldLabel);
+                rule.selectedInput = EditorGUILayout.Toggle(rule.selectedInput);
+                EditorGUILayout.EndHorizontal();
+
 
                 if (GUILayout.Button("Delete Rule", GUILayout.ExpandWidth(false))) {
                     RuleDatabase.DeleteAsset(ruleIndx);
@@ -147,3 +151,4 @@ public class RuleDatabaseEditor : EditorWindow {
         }
     }
 }
+ 

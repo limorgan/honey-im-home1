@@ -30,10 +30,7 @@ MonoBehaviour:
     gameItem: {fileID: 0}
     description: 
   - name: Idea
-    properties:
-    - type: 2
-      name: anniversary
-      value: True
+    properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -48,9 +45,9 @@ MonoBehaviour:
     description: 
   - name: Envelope
     properties:
-    - type: 0
-      name: contains
-      value: Document
+    - type: 2
+      name: full
+      value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -59,3 +56,4 @@ MonoBehaviour:
   parent: {fileID: 0}
   children: []
   reversible: 0
+  selectedInput: 1

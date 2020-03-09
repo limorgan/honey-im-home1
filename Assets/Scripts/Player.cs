@@ -114,18 +114,35 @@ public class Player : MonoBehaviour {
         for(int i = _inventory.Count - 1; i >= 0 ; i--) {
             if(_inventory[i] == item) {
                 _inventory.RemoveAt(i);
+                item.dbItem.GetPropertyWithName("inInventory").RemoveProperty();             // property showing if in inventory or not.  
+                item.transform.position = (this.transform.position) + new Vector3(3, 15, 0); //this.transform.forward * 2f; Appears to the side of character
+                dropNoise.Play();   //plays drop noise
+                item.gameObject.SetActive(true);
+                if (item.selected)
+                {
+                    item.selected = false;
+                    selectedItem = null;
+                    selectedItemField.SetActive(false);
+                }
             }
         }
-        item.dbItem.GetPropertyWithName("inInventory").value = "False";             // property showing if in inventory or not.  
-        item.transform.position = (this.transform.position) + new Vector3(3, 15, 0); //this.transform.forward * 2f; Appears to the side of character
-        dropNoise.Play();   //plays drop noise
-        item.gameObject.SetActive(true);
+    }
+
+    public void RemoveSelectedFromInventory()
+    {
+        DeleteItemFromInventory(this.selectedItem);
     }
 
     public bool DeleteItemFromInventory(GameItem item) {
         for (int i = _inventory.Count - 1; i >= 0; i--) {
             if (_inventory[i] == item) {
                 _inventory.RemoveAt(i);
+                if (item.selected)
+                {
+                    item.selected = false;
+                    selectedItem = null;
+                    selectedItemField.SetActive(false);
+                }
                 return true;
             }
         }
@@ -167,6 +184,11 @@ public class Player : MonoBehaviour {
                 //actionMenuContent = null;
             }
         }
+    }
+
+    public GameItem getSelectedItem()
+    {
+        return selectedItem;
     }
 
     public List<GameItem> GetInventory() {

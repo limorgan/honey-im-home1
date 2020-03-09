@@ -53,7 +53,6 @@ public class GameItem : MonoBehaviour {
     }
 
     public void OnGameItemClicked(GameObject actionMenu, GameObject buttonPrefab, Text ActionHeader) {
-        //Debug.Log("on game item clicked ");
         ActionHeader.text = name;
         bool noAction = true;   //keep track of whether or not there are any actions
         foreach (Rule puzzleRule in PuzzleManager.Instance.RulesFor(this, GetComponentInParent<GameArea>().area)) {
@@ -89,11 +88,14 @@ public class GameItem : MonoBehaviour {
             action.transform.SetParent(actionMenu.transform);
         }
         //end of addition
-        if (containedValue) {
-            noAction = false;
-            GameObject action = GameObject.Instantiate(buttonPrefab);
-            ActionBtn.CreateComponent(action, this, new Rule("TakeOut"));
-            action.transform.SetParent(actionMenu.transform);
+        if (containedValue && containedValue.GetProperty("carryable") != null) {
+            if (containedValue.GetProperty("carryable").value == "True")
+            {
+                noAction = false;
+                GameObject action = GameObject.Instantiate(buttonPrefab);
+                ActionBtn.CreateComponent(action, this, new Rule("TakeOut"));
+                action.transform.SetParent(actionMenu.transform);
+            }
         }
         if(selected)
         {
@@ -137,6 +139,17 @@ public class GameItem : MonoBehaviour {
             return;
         }
 
+        if (rule.action == "TakeOut")
+        {
+            Debug.Log("Contained value: " + this.containedValue.ToString());
+            this.containedValue.gameObject.SetActive(true);
+            this.containedValue.gameObject.transform.position = (this.transform.position) + new Vector3(0, 2, 0); //this.transform.forward * 2f; Appears to the side of character
+            this.containedValue = null;
+            this.GetProperty("contains").RemoveProperty();
+            Player.Instance.CloseActionMenu();
+            return;
+        }
+
         PuzzleManager.Instance.ExecuteRule(rule, GetComponentInParent<GameArea>().area);
 
         // Check for items to destroy
@@ -151,8 +164,17 @@ public class GameItem : MonoBehaviour {
                 } else if (output.GetPropertyWithName("contains") != null) {
                     if (output.GetPropertyWithName("contains").value == rule.inputs[i].name) {
                         Debug.Log("To insert: " + i);
-                        output.gameItem.containedValue = rule.inputs[i].gameItem;
-                        output.gameItem.containedValue.gameObject.SetActive(false);
+                        if (rule.inputs[i].name == Player.Instance.getSelectedItem().name)
+                        {
+                            output.gameItem.containedValue = Player.Instance.getSelectedItem();
+                            Player.Instance.RemoveSelectedFromInventory();
+                            output.gameItem.containedValue.gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            output.gameItem.containedValue = rule.inputs[i].gameItem;
+                            output.gameItem.containedValue.gameObject.SetActive(false);
+                        }
                         found = true;
                         break;
                     }
@@ -244,11 +266,30 @@ public class GameItem : MonoBehaviour {
 
     private bool RuleFulFilled(Rule rule) {
         if (rule != null) {
-            rule.inputs[0].gameItem = this;
+            rule.inputs[0].gameItem = this;     // only matches if (at least) the item fulfils that of the first input item???
             if (!this.FulFillsProperties(rule.inputs[0])) {
                 return false;
             }
             if (rule.inputs.Count > 1) {
+                if(rule.inputs.Count == 2)
+                {
+                    if (!rule.selectedInput)
+                    {
+                        GameItem selectedItem = Player.Instance.getSelectedItem();
+                        if (selectedItem != null)
+                        {
+                            if (selectedItem.name == rule.inputs[1].name || selectedItem.dbItem.GetSuperTypes().Contains(rule.inputs[1].name))
+                                if (selectedItem.FulFillsProperties(rule.inputs[1]))
+                                {
+                                    rule.inputs[1].gameItem = selectedItem;
+                                    return true;
+                                }
+                            return false;
+                        }
+                        return false;
+                    }
+                }
+
                 List<GameItem> inventory = Player.Instance.GetInventory();
                 if (inventory.Count == 0) {
                     return false;
@@ -305,10 +346,15 @@ public class GameItem : MonoBehaviour {
         return true;
     }
 
+    public string ToString()
+    {
+        return name;
+    }
+
     public string toString()
     {
         return name;
     }
-    
+
 }
 
