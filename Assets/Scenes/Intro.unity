@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1295,25 +1295,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sentences:
   - 'If you do, feel free to press skip at any point in time. '
-  - Walk using either W-A-S-D or the arrows
-  - "Hovering the cursor over an interactible item will show its name. \nClicking
-    on the item will give you all possible interactions "
-  - If you would like to pause the game, press ESC or the pause button
-  - Your inventory can be accessed using either the inventory button on screen or
-    TAB
+  - To walk, use either W-A-S-D or the arrow keys
+  - "Hovering the cursor over an interactible item will show its name. \n\nClicking
+    on the item will give you all possible interactions, such as picking it up or
+    examining it more closely."
   - 'Picking up an item adds it to your inventory.
 
-    If you would like to remove an item from your inventory, simply click on its name.'
-  - 'Doors, elevators, ladders and other items can be interacted with to bring you
-    to another area.
 
-    Some might have to be unlocked before you can use them.'
+    You can select an item from your inventory to interact with other items in the
+    scene, or your inventory - the name of the selected item is displayed in the bottom
+    left corner.
+
+
+    By default, the most recently picked up item is your selected item.'
+  - 'You can change which item is selected by clicking on another item in the inventory
+    and then choosing select.
+
+
+    Clicking your selected item gives you options too, e.g. deselect, drop or any
+    other action currently available to that item.'
   - 'To complete this chapter and get home you must gather and combine items and interact
     with the people around you. '
-  - 'New items will pop up next to you if you can figure what to do. '
-  - If you ever need a hint for an area - press ? in the bottom right corner of the
+  - "New items to help along the way pop up next to you when you make the right move.
+    \n\nSome other items might appear directly in your inventory and you will see
+    a notification pop up on the inventory button."
+  - 'Doors, elevators and ladders can be interacted with to bring you to other areas.
+
+
+    But some might have to be unlocked before you can use them.'
+  - 'If you ever need a hint for an area - press ? in the bottom right corner of the
     screen.
-  - This shouldn't take too long - so there is unfortunately no save option.
+
+
+    Looking at - inspecting - objects along the way also provide you with more information
+    (useful or not).'
+  - 'If you would like to pause the game, press ESC or the pause button
+
+
+    Your inventory can be accessed using either the inventory button on screen or
+    the TAB key
+
+
+    To close a speech bubble or the action menu of an item, press Q.'
+  - This shouldn't take too long - so there is no save option.
   textBox: {fileID: 1322917385}
   lastPart: 0
   nextInterface: {fileID: 178593281}

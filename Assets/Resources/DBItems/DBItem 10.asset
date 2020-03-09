@@ -20,9 +20,7 @@ MonoBehaviour:
   - type: 0
     name: isa
     value: Secretary
-  - type: 2
-    name: tired
-    value: True
   itemPrefab: {fileID: 6265115793063141057, guid: 8687f51317fd26941ae849de204439fa,
     type: 3}
   description: Carla
+  longDescription: 

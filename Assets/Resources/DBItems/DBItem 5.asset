@@ -20,6 +20,7 @@ MonoBehaviour:
   - type: 2
     name: inspectable
     value: True
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 8566710803099997030, guid: fc8aa43c45033584c94dfbc78a28cd50,
+    type: 3}
   description: UFO
   longDescription: Just the usual...things do seem a little off...

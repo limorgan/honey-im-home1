@@ -16,7 +16,13 @@ public class InventoryBtn : MonoBehaviour {
     public void OnMouseDown() {
         if (!_gameItem.selected)
         {
-            Player.Instance.SelectItemFromInventory(_gameItem);
+            if(Player.Instance.getSelectedItem() == null)
+                Player.Instance.SelectItemFromInventory(_gameItem);
+            else
+            {
+                Player.Instance.OpenActionMenu(_gameItem, true);
+                Player.Instance.CloseInventory();
+            }
         }
         else
         {

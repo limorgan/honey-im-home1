@@ -45,7 +45,7 @@ public class PuzzleManager : MonoBehaviour {
 
     public List<Rule> RulesFor(GameItem gameItem, Area area) {      
         List<Rule> rules = new List<Rule>();
-        List<Rule> test_rules = _leaves[area];
+        Debug.Log("rules for game item " + gameItem.name + " in " + area.name);
         foreach(Rule rule in _leaves[area]) {
             addApplicableRule(rule, gameItem, rules);
             /*if (rule.reversible) {
@@ -151,9 +151,14 @@ public class PuzzleManager : MonoBehaviour {
         return _currentArea.getHint();
     }
 
-    public string getCurrentAreaName()
+    public string GetCurrentAreaName()
     {
         return _currentArea.name;
+    }
+
+    public Area GetCurrentArea()
+    {
+        return _currentArea;
     }
 
     public void TriggerEnd()

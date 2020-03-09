@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
     public GameObject buttonPrefab;
     public GameObject inventoryMenu;
     public GameObject inventoryButton;
+    public GameObject inventoryNotification;
     public GameObject speechUI;
     public GameObject selectedItemField;
     public Text speechBubble;
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour {
         _dbItem = ItemDatabase.GetObject("Player");
         _properties = _dbItem.properties;
         closeAllMenus();
+        inventoryNotification.SetActive(false);
     }
 
     void Update() {
@@ -82,12 +84,16 @@ public class Player : MonoBehaviour {
                 if (hit.collider.GetComponentInParent<GameItem>() != null)
                     if(!_actionMenuOpen && !_inventoryOpen)
                         hit.collider.gameObject.GetComponentInParent<GameItem>().OnGameItemMouseOver(UITextRef);
-            } else {
+            } else if (Input.GetKeyDown(KeyCode.Return) && _speechOpen)
+                CloseSpeechBubble();
+            else {
                 UITextRef.text = "";
                 if (selectedItem != null)
                     selectedItemField.SetActive(true);                    
             }
 
+            if (_inventory.Count == 0)
+                inventoryNotification.SetActive(false);
         }
     }
 
@@ -108,6 +114,8 @@ public class Player : MonoBehaviour {
         else
             item.dbItem.GetPropertyWithName("inInventory").value = "True";
         _inventory.Add(item);
+        inventoryNotification.SetActive(true);
+        SelectItemFromInventory(item);                  //automatically select the last item picked up: default
     }
 
     public void RemoveItemFromInventory(GameItem item) {
@@ -207,6 +215,7 @@ public class Player : MonoBehaviour {
         actionMenu.SetActive(false);
         inventoryMenu.SetActive(true);
         inventoryButton.SetActive(false);
+        inventoryNotification.SetActive(false);
         //DisableMouseLook();
         Time.timeScale = 0f;        //no background movement while menu is open
     }
@@ -241,6 +250,12 @@ public class Player : MonoBehaviour {
     public void OpenActionMenu(GameItem item)
     {
         item.OnGameItemClicked(actionMenuContent, buttonPrefab, ActionHeader);
+        OpenActionMenu();
+    }
+
+    public void OpenActionMenu(GameItem item, bool inventory)
+    {
+        item.OnGameItemClicked(actionMenuContent, buttonPrefab, ActionHeader, inventory);
         OpenActionMenu();
     }
 

@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 nextSpawnPoint;
     private bool zoomOut = false;
     private bool thisZoomOut = false;
-    //private string nextAreaName;
+    private string nextAreaName;
     public CinemachineVirtualCamera cam1;
     public CinemachineVirtualCamera cam2;
     //private GameObject currentArea;
@@ -92,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 //Debug.Log("Encountered Door");
                 moveMenuUI.SetActive(true);
+                Player.Instance.closeAllMenus();
                 moveMenuOpen = true;
                 Time.timeScale = 0f;
 
@@ -100,8 +101,7 @@ public class PlayerMovement : MonoBehaviour
                 GameObject spawnp = collider.GetComponentInChildren<ChangeArea>().spawnPoint;
                 nextSpawnPoint = spawnp.transform.position;
                 thisZoomOut = collider.GetComponentInChildren<ChangeArea>().zoomOut;
-                //this.currentArea = collider.GetComponentInChildren<ChangeArea>().currentArea;
-                //this.nextArea = collider.GetComponentInChildren<ChangeArea>().nextArea;
+                this.nextAreaName = collider.GetComponentInChildren<ChangeArea>().nextAreaName; 
                 Debug.Log("spawnp: " + nextSpawnPoint.ToString());
 
             }
@@ -131,8 +131,8 @@ public class PlayerMovement : MonoBehaviour
             zoomOut = thisZoomOut;
         }
         rb.transform.position = nextSpawnPoint;
-        //Player.Instance.areaText.text = nextAreaName;
-        Player.Instance.updateAreaName(PuzzleManager.Instance.getCurrentAreaName());
+        Player.Instance.areaText.text = nextAreaName;
+        //Player.Instance.updateAreaName(PuzzleManager.Instance.GetCurrentAreaName());
         Player.Instance.closeAllMenus();
         moveMenuOpen = false;
         moveMenuUI.SetActive(false);

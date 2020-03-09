@@ -52,10 +52,33 @@ public class GameItem : MonoBehaviour {
         Debug.Log("Spawning: " + item.dbItem);
     }
 
+    public void OnGameItemClicked(GameObject actionMenu, GameObject buttonPrefab, Text ActionHeader, bool inventory)
+    {
+        if (!inventory)
+            OnGameItemClicked(actionMenu, buttonPrefab, ActionHeader);
+        else
+        {
+            if (selected)
+                OnGameItemClicked(actionMenu, buttonPrefab, ActionHeader);
+            else
+            {
+                Debug.Log("Creating Select button. ");
+                GameObject action = GameObject.Instantiate(buttonPrefab);
+                ActionBtn.CreateComponent(action, this, new Rule("Select"));
+                action.transform.SetParent(actionMenu.transform);
+
+                OnGameItemClicked(actionMenu, buttonPrefab, ActionHeader);
+            }
+        }
+    }
+
     public void OnGameItemClicked(GameObject actionMenu, GameObject buttonPrefab, Text ActionHeader) {
         ActionHeader.text = name;
         bool noAction = true;   //keep track of whether or not there are any actions
-        foreach (Rule puzzleRule in PuzzleManager.Instance.RulesFor(this, GetComponentInParent<GameArea>().area)) {
+        if (GetProperty("inInventory") != null && GetProperty("inInventory").value == "True")
+            noAction = false;
+        foreach (Rule puzzleRule in PuzzleManager.Instance.RulesFor(this, PuzzleManager.Instance.GetCurrentArea()))
+        {         //not necessarily accurate, nested areas GetComponentInParent<GameArea>().area)
             if (RuleFulFilled(puzzleRule)) {
                 noAction = false;
                 GameObject action = GameObject.Instantiate(buttonPrefab);
@@ -63,7 +86,7 @@ public class GameItem : MonoBehaviour {
                 action.transform.SetParent(actionMenu.transform);
             }
         }
-        if (dbItem.IsCarryable() && !selected) {
+        if (dbItem.IsCarryable() && !selected && (GetProperty("inInventory") == null || GetProperty("inInventory").value == "False")) {
             noAction = false;
             Debug.Log("Creating Pick up button. ");
             GameObject action = GameObject.Instantiate(buttonPrefab);
@@ -99,14 +122,18 @@ public class GameItem : MonoBehaviour {
         }
         if(selected)
         {
+            noAction = false;            
+            GameObject action = GameObject.Instantiate(buttonPrefab);
+            ActionBtn.CreateComponent(action, this, new Rule("Deselect"));
+            action.transform.SetParent(actionMenu.transform);
+        }
+
+        if(GetProperty("inInventory") != null && GetProperty("inInventory").value == "True")
+        {
             noAction = false;
             GameObject action = GameObject.Instantiate(buttonPrefab);
             ActionBtn.CreateComponent(action, this, new Rule("Drop"));
             action.transform.SetParent(actionMenu.transform);
-
-            GameObject action2 = GameObject.Instantiate(buttonPrefab);
-            ActionBtn.CreateComponent(action2, this, new Rule("Deselect"));
-            action2.transform.SetParent(actionMenu.transform);
         }
         Player.Instance.noAction = noAction;
     }
@@ -128,6 +155,13 @@ public class GameItem : MonoBehaviour {
         {
             Player.Instance.DeselectItemFromInventory(this);
             Player.Instance.RemoveItemFromInventory(this);
+            Player.Instance.CloseActionMenu();
+            return;
+        }
+
+        if (rule.action == "Select")
+        {
+            Player.Instance.SelectItemFromInventory(this);
             Player.Instance.CloseActionMenu();
             return;
         }
