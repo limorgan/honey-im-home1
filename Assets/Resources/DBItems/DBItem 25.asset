@@ -28,3 +28,6 @@ MonoBehaviour:
   description: Coasters
   longDescription: Could definitely do something with this...paper is useful after
     all...
+  spawnPoints: []
+  specificSpawnPoints: 0
+  spawnLength: 0

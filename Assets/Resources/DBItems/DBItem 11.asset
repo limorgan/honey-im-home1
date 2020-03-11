@@ -24,3 +24,6 @@ MonoBehaviour:
     type: 3}
   description: Wesley
   longDescription: 
+  spawnPoints: []
+  specificSpawnPoints: 0
+  spawnLength: 0

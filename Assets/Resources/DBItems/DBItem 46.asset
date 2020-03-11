@@ -27,3 +27,6 @@ MonoBehaviour:
     type: 3}
   description: Gate
   longDescription: The park might look a bit dodgy, but it is a handy shortcut home...
+  spawnPoints: []
+  specificSpawnPoints: 0
+  spawnLength: 0

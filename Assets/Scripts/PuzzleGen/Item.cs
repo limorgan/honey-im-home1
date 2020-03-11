@@ -8,6 +8,15 @@ public class Item : ScriptableObject{
     public GameObject itemPrefab;
     public string description;
     public string longDescription;
+    public List<GameObject> spawnPoints = new List<GameObject>();
+    public bool specificSpawnPoints;
+    public int spawnLength;
+    private int _index;
+
+    public void Start()
+    {
+        _index = Random.Range(0, spawnPoints.Count);
+    }
 
     public Item() {
         if (properties == null)
@@ -142,6 +151,17 @@ public class Item : ScriptableObject{
     public string toString()
     {
         return name;
+    }
+
+    public Vector3 getNextSpawnPt()
+    {
+        if (spawnPoints.Count == 0)
+            Debug.Log("no spawn points");
+        _index++;
+        if (_index > spawnPoints.Count - 1)
+            _index = 0;
+        Debug.Log("Spawn point " + _index + ": " + spawnPoints[_index].transform.position);
+        return spawnPoints[_index].transform.position;
     }
 }
 

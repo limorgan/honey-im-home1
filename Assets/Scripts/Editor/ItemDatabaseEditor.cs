@@ -45,7 +45,7 @@ public class ItemDatabaseEditor : EditorWindow {
 
         GUILayout.Space(20);
 
-        GUILayout.BeginArea(new Rect(10, 70, 140, 350));
+        GUILayout.BeginArea(new Rect(10, 70, 140, 450));
         _scrollPositionLeft = EditorGUILayout.BeginScrollView(_scrollPositionLeft, false, true);
         if (ItemDatabase.GetNumOfAssets() > 0) {
             for (int itemInd = 0; itemInd < ItemDatabase.GetNumOfAssets(); itemInd++) {
@@ -59,7 +59,7 @@ public class ItemDatabaseEditor : EditorWindow {
         EditorGUILayout.EndScrollView();
         GUILayout.EndArea();
 
-        GUILayout.BeginArea(new Rect(170, 70, 500, 350), EditorStyles.helpBox);
+        GUILayout.BeginArea(new Rect(170, 70, 500, 450), EditorStyles.helpBox);
         _scrollPositionRight = EditorGUILayout.BeginScrollView(_scrollPositionRight);
         if (ItemDatabase.GetNumOfAssets() > 0) {
             Item dbAsset = ItemDatabase.GetAsset(_viewIndex);
@@ -110,6 +110,37 @@ public class ItemDatabaseEditor : EditorWindow {
                 GUILayout.Space(10);
                 EditorGUILayout.LabelField("Prefab:", EditorStyles.boldLabel);
                 dbAsset.itemPrefab = (GameObject)EditorGUILayout.ObjectField(dbAsset.itemPrefab, typeof(GameObject), false);
+
+                GUILayout.Space(10);
+                GUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("Specific Spawn Points: ", EditorStyles.boldLabel);
+                dbAsset.specificSpawnPoints = EditorGUILayout.Toggle(dbAsset.specificSpawnPoints);
+                GUILayout.EndHorizontal();
+
+                if (dbAsset.specificSpawnPoints)
+                {
+                    GUILayout.Space(10);
+                    GUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("Specific Spawn Points: ", EditorStyles.boldLabel);
+                    dbAsset.spawnLength = EditorGUILayout.IntField(dbAsset.spawnLength);
+                    for (int i = 0; i < dbAsset.spawnLength; i++)
+                        dbAsset.spawnPoints.Add(null);
+                    GUILayout.EndHorizontal();
+
+                    for (int i = 0; i < dbAsset.spawnLength; i++)
+                    {
+                        GUILayout.BeginHorizontal();
+
+                        dbAsset.spawnPoints[i] = (GameObject)EditorGUILayout.ObjectField(dbAsset.spawnPoints[i], typeof(GameObject), false);
+
+                        GUILayout.Space(3);
+                        if (GUILayout.Button("X", GUILayout.ExpandWidth(false)))
+                        {
+                            dbAsset.spawnPoints.RemoveAt(i);
+                        }
+                        GUILayout.EndHorizontal();
+                    }
+                }
             }
         }
         EditorGUILayout.EndScrollView();

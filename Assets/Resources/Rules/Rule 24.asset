@@ -13,34 +13,27 @@ MonoBehaviour:
   m_Name: Rule 24
   m_EditorClassIdentifier: 
   outputs:
-  - name: Gate
+  - name: Home
     properties:
     - type: 2
-      name: locked
+      name: gameover
       value: True
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  - name: Speech
-    properties:
-    - type: 0
-      name: text
-      value: Hmm...if I could get inside somehow, this would be a good shortcut home...
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: Gate
+  - name: Car
     properties:
     - type: 2
-      name: locked
+      name: ready
       value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Inspect
+  action: Drive Home
   hint: 
   parent: {fileID: 0}
   children: []
   reversible: 0
   selectedInput: 0
+  inventory: 0

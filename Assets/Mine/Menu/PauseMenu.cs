@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUi;
-    public GameObject pauseButton;
-    public GameObject inventoryButton;
+    public GameObject confirmQuit;
+    public GameObject confirmMenu;
+    public GameObject interactionMenu;
 
     void Start()
     {
@@ -31,18 +33,46 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUi.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
-        pauseButton.SetActive(true);
-        if (inventoryButton != null)
-            inventoryButton.SetActive(true);
+        interactionMenu.SetActive(true);
+        Player.Instance.hintSystem.SetActive(true);
+        Player.Instance.CloseHint();
+        Player.Instance.PauseMenuStatus(false);
     }
 
     public void Pause()
     {
         pauseMenuUi.SetActive(true);
-        pauseButton.SetActive(false);
-        if (inventoryButton != null)
-            inventoryButton.SetActive(false);
+        interactionMenu.SetActive(false);
+        Player.Instance.hintSystem.SetActive(false);
+        Player.Instance.PauseMenuStatus(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+    }
+
+    public void ConfirmOption(bool quit)        
+    {
+        if (quit)
+            confirmQuit.SetActive(true);
+        else
+            confirmMenu.SetActive(true);
+        pauseMenuUi.SetActive(false);
+    }
+
+    public void CloseConfirm()
+    {
+        confirmQuit.SetActive(false);
+        confirmMenu.SetActive(false);
+        interactionMenu.SetActive(true);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting");
+        Application.Quit();
     }
 }

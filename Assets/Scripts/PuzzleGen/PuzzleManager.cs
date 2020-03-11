@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PuzzleManager : MonoBehaviour {
 
@@ -13,6 +13,11 @@ public class PuzzleManager : MonoBehaviour {
     [SerializeField]
     private List<Rule> _gameOverRules = new List<Rule>();
     private List<Area> _accessibleAreas = new List<Area>();
+
+    [SerializeField]
+    public GameObject finalFade;
+    [SerializeField]
+    public AudioSource gameMusic;
 
     private static PuzzleManager _instance;
     public static PuzzleManager Instance { get { return _instance; } }
@@ -163,6 +168,6 @@ public class PuzzleManager : MonoBehaviour {
 
     public void TriggerEnd()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        finalFade.SetActive(true);
     }
 }

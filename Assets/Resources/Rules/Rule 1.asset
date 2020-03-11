@@ -43,3 +43,4 @@ MonoBehaviour:
   children: []
   reversible: 1
   selectedInput: 0
+  inventory: 0

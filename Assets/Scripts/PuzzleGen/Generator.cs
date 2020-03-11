@@ -32,7 +32,11 @@ public class Generator : MonoBehaviour {
         if (!found) {
             // 04/03 specific spawn points for NPCs?
             Vector3 nextSpawnPoint = new Vector3(0,0,0);
-            if (item.GetPropertyWithName("isa") != null && item.GetPropertyWithName("isa").value == "NPC")
+            if (item.specificSpawnPoints)
+            {
+                nextSpawnPoint = item.getNextSpawnPt();
+            }
+            else if (item.GetPropertyWithName("isa") != null && item.GetPropertyWithName("isa").value == "NPC")
             {
                 nextSpawnPoint = gameArea.getNextSpawnPt(true);
             }

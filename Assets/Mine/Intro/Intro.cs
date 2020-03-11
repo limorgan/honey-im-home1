@@ -28,6 +28,16 @@ public class Intro : MonoBehaviour
         
     }
 
+    public void previousSentence()
+    {
+        if (index - 1 >= 0)
+        {
+            index--;
+            textBox.text = sentences[index];
+            index++;
+        }
+    }
+
     public void NextSentence()
     {
         if (index < sentences.Length)

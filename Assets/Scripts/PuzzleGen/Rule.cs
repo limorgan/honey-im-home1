@@ -12,6 +12,7 @@ public class Rule : ScriptableObject {
     public List<Rule> children;
     public bool reversible; // 06/03 order of input items does not matter
     public bool selectedInput;
+    public bool inventory;
 
     public Rule(){
         outputs = new List<Term>();

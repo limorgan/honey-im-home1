@@ -32,6 +32,7 @@ public class Player : MonoBehaviour {
     private bool _inventoryOpen = false;
     private bool _speechOpen = false;
     private bool _gameOver = false;
+    private bool _pauseMenuOpen = false;
     public bool noAction;
     [SerializeField]
     private List<GameItem> _inventory;
@@ -62,7 +63,7 @@ public class Player : MonoBehaviour {
         if (!_gameOver) {            
             //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
-            if (Input.GetMouseButtonDown(0) && !_actionMenuOpen && !_inventoryOpen && !_speechOpen) {
+            if (Input.GetMouseButtonDown(0) && !_actionMenuOpen && !_inventoryOpen && !_speechOpen && !_pauseMenuOpen) {
                 Vector2 v = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
                 if (hit) {
                     if (hit.collider.GetComponentInParent<GameItem>() != null) {
@@ -366,5 +367,10 @@ public class Player : MonoBehaviour {
         CloseSpeechBubble();
         message.SetActive(false);
         hintSystem.SetActive(false);
+    }
+
+    public void PauseMenuStatus(bool open)
+    {
+        _pauseMenuOpen = open;
     }
 }

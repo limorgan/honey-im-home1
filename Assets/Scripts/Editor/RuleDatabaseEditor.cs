@@ -125,6 +125,12 @@ public class RuleDatabaseEditor : EditorWindow {
                 rule.selectedInput = EditorGUILayout.Toggle(rule.selectedInput);
                 EditorGUILayout.EndHorizontal();
 
+                // === Straight to Inventory === 
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("First output goes straight to inventory:", EditorStyles.boldLabel);
+                rule.inventory = EditorGUILayout.Toggle(rule.inventory);
+                EditorGUILayout.EndHorizontal();
+
 
                 if (GUILayout.Button("Delete Rule", GUILayout.ExpandWidth(false))) {
                     RuleDatabase.DeleteAsset(ruleIndx);

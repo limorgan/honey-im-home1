@@ -269,12 +269,20 @@ public class GameItem : MonoBehaviour {
                     Debug.Log("Spawning: " + output.dbItem);
                     if(Player.Instance.spawnNoise != null)  // 04/03 play spawn noise
                         Player.Instance.spawnNoise.Play();
-                    if (output.dbItem.GetPropertyWithName("inInventory") != null)
+                    /*if (output.dbItem.GetPropertyWithName("inInventory") != null)
                     {
                         //Debug.Log("trying inventory");
                         if(output.dbItem.GetPropertyWithName("inInventory").value == "True")
                             Player.Instance.AddItemToInventory(itemGO.GetComponent<GameItem>());
                         Debug.Log("straight to inventory...");
+                    }*/
+                    if (rule.inventory)
+                    {
+                        if (itemGO.GetComponent<GameItem>().name == rule.outputs[0].name)
+                        {
+                            Player.Instance.AddItemToInventory(itemGO.GetComponent<GameItem>());
+                            Debug.Log("straight to inventory...");
+                        }
                     }
                 } else {
                     //Debug.Log(output.name);
