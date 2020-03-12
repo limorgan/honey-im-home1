@@ -46,6 +46,8 @@ public class ItemDatabase : Database<Item> {
     static public List<Item> FindDBItemsFor(Term term, List<Area> accessibleAreas, List<Item> itemsInScene) {
         List<Item> matchingItems = new List<Item>();
         foreach(Item dbItem in _assets) {
+            if (dbItem.name == "TaxiOrder")
+                Debug.Log("checking: " + dbItem.name + " matches?" + dbItem.Matches(term) + " accessible: " + dbItem.IsAccessible(accessibleAreas, itemsInScene));
             if (dbItem.Matches(term) && dbItem.IsAccessible(accessibleAreas, itemsInScene)) {
                 matchingItems.Add(ScriptableObject.Instantiate(dbItem) as Item);
             }

@@ -115,6 +115,7 @@ public class Player : MonoBehaviour {
         else
             item.dbItem.GetPropertyWithName("inInventory").value = "True";
         _inventory.Add(item);
+        Debug.Log("added " + item.name + " to inventory. ");
         inventoryNotification.SetActive(true);
         SelectItemFromInventory(item);                  //automatically select the last item picked up: default
     }
@@ -166,8 +167,14 @@ public class Player : MonoBehaviour {
             {
                 if (!item.selected)
                 {
-                    if(selectedItem != null)
+                    if (selectedItem != null)
+                    {
                         DeselectItemFromInventory(selectedItem);  //deselected currently selected item
+                        foreach (Transform child in actionMenuContent.transform)
+                        {
+                            GameObject.Destroy(child.gameObject);
+                        }
+                    }
                     selectedItem = item;
                     item.selected = true;
                     SelectedItemButton.CreateComponent(selectedItemField, item);

@@ -10,29 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 17
+  m_Name: Rule 35
   m_EditorClassIdentifier: 
   outputs:
-  - name: TaxiOrder
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  - name: Payphone
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  - name: Speech
+  - name: Home
     properties:
-    - type: 0
-      name: text
-      value: Taxi may or may not be on its way. Never reliable here. Better check...
+    - type: 2
+      name: gameover
+      value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: Payphone
+  - name: Taxi
     properties:
     - type: 2
       name: paidfor
@@ -40,10 +30,10 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Call Taxi
+  action: Go Home
   hint: 
   parent: {fileID: 0}
   children: []
   reversible: 0
   selectedInput: 0
-  inventory: 1
+  inventory: 0

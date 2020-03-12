@@ -58,7 +58,9 @@ public class Generator : MonoBehaviour {
         for(int i = 0; i < existingGameItems.Length; i++) {
             itemsInTheScene.Add(existingGameItems[i].dbItem);
         }
+        Debug.Log("number of items in inventory: " + Player.Instance.GetInventory().Count);
         foreach(GameItem item in Player.Instance.GetInventory()) {
+            Debug.Log("item from inventory to existing game items: " + item.name);
             itemsInTheScene.Add(item.dbItem);
         }
         //Pick a possible goal for the area

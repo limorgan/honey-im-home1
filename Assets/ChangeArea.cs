@@ -42,5 +42,4 @@ public class ChangeArea : MonoBehaviour
         else
             return false;
     }
-
 }

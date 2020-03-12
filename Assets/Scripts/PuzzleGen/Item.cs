@@ -102,9 +102,13 @@ public class Item : ScriptableObject{
     }
 
     public bool IsAccessible(List<Area> areas, List<Item> itemsInScene) {
+        if (this.name == "TaxiOrder")
+            Debug.Log("Taxi Order: spawnable " + IsSpawnable() + " contained in scene " + itemsInScene.Contains(this)); 
         List<Property> areaProperties = this.GetPropertiesWithName("area");
         if (areaProperties.Count == 0) {
             if (IsSpawnable() || itemsInScene.Contains(this))
+                return true;
+            else if (GetPropertyWithName("inInventory") != null && GetPropertyWithName("inInventory").value == "True")
                 return true;
             else
                 return false;
@@ -136,6 +140,8 @@ public class Item : ScriptableObject{
     // Assume default: spawnable = true
     public bool IsSpawnable() {
         if (GetPropertyWithName("spawnable") == null)
+            return true;
+        if (GetPropertyWithName("spawnable").value == "True")
             return true;
         return false;
     }

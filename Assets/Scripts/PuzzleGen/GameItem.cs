@@ -184,7 +184,7 @@ public class GameItem : MonoBehaviour {
             return;
         }
 
-        PuzzleManager.Instance.ExecuteRule(rule, GetComponentInParent<GameArea>().area);
+        //PuzzleManager.Instance.ExecuteRule(rule, GetComponentInParent<GameArea>().area);
 
         // Check for items to destroy
         List<GameObject> objectsToDestroy = new List<GameObject>();
@@ -298,6 +298,7 @@ public class GameItem : MonoBehaviour {
                 }
             }
         }
+        PuzzleManager.Instance.ExecuteRule(rule, GetComponentInParent<GameArea>().area);
 
         Player.Instance.CloseActionMenu();
 

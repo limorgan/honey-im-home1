@@ -10,29 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ea09481e588c9d45a95b8185d42d1d1, type: 3}
-  m_Name: DBItem 49
+  m_Name: DBItem 53
   m_EditorClassIdentifier: 
-  name: Car
+  name: TaxiOrder
   properties:
-  - type: 0
-    name: isa
-    value: Car
-  - type: 0
-    name: isa
-    value: Container
   - type: 2
-    name: liquids
-    value: False
+    name: carryable
+    value: True
+  - type: 2
+    name: inspectable
+    value: True
   - type: 2
     name: spawnable
-    value: False
-  - type: 2
-    name: locked
     value: True
-  itemPrefab: {fileID: 198633469456086548, guid: 13b3d49432e2a9445b959f39f1f4ffe5,
+  itemPrefab: {fileID: 4868068814677181300, guid: 16b76114c8778e943b3ee1344042102f,
     type: 3}
-  description: Car
-  longDescription: 
+  description: Taxi ordered
+  longDescription: Must give this to the taxi driver...if they ever show up, that
+    is.
   spawnPoints: []
   specificSpawnPoints: 0
   spawnLength: 0

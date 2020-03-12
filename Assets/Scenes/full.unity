@@ -12312,7 +12312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692381246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1367.97, y: 203.57, z: -10}
+  m_LocalPosition: {x: -1140.97, y: 203.57, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 951160815}
@@ -15531,7 +15531,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 970164634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1367.97, y: 203.57, z: -10}
+  m_LocalPosition: {x: -1140.97, y: 203.57, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15636,10 +15636,11 @@ MonoBehaviour:
   m_ShapeLightFalloffSize: 6.7
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
-  - {x: -86.915436, y: -22.535126, z: 0}
+  - {x: -82.41223, y: -13.09993, z: 0}
+  - {x: -73.34253, y: -21.044281, z: 0}
   - {x: 53.791748, y: -22.47255, z: 0}
   - {x: 54.19287, y: 18.415771, z: 0}
-  - {x: -86.61163, y: 18.78595, z: 0}
+  - {x: -82.966064, y: 18.357086, z: 0}
 --- !u!1 &991559047
 GameObject:
   m_ObjectHideFlags: 0
@@ -19186,7 +19187,7 @@ PrefabInstance:
         type: 3}
       propertyPath: startArea
       value: 
-      objectReference: {fileID: 11400000, guid: c5dfd47d7bc15b4489bac53722ada490,
+      objectReference: {fileID: 11400000, guid: dc312a7573fa4c0439427ba9db62e983,
         type: 2}
     - target: {fileID: 1725211133949833798, guid: b5443745b2cdbca4d88ccfc8396981df,
         type: 3}
@@ -35521,7 +35522,7 @@ PrefabInstance:
     - target: {fileID: 858248475450001907, guid: d0fa3492ec4a40346a09bbde908d0646,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1367.2
+      value: -1140.2
       objectReference: {fileID: 0}
     - target: {fileID: 858248475450001907, guid: d0fa3492ec4a40346a09bbde908d0646,
         type: 3}

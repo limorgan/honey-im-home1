@@ -23,7 +23,13 @@ MonoBehaviour:
   - type: 2
     name: inspectable
     value: True
+  - type: 2
+    name: paidfor
+    value: False
   itemPrefab: {fileID: 2324057410419385254, guid: 31d57743a889e2e4da68873199e1f1db,
     type: 3}
   description: Taxi
   longDescription: The later it gets, the weirder they get.
+  spawnPoints: []
+  specificSpawnPoints: 0
+  spawnLength: 0

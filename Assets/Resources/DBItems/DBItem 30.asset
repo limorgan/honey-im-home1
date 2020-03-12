@@ -26,7 +26,13 @@ MonoBehaviour:
   - type: 2
     name: inspectable
     value: True
+  - type: 2
+    name: spawnable
+    value: False
   itemPrefab: {fileID: 6979538827461453931, guid: 49ff5ec08c61c3d43b31481e75cf59c5,
     type: 3}
   description: Payphone
   longDescription: No important phone calls have ever been made here.
+  spawnPoints: []
+  specificSpawnPoints: 0
+  spawnLength: 0

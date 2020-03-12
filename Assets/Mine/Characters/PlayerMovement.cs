@@ -25,8 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private string nextAreaName;
     public CinemachineVirtualCamera cam1;
     public CinemachineVirtualCamera cam2;
-    //private GameObject currentArea;
-    //private GameObject nextArea;
+    private string areaMessage;
 
     // Start is called before the first frame update
     private void Start()
@@ -132,7 +131,6 @@ public class PlayerMovement : MonoBehaviour
         }
         rb.transform.position = nextSpawnPoint;
         Player.Instance.areaText.text = nextAreaName;
-        //Player.Instance.updateAreaName(PuzzleManager.Instance.GetCurrentAreaName());
         Player.Instance.closeAllMenus();
         moveMenuOpen = false;
         moveMenuUI.SetActive(false);
@@ -146,5 +144,11 @@ public class PlayerMovement : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    
+    public void PrintMessage()
+    {
+        if (areaMessage != "")
+        {
+            Player.Instance.ShowSpeechBubble(areaMessage);
+        }
+    }
 }
