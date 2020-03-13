@@ -75,6 +75,8 @@ public class Intro : MonoBehaviour
 
     public void EndIntro()
     {
+        nextInterface.SetActive(true);
+        currentInterface.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
