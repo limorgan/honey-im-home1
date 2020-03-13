@@ -51,7 +51,7 @@ public class Term {
 
     // If term name exists as DBItem name, get it's isa properties, otherwise its already a super type
     public List<string> GetSuperTypes() {
-        Item dbItemMatch = ItemDatabase.GetObject(this.name);
+        Item dbItemMatch = PuzzleManager.Instance.GetObject(this.name);
         if (dbItemMatch != null)
             return dbItemMatch.GetSuperTypes();
         List<string> types = new List<string>();
@@ -73,7 +73,7 @@ public class Term {
             termAsString += "] ";
         }
         if (dbItem != null)
-            termAsString += dbItem.toString();
+            termAsString += dbItem.ToString();
         else
             termAsString += " null db item ";
         return termAsString;

@@ -61,7 +61,7 @@ public class Area : ScriptableObject {
         return isFinalScene;
     }
 
-    public string toString()
+    public string ToString()
     {
         string s = name + " Terms: ";
         foreach (Term g in goals)

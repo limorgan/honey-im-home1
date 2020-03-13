@@ -15,8 +15,7 @@ public class GameItem : MonoBehaviour {
 
     void Awake() {
         if (dbItem == null) {
-            dbItem = ItemDatabase.GetObject(name);
-            Debug.Log("awake: " + name + " result dbtem: " + dbItem);
+            dbItem = PuzzleManager.Instance.GetObject(name);
         }
         if(dbItem != null)
             properties = dbItem.properties;
@@ -32,6 +31,7 @@ public class GameItem : MonoBehaviour {
 
     public void OnGameItemMouseOver(Text UITextRef)
     {
+        Debug.Log(name + " has dbItem " + (dbItem != null) + " description: " + dbItem.description);
         UITextRef.text = dbItem.description;
     }
 
@@ -41,7 +41,6 @@ public class GameItem : MonoBehaviour {
         GameItem c = new GameItem();
         c.Setup(original.name, original.dbItem);
         c.Awake();
-        //Debug.Log("copy name: " + c.name + " dbItem: " + c.dbItem.name);
         return c;
     }
 
@@ -49,7 +48,7 @@ public class GameItem : MonoBehaviour {
     private void Spawn(GameItem item)
     {
         Instantiate(item.dbItem.itemPrefab, transform.position, transform.rotation); // trans.pos + + new Vector3(0, 1, 0)...
-        Debug.Log("Spawning: " + item.dbItem);
+        //Debug.Log("Spawning: " + item.dbItem);
     }
 
     public void OnGameItemClicked(GameObject actionMenu, GameObject buttonPrefab, Text ActionHeader, bool inventory)
@@ -62,7 +61,6 @@ public class GameItem : MonoBehaviour {
                 OnGameItemClicked(actionMenu, buttonPrefab, ActionHeader);
             else
             {
-                Debug.Log("Creating Select button. ");
                 GameObject action = GameObject.Instantiate(buttonPrefab);
                 ActionBtn.CreateComponent(action, this, new Rule("Select"));
                 action.transform.SetParent(actionMenu.transform);
@@ -78,7 +76,7 @@ public class GameItem : MonoBehaviour {
         if (GetProperty("inInventory") != null && GetProperty("inInventory").value == "True")
             noAction = false;
         foreach (Rule puzzleRule in PuzzleManager.Instance.RulesFor(this, PuzzleManager.Instance.GetCurrentArea()))
-        {         //not necessarily accurate, nested areas GetComponentInParent<GameArea>().area)
+        {         //not necessarily accurate (nested areas) previous version: GetComponentInParent<GameArea>().area)
             if (RuleFulFilled(puzzleRule)) {
                 noAction = false;
                 GameObject action = GameObject.Instantiate(buttonPrefab);
@@ -88,24 +86,14 @@ public class GameItem : MonoBehaviour {
         }
         if (dbItem.IsCarryable() && !selected && (GetProperty("inInventory") == null || GetProperty("inInventory").value == "False")) {
             noAction = false;
-            Debug.Log("Creating Pick up button. ");
             GameObject action = GameObject.Instantiate(buttonPrefab);
             ActionBtn.CreateComponent(action, this, new Rule("PickUp"));
             action.transform.SetParent(actionMenu.transform);
         }
-        //Addition: 10/01/2020
-        /*if(dbItem.IsCopyable())
-        {
-            Debug.Log("Creating copy (i.e. make note...) button. ");
-            GameObject action = GameObject.Instantiate(buttonPrefab);
-            ActionBtn.CreateComponent(action, this, new Rule("MakeNote"));
-            action.transform.SetParent(actionMenu.transform);
-        }*/
-        //Addition: 07/03/2020 --- "Inspect" button which, if available, displays a "hint" associated with the item
+        //Addition: 07/03/2020 --- "Inspect" button which, if available, displays a "hint"/long description associated with the item
         if (dbItem.IsInspectable())
         {
             noAction = false;
-            Debug.Log("Creating inspect button. ");
             GameObject action = GameObject.Instantiate(buttonPrefab);
             ActionBtn.CreateComponent(action, this, new Rule("Inspect"));
             action.transform.SetParent(actionMenu.transform);
@@ -175,7 +163,7 @@ public class GameItem : MonoBehaviour {
 
         if (rule.action == "TakeOut")
         {
-            Debug.Log("Contained value: " + this.containedValue.ToString());
+            //Debug.Log("Contained value: " + this.containedValue.ToString());
             this.containedValue.gameObject.SetActive(true);
             this.containedValue.gameObject.transform.position = (this.transform.position) + new Vector3(0, 2, 0); //this.transform.forward * 2f; Appears to the side of character
             this.containedValue = null;
@@ -197,7 +185,7 @@ public class GameItem : MonoBehaviour {
                     break;
                 } else if (output.GetPropertyWithName("contains") != null) {
                     if (output.GetPropertyWithName("contains").value == rule.inputs[i].name) {
-                        Debug.Log("To insert: " + i);
+                        //Debug.Log("To insert: " + i);
                         if (rule.inputs[i].name == Player.Instance.getSelectedItem().name)
                         {
                             output.gameItem.containedValue = Player.Instance.getSelectedItem();
@@ -215,7 +203,7 @@ public class GameItem : MonoBehaviour {
                 }
             }
             if (!found && this.isDestructible()) {
-                Debug.Log("Destroying: " + rule.inputs[i].name);
+                //Debug.Log("Destroying: " + rule.inputs[i].name);
                 if (i == 0) objectsToDestroy.Add(this.gameObject);
                 else {
                     if(!Player.Instance.DeleteItemFromInventory(rule.inputs[i].gameItem))
@@ -253,7 +241,7 @@ public class GameItem : MonoBehaviour {
             // Spawn new item
             if (!found) {
                 if(output.dbItem != null) {
-                    Debug.Log("spawning item on exectution of rule: " + output.dbItem.name);
+                    //Debug.Log("spawning item on exectution of rule: " + output.dbItem.name);
                     GameObject itemGO;
                     if(objectsToDestroy.Count > spawnIndex) {
                         Transform transform = objectsToDestroy[spawnIndex].transform;
@@ -266,7 +254,7 @@ public class GameItem : MonoBehaviour {
                     }                    
                     itemGO.GetComponent<GameItem>().Setup(output.dbItem.name, output.dbItem);
                     itemGO.transform.SetParent(this.gameObject.transform.parent);
-                    Debug.Log("Spawning: " + output.dbItem);
+                    //Debug.Log("Spawning: " + output.dbItem);
                     if(Player.Instance.spawnNoise != null)  // 04/03 play spawn noise
                         Player.Instance.spawnNoise.Play();
                     /*if (output.dbItem.GetPropertyWithName("inInventory") != null)
@@ -274,14 +262,14 @@ public class GameItem : MonoBehaviour {
                         //Debug.Log("trying inventory");
                         if(output.dbItem.GetPropertyWithName("inInventory").value == "True")
                             Player.Instance.AddItemToInventory(itemGO.GetComponent<GameItem>());
-                        Debug.Log("straight to inventory...");
+                        //Debug.Log("straight to inventory...");
                     }*/
                     if (rule.inventory)
                     {
                         if (itemGO.GetComponent<GameItem>().name == rule.outputs[0].name)
                         {
                             Player.Instance.AddItemToInventory(itemGO.GetComponent<GameItem>());
-                            Debug.Log("straight to inventory...");
+                            //Debug.Log("straight to inventory...");
                         }
                     }
                 } else {
@@ -298,7 +286,7 @@ public class GameItem : MonoBehaviour {
                 }
             }
         }
-        PuzzleManager.Instance.ExecuteRule(rule, GetComponentInParent<GameArea>().area);
+        PuzzleManager.Instance.ExecuteRule(rule, PuzzleManager.Instance.GetCurrentArea());     //Original: GetComponentInParent<GameArea>().area - issue with nested areas
 
         Player.Instance.CloseActionMenu();
 
@@ -393,11 +381,5 @@ public class GameItem : MonoBehaviour {
     {
         return name;
     }
-
-    public string toString()
-    {
-        return name;
-    }
-
 }
 

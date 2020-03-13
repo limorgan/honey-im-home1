@@ -18,6 +18,17 @@ public class PuzzleManager : MonoBehaviour {
     public GameObject finalFade;
     [SerializeField]
     public AudioSource gameMusic;
+    [SerializeField]
+    public GameObject everything;
+
+    [SerializeField]
+    public List<Item> _itemAssets = new List<Item>();
+    [SerializeField]
+    public List<Rule> _ruleAssets = new List<Rule>();
+    [SerializeField]
+    public List<Area> _areaAssets = new List<Area>();
+
+    
 
     private static PuzzleManager _instance;
     public static PuzzleManager Instance { get { return _instance; } }
@@ -28,6 +39,12 @@ public class PuzzleManager : MonoBehaviour {
         else {
             _instance = this;
             Debug.Log("PuzzleManager instance created. ");
+            everything.SetActive(true);
+            /*_itemAssets = Resources.LoadAll<Item>("Assets/Resources/DBItems");
+            _ruleAssets = Resources.LoadAll<Rule>("Assets/Resources/Rules");
+            _areaAssets = Resources.LoadAll<Area>("Assets/Resources/Areas");
+            Debug.Log("items: " + _itemAssets.Length + " rules: " + _ruleAssets.Length + " area: " + _areaAssets.Length);*/
+            bool nothere = true;
         }
     }
 
@@ -63,7 +80,7 @@ public class PuzzleManager : MonoBehaviour {
             }*/
         }
         if (useAllRules) {
-            List<Rule> dbRules = RuleDatabase.GetAllRulesWithInput(gameItem.dbItem);
+            List<Rule> dbRules = GetAllRulesWithInput(gameItem.dbItem);
             for (int i = dbRules.Count - 1; i >= 0; i--) {
                 dbRules[i].inputs[0].gameItem = gameItem;               
                 if (FindItemsForOutputs(dbRules[i]) && !rules.Contains(dbRules[i])) {
@@ -71,6 +88,8 @@ public class PuzzleManager : MonoBehaviour {
                 }
             }            
         }
+        foreach (Rule r in rules)
+            Debug.Log("Rule: " + r.ToString() + " for " + gameItem.name);
         return rules;
     }
 
@@ -91,7 +110,7 @@ public class PuzzleManager : MonoBehaviour {
     }
 
     public void ExecuteRule(Rule rule, Area area) {
-        /*Debug.Log("Started to execute rule of " + rule.GetRuleAsString() + " in" + area.toString());
+        /*Debug.Log("Started to execute rule of " + rule.GetRuleAsString() + " in" + area.ToString());
         foreach (Rule r in _leaves[area])
         {
             Debug.Log("Rule in " + area.name + " : " + r.GetRuleAsString());
@@ -121,7 +140,7 @@ public class PuzzleManager : MonoBehaviour {
     private void FindLeaves(Rule parent, Area area) {
         Debug.Log("Checking children for rule " + parent.GetRuleAsString());
         if (parent.children.Count == 0) {
-            Debug.Log("Rule " + parent.toString() + " has no children. ");
+            Debug.Log("Rule " + parent.ToString() + " has no children. ");
             _leaves[area].Add(parent);
         } else {
             if (!_puzzleRules[area].Contains(parent)) {
@@ -140,8 +159,8 @@ public class PuzzleManager : MonoBehaviour {
                 if (output.name == input.name)
                     found = true;
             }
-            if (!found) {
-                List<Item> possibleItems = ItemDatabase.FindDBItemsFor(output, new List<Area>(), new List<Item>());
+            if (!found) { 
+                List<Item> possibleItems = FindDBItemsFor(output, new List<Area>(), new List<Item>());
                 if (possibleItems.Count > 0)
                     output.dbItem = possibleItems[Random.Range(0, possibleItems.Count)];
                 else
@@ -169,5 +188,129 @@ public class PuzzleManager : MonoBehaviour {
     public void TriggerEnd()
     {
         finalFade.SetActive(true);
+    }
+
+    // == PREVIOUSLY ITEM DATABASE METHODS ==
+
+    public Item GetObject(string itemName)
+    {
+        //ValidateDatabase();
+        foreach (Item item in _itemAssets)
+        {
+            if (item.name == itemName)
+                return ScriptableObject.Instantiate(item) as Item;
+        }
+        return null;
+    }
+
+    public bool HasItemOfType(Term term, List<Area> accessibleAreas, List<Item> itemsInScene)
+    {
+        foreach (Item dbItem in _itemAssets)
+        {
+            if ((dbItem.name == term.name || dbItem.GetSuperTypes().Contains(term.name)) && dbItem.IsAccessible(accessibleAreas, itemsInScene))
+                return true;
+        }
+        return false;
+    }
+
+    public List<Item> GetItemsOfType(string itemName, List<Area> accessibleAreas, List<Item> itemsInScene)
+    {
+        List<Item> matchingItems = new List<Item>();
+        foreach (Item dbItem in _itemAssets)
+        {
+            if (dbItem.name == itemName || dbItem.GetSuperTypes().Contains(itemName))
+            {
+                matchingItems.Add(dbItem);
+            }
+        }
+        return matchingItems;
+    }
+
+    public List<Item> FindDBItemsFor(Term term, List<Area> accessibleAreas, List<Item> itemsInScene)
+    {
+        List<Item> matchingItems = new List<Item>();
+        foreach (Item dbItem in _itemAssets)
+        {
+            if (dbItem.name == "TaxiOrder")
+                Debug.Log("checking: " + dbItem.name + " matches?" + dbItem.Matches(term) + " accessible: " + dbItem.IsAccessible(accessibleAreas, itemsInScene));
+            if (dbItem.Matches(term) && dbItem.IsAccessible(accessibleAreas, itemsInScene))
+            {
+                matchingItems.Add(ScriptableObject.Instantiate(dbItem) as Item);
+            }
+        }
+        return matchingItems;
+    }
+
+    // == PREVIOUSLY RULE DATABASE METHODS == 
+
+    public List<Rule> GetAllRulesWithInput(Item dbItem)
+    {
+        List<Rule> rules = new List<Rule>();
+        //Rule[] assets = Resources.LoadAll<Rule>("Assets/Resources/Rules");
+        for (int i = 0; i < _ruleAssets.Count; i++)
+        {
+            if ((_ruleAssets[i].inputs[0].name == dbItem.name ||
+                dbItem.GetSuperTypes().Contains(_ruleAssets[i].inputs[0].name)))
+            {
+                Rule ruleToAdd = ScriptableObject.Instantiate(_ruleAssets[i]) as Rule;
+                rules.Add(ruleToAdd);
+            }
+        }
+        return rules;
+    }
+
+    public List<Rule> GetRulesWithOutput(Term term)
+    {
+        List<Rule> rules = new List<Rule>();
+        //Rule[] assets = Resources.LoadAll<Rule>("Assets/Resources/Rules");
+        Debug.Log("GetRulesWithOutput - term: " + term.GetTermAsString());
+        for (int i = 0; i < _ruleAssets.Count; i++)
+        {
+            if (_ruleAssets[i].outputs[0].name == term.name)
+            {
+                Rule ruleToAdd = ScriptableObject.Instantiate(_ruleAssets[i]) as Rule;
+                rules.Add(ruleToAdd);
+            }
+        }
+        foreach (Rule r in rules)
+        {
+            Debug.Log("term: " + term.GetTermAsString() + " rules: " + r.GetRuleAsString());
+        }
+        return rules;
+    }
+
+    //== PREVIOUSLY IN DATABASE ==
+
+    public List<Item> GetAllItems()
+    {
+        //LoadDatabase();
+        List<Item> objects = new List<Item>();
+        foreach (Item asset in _itemAssets)
+        {
+            objects.Add(ScriptableObject.Instantiate(asset) as Item);
+        }
+        return objects;
+    }
+
+    public List<Rule> GetAllRules()
+    {
+        //LoadDatabase();
+        List<Rule> objects = new List<Rule>();
+        foreach (Rule asset in _ruleAssets)
+        {
+            objects.Add(ScriptableObject.Instantiate(asset) as Rule);
+        }
+        return objects;
+    }
+
+    public List<Area> GetAllAreas()
+    {
+        //LoadDatabase();
+        List<Area> objects = new List<Area>();
+        foreach (Area asset in _areaAssets)
+        {
+            objects.Add(ScriptableObject.Instantiate(asset) as Area);
+        }
+        return objects;
     }
 }

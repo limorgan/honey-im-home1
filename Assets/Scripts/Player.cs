@@ -53,7 +53,7 @@ public class Player : MonoBehaviour {
 
     void Start() {
         _inventory = new List<GameItem>();
-        _dbItem = ItemDatabase.GetObject("Player");
+        _dbItem = PuzzleManager.Instance.GetObject("Player");
         _properties = _dbItem.properties;
         closeAllMenus();
         inventoryNotification.SetActive(false);

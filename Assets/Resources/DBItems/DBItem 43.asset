@@ -24,3 +24,6 @@ MonoBehaviour:
     type: 3}
   description: Watch
   longDescription: Ouch. It's late. Very late.
+  spawnPoints: []
+  specificSpawnPoints: 0
+  spawnLength: 0

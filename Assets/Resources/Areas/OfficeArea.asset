@@ -21,8 +21,8 @@ MonoBehaviour:
       value: False
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
-    description: I need to see if there's anything here to give me a clue on what
-      I needed to do...
+    description: Should probably grab what ever I need and see if I can find any clues
+      as to what I need to do before going home...
   connectedTo:
   - {fileID: 11400000, guid: e2e87e817f6bfd446843afee9ab72ea4, type: 2}
   inGameArea: {fileID: 0}

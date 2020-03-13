@@ -6,16 +6,16 @@ public class Item : ScriptableObject{
 	public new string name;
 	public List<Property> properties;
     public GameObject itemPrefab;
-    public string description;
+    public string description = "";
     public string longDescription;
-    public List<GameObject> spawnPoints = new List<GameObject>();
+    //public List<Vector3> spawnPoints = new List<Vector3>();
     public bool specificSpawnPoints;
-    public int spawnLength;
-    private int _index;
+    //public int spawnLength;
+    //private int _index;
 
     public void Start()
     {
-        _index = Random.Range(0, spawnPoints.Count);
+        //_index = Random.Range(0, spawnPoints.Count);
     }
 
     public Item() {
@@ -102,8 +102,8 @@ public class Item : ScriptableObject{
     }
 
     public bool IsAccessible(List<Area> areas, List<Item> itemsInScene) {
-        if (this.name == "TaxiOrder")
-            Debug.Log("Taxi Order: spawnable " + IsSpawnable() + " contained in scene " + itemsInScene.Contains(this)); 
+        if (this.name == "Car")
+            Debug.Log("Car: spawnable " + IsSpawnable() + " contained in scene " + itemsInScene.Contains(this)); 
         List<Property> areaProperties = this.GetPropertiesWithName("area");
         if (areaProperties.Count == 0) {
             if (IsSpawnable() || itemsInScene.Contains(this))
@@ -154,20 +154,22 @@ public class Item : ScriptableObject{
             return false;
     }
 
-    public string toString()
+    public override string ToString()
     {
         return name;
     }
 
-    public Vector3 getNextSpawnPt()
+    /*public Vector3 GetNextSpawnPt()
     {
-        if (spawnPoints.Count == 0)
+        Debug.Log("item: " + name + "spawnlength: " + spawnLength + " length of list: " + spawnPoints.Count);
+        _index = Random.Range(0, spawnLength);
+        if (spawnLength == 0)
             Debug.Log("no spawn points");
         _index++;
-        if (_index > spawnPoints.Count - 1)
+        if (_index > spawnLength - 1)
             _index = 0;
-        Debug.Log("Spawn point " + _index + ": " + spawnPoints[_index].transform.position);
-        return spawnPoints[_index].transform.position;
-    }
+        Debug.Log("Spawn point " + _index + ": " + spawnPoints[_index]);
+        return spawnPoints[_index];
+    }*/
 }
 

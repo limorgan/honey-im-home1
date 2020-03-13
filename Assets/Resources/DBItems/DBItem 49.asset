@@ -29,10 +29,17 @@ MonoBehaviour:
   - type: 2
     name: locked
     value: True
+  - type: 2
+    name: inspectable
+    value: True
+  - type: 2
+    name: ready
+    value: False
   itemPrefab: {fileID: 198633469456086548, guid: 13b3d49432e2a9445b959f39f1f4ffe5,
     type: 3}
   description: Car
-  longDescription: 
+  longDescription: Might not be too good on the eyes, but it could be handy to get
+    home in.
   spawnPoints: []
   specificSpawnPoints: 0
   spawnLength: 0

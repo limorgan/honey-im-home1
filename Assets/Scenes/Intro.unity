@@ -372,8 +372,8 @@ MonoBehaviour:
   sentences:
   - It's been a long day...
   - I just want to go home.
-  - But there was something left to do...
-  - Help me figure out what it was, take care of it and let me go home.
+  - But I definitely needed to take care of something first.
+  - 'Help me figure out what that is and get me home. '
   textBox: {fileID: 625068881}
   lastPart: 1
   nextInterface: {fileID: 178593281}
@@ -967,7 +967,7 @@ MonoBehaviour:
   sentences:
   - 'Date: ?? / ?? / ????
 
-    Location: Ghost Town, ????'
+    Location: ????'
   - 'It''s been a long week...
 
     I don''t know what my head is at...

@@ -11,8 +11,8 @@ public class Rule : ScriptableObject {
     public Rule parent;
     public List<Rule> children;
     public bool reversible; // 06/03 order of input items does not matter
-    public bool selectedInput;
-    public bool inventory;
+    public bool selectedInput;  // 10/03 second input term (i.e. usually the item in inventory, never the clicked item), doesn't need to be selected if true
+    public bool inventory;  // main output item goes straight to inventory
 
     public Rule(){
         outputs = new List<Term>();
@@ -66,23 +66,70 @@ public class Rule : ScriptableObject {
                     return false;
                 }
             }
+            if (term.dbItem.name == this.outputs[0].name)
+                Debug.Log("term dbitem name equals output name " + term.dbItem.name + " = " + this.outputs[0].name);
+
         } else {
             if (term.name != this.outputs[0].name) {
                 if (!term.GetSuperTypes().Contains(this.outputs[0].name) && !this.outputs[0].GetSuperTypes().Contains(term.name)) {
                     return false;
                 }
             }
+            if(term.name == this.outputs[0].name)
+                Debug.Log("term name equals output name " + term.name + " = " + this.outputs[0].name);
         }
-        if(this.outputs[0].properties.Count != term.properties.Count) {
-            return false;
-        }
-        foreach (Property ruleOutputProp in this.outputs[0].properties) {
+
+        /*if(this.outputs[0].properties.Count != term.properties.Count) {       //this prevents things such as car and car[ready:false] from working.
+            return false;                                                       //the default for a property that isn't there is false. 
+        }*/                                                                     //
+
+        /*foreach (Property termProperty in term.properties)                      //the 
+        {
             bool found = false;
-            foreach (Property termProperty in term.properties) {
-                if (termProperty.Equals(ruleOutputProp)) {
+            foreach (Property ruleOutputProp in this.outputs[0].properties)
+            {
+                if (termProperty.Equals(ruleOutputProp))
+                {
                     found = true;
                     break;
                 }
+            }
+            if (!found)
+            {
+                if (this.outputs[0].GetPropertyWithName(termProperty.name) == null && termProperty.value == "False")
+                    found = true;
+                else
+                    return false;
+            }
+        }*/
+
+        foreach (Property ruleOutputProp in this.outputs[0].properties) {       //Original
+            bool found = false;
+            foreach (Property termProperty in term.properties) {
+                if (termProperty.Equals(ruleOutputProp))
+                {
+                    found = true;
+                    break;
+                }
+                /*else if (ruleOutputProp.name != "contains")
+                {
+                    if (term.dbItem != null)
+                    {
+                        if (term.dbItem.GetPropertyWithName(ruleOutputProp.name) != null)
+                        {
+                            if (term.dbItem.GetPropertyWithName(ruleOutputProp.name).value != "True")
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (term.GetPropertyWithName(ruleOutputProp.name) == null && ruleOutputProp.value == "False")
+                    {
+                        found = true;
+                        break;
+                    }
+                }*/
             }
             if (!found) return false;
         }
@@ -145,17 +192,6 @@ public class Rule : ScriptableObject {
     public List<List<Term>> InputPermutation(List<Term> input, int i, int j)
     {
         List<List<Term>> permutations = new List<List<Term>>();
-        /*permutations.Add(input);
-        if (input.Count <= 1)
-            return permutations;
-        else if (input.Count == 2)
-        {
-            input.Reverse();
-            permutations.Add(input);
-            return permutations;
-        }
-        else
-            return */
         if (i == j)
         {
             permutations.Add(input);
@@ -182,7 +218,7 @@ public class Rule : ScriptableObject {
     }
     
 
-    public string toString()
+    public string ToString()
     {
         return GetRuleAsString();
     }

@@ -27,3 +27,4 @@ MonoBehaviour:
     type: 3}
   description: Calendar
   longDescription: Time is flying...16th of June, alreay??
+  specificSpawnPoints: 0

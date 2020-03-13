@@ -34,3 +34,4 @@ MonoBehaviour:
   description: Coffee Machine
   longDescription: 'Takes your money and gives you life. No single-use containers
     - use your own. How things have changed. '
+  specificSpawnPoints: 0

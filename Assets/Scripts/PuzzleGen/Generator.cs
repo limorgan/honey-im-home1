@@ -18,11 +18,10 @@ public class Generator : MonoBehaviour {
     }
 
     static public void Spawn(Item item, Rule rule, Area area) {
-        Debug.Log("Spawning: item - " + item.name + " in " + area.name + "x" + GameObject.Find(area.name));
+        //Debug.Log("Spawning: item - " + item.name + " in " + area.name + "x" + GameObject.Find(area.name));
         GameArea gameArea = GameObject.Find(area.name).GetComponent<GameArea>();
         bool found = false;
         for(int i = 0; i < gameArea.itemsInArea.Length; i++) {
-            Debug.Log("item: " + gameArea.itemsInArea[i].name);
             if (gameArea.itemsInArea[i].name == item.name) {
                 gameArea.itemsInArea[i].Setup(item.name, item);
                 found = true;
@@ -30,22 +29,26 @@ public class Generator : MonoBehaviour {
             }
         }
         if (!found) {
-            // 04/03 specific spawn points for NPCs?
+            // 04/03 specific spawn points for NPCs + 11/03 specific spawnpoints for an item 
             Vector3 nextSpawnPoint = new Vector3(0,0,0);
             if (item.specificSpawnPoints)
             {
-                nextSpawnPoint = item.getNextSpawnPt();
+                nextSpawnPoint = gameArea.GetNextSpawnPt(item);
+                Debug.Log("spawnpt: " + nextSpawnPoint);
             }
             else if (item.GetPropertyWithName("isa") != null && item.GetPropertyWithName("isa").value == "NPC")
             {
-                nextSpawnPoint = gameArea.getNextSpawnPt(true);
+                nextSpawnPoint = gameArea.GetNextSpawnPt(true);
             }
             else
-                nextSpawnPoint = gameArea.getNextSpawnPt();
+                nextSpawnPoint = gameArea.GetNextSpawnPt();
             GameObject itemGO = (GameObject)Instantiate(item.itemPrefab,
-                nextSpawnPoint, Quaternion.identity);            //gameArea.getNextSpawnPt() replaced by nextSpawnPoint
+                nextSpawnPoint, Quaternion.identity);            //gameArea.GetNextSpawnPt() replaced by nextSpawnPoint
+            Debug.Log(itemGO.transform.position);
             itemGO.transform.SetParent(gameArea.gameObject.transform);
+            Debug.Log("after set parent" + itemGO.transform.position);
             itemGO.GetComponent<GameItem>().Setup(item.name, item);
+            Debug.Log("after set up: " + itemGO.transform.position);
         }
     }
 
@@ -58,24 +61,26 @@ public class Generator : MonoBehaviour {
         for(int i = 0; i < existingGameItems.Length; i++) {
             itemsInTheScene.Add(existingGameItems[i].dbItem);
         }
-        Debug.Log("number of items in inventory: " + Player.Instance.GetInventory().Count);
         foreach(GameItem item in Player.Instance.GetInventory()) {
-            Debug.Log("item from inventory to existing game items: " + item.name);
             itemsInTheScene.Add(item.dbItem);
         }
         //Pick a possible goal for the area
         if (area.goals.Count > 0) {
             Term goal = area.goals[Random.Range(0, area.goals.Count)]; // Random.Range(0, area.goal.Count)];
-            Debug.Log("area goal: " + goal.name);
-            if (GenerateInputs(goal, root, 0, area, accessibleAreas, itemsInTheScene))
+            Debug.Log("Area goal: " + goal.name);
+            bool successfulInputs = GenerateInputs(goal, root, 0, area, accessibleAreas, itemsInTheScene);
+            if (successfulInputs)
             {
                 area.setCurrentGoal(goal);
                 if (goal.GetPropertyWithName("gameover") != null && goal.GetPropertyWithName("gameover").value == "True")   //setting area to be final
                     area.setFinal(true);
                 Debug.Log("SUCCESS");
             }
-            else
+            else {
                 Debug.Log("FAILURE");
+                root = GeneratePuzzleStartingFrom(area, accessibleAreas);       //restart if failure
+            }
+              
         } else {
             if(debugMode) Debug.Log("No goals associated with this area");
         }
@@ -84,27 +89,31 @@ public class Generator : MonoBehaviour {
 
 	// Recursively generate inputs
 	static bool GenerateInputs(Term startTerm, Rule parentRule, int depth, Area currentArea, List<Area> accessibleAreas, List<Item> itemsInTheScene) {
-
-        List<Item> matchingItems = ItemDatabase.FindDBItemsFor(startTerm, accessibleAreas, itemsInTheScene);
+        List<Item> matchingItems = PuzzleManager.Instance.FindDBItemsFor(startTerm, accessibleAreas, itemsInTheScene);
 
         //Check if term of this type exists in DB before continuing
-        if (matchingItems.Count == 0) {
-            if (!ItemDatabase.HasItemOfType(startTerm, accessibleAreas, itemsInTheScene)) {
+        if (matchingItems.Count == 0)
+        {
+            if (!PuzzleManager.Instance.HasItemOfType(startTerm, accessibleAreas, itemsInTheScene))  // Previously: (!ItemDatabase.HasItemOfType(startTerm, accessibleAreas, itemsInTheScene))
+            {
                 Debug.Log("GRAMMAR ERROR: Couldn't find accessible item of type: " + startTerm.name);
                 return false;
             }
-        } 
-        else if(startTerm.dbItem == null) {
+        }
+        else if (startTerm.dbItem == null)
+        {
             // Pick a random item to fit the term
             startTerm.dbItem = matchingItems[Random.Range(0, matchingItems.Count)];
-            if (itemsInTheScene.Contains(startTerm.dbItem)) {
+            if (itemsInTheScene.Contains(startTerm.dbItem))
+            {
                 return true;
             }
-        }
-
+        }   
+        
         // Find rule with startTerm as output, output could be super-type of startTerm
         List<Rule> possibleRules = new List<Rule>();
-        foreach (Rule rule in RuleDatabase.GetAllObjects()) {
+        foreach (Rule rule in PuzzleManager.Instance.GetAllRules())
+        {       //Previously: foreach (Rule rule in RuleDatabase.GetAllObjects()) {
             if (rule.MainOutputIs(startTerm)) {
                 if(debugMode && startTerm.dbItem != null) Debug.Log("Found matching rule " + rule.outputs[0].name +
                     " with output dbItem: " + startTerm.dbItem.name + " at depth: " + depth);

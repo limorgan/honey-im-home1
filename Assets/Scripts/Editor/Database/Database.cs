@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 public class Database<T> where T : ScriptableObject {
 
@@ -40,6 +43,7 @@ public class Database<T> where T : ScriptableObject {
         _assets.Clear();
     }
 
+#if UNITY_EDITOR
     static public void CreateAsset(string filePath) {
         T asset = ScriptableObject.CreateInstance<T>();
         string path = AssetDatabase.GenerateUniqueAssetPath(filePath);
@@ -51,6 +55,7 @@ public class Database<T> where T : ScriptableObject {
         AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(_assets[index]));
         _assets.RemoveAt(index);
     }
+#endif
 
     static public int GetNumOfAssets() {
         return _assets.Count;

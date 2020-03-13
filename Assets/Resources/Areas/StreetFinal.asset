@@ -21,8 +21,9 @@ MonoBehaviour:
       value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
-    description: Definitely time to get home now...
+    description: Must have a look around the street and the pub to find a way home
+      - Taxi? Drive? A stroll through the park?
   connectedTo: []
   inGameArea: {fileID: 0}
-  maxDepth: 10
+  maxDepth: 25
   areaObject: {fileID: 0}

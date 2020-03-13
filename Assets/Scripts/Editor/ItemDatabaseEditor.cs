@@ -117,21 +117,22 @@ public class ItemDatabaseEditor : EditorWindow {
                 dbAsset.specificSpawnPoints = EditorGUILayout.Toggle(dbAsset.specificSpawnPoints);
                 GUILayout.EndHorizontal();
 
-                if (dbAsset.specificSpawnPoints)
+                /*if (dbAsset.specificSpawnPoints)
                 {
                     GUILayout.Space(10);
                     GUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField("Specific Spawn Points: ", EditorStyles.boldLabel);
                     dbAsset.spawnLength = EditorGUILayout.IntField(dbAsset.spawnLength);
-                    for (int i = 0; i < dbAsset.spawnLength; i++)
-                        dbAsset.spawnPoints.Add(null);
+                    if(dbAsset.spawnLength > dbAsset.spawnPoints.Count)
+                        for (int i = 0; i < dbAsset.spawnLength; i++)
+                            dbAsset.spawnPoints.Add(new Vector3(0,0,0));
                     GUILayout.EndHorizontal();
 
                     for (int i = 0; i < dbAsset.spawnLength; i++)
                     {
                         GUILayout.BeginHorizontal();
 
-                        dbAsset.spawnPoints[i] = (GameObject)EditorGUILayout.ObjectField(dbAsset.spawnPoints[i], typeof(GameObject), false);
+                        dbAsset.spawnPoints[i] = EditorGUILayout.Vector3Field("Spawn Coordinates " + i, dbAsset.spawnPoints[i]);
 
                         GUILayout.Space(3);
                         if (GUILayout.Button("X", GUILayout.ExpandWidth(false)))
@@ -140,7 +141,7 @@ public class ItemDatabaseEditor : EditorWindow {
                         }
                         GUILayout.EndHorizontal();
                     }
-                }
+                }*/
             }
         }
         EditorGUILayout.EndScrollView();

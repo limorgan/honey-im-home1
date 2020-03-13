@@ -16,7 +16,7 @@ public class Property {
             value = "0";
     }
 
-    // 06/03 overloading constructor for one-step constructor
+    // 06/03 overloading constructor for direct constructor
     public Property(PropertyType type, string name, string value)
     {
         this.type = type;

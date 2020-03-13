@@ -30,3 +30,6 @@ MonoBehaviour:
     type: 3}
   description: Ruby
   longDescription: 
+  spawnPoints: []
+  specificSpawnPoints: 0
+  spawnLength: 0

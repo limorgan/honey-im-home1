@@ -23,3 +23,6 @@ MonoBehaviour:
   itemPrefab: {fileID: 0}
   description: 
   longDescription: 
+  spawnPoints: []
+  specificSpawnPoints: 0
+  spawnLength: 0

@@ -28,3 +28,6 @@ MonoBehaviour:
   description: Radio
   longDescription: A bit of music after a long day is always a good idea...might remind
     me of something. Or not...
+  spawnPoints: []
+  specificSpawnPoints: 0
+  spawnLength: 0
