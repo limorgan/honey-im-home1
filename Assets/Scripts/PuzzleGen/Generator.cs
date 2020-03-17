@@ -66,7 +66,7 @@ public class Generator : MonoBehaviour {
         }
         //Pick a possible goal for the area
         if (area.goals.Count > 0) {
-            Term goal = area.goals[Random.Range(0, area.goals.Count)]; // Random.Range(0, area.goal.Count)];
+            Term goal = area.goals[Random.Range(0, area.goals.Count)]; 
             Debug.Log("Area goal: " + goal.name);
             bool successfulInputs = GenerateInputs(goal, root, 0, area, accessibleAreas, itemsInTheScene);
             if (successfulInputs)

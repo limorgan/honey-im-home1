@@ -10,14 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 21
+  m_Name: Rule 41
   m_EditorClassIdentifier: 
   outputs:
-  - name: Bartender
+  - name: Jukebox
     properties:
-    - type: 2
-      name: distracted
-      value: True
+    - type: 0
+      name: contains
+      value: Record
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  inputs:
+  - name: Jukebox
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Crowbar
+    properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -25,25 +36,14 @@ MonoBehaviour:
     properties:
     - type: 2
       name: ready
-      value: True
+      value: False
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  inputs:
-  - name: Bartender
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  - name: Hat
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  action: Do Hat Trick
+  action: Break Open
   hint: 
   parent: {fileID: 0}
   children: []
-  reversible: 1
+  reversible: 0
   selectedInput: 0
   inventory: 0

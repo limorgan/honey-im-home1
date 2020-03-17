@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
+using System.Text;
 
 public class Player : MonoBehaviour {
 
@@ -33,13 +34,14 @@ public class Player : MonoBehaviour {
     private bool _speechOpen = false;
     private bool _gameOver = false;
     private bool _pauseMenuOpen = false;
-    public bool noAction;
+    public bool _noAction;
     [SerializeField]
     private List<GameItem> _inventory;
     private Item _dbItem;
     private List<Property> _properties;
-    private string noActionMessage = "No action currently available";
-    private GameItem selectedItem;
+    private string _noActionMessage = "No action currently available";
+    private GameItem _selectedItem;
+    private StringBuilder _transcript;
 
     private static Player _instance;
     public static Player Instance { get { return _instance; } }
@@ -89,7 +91,7 @@ public class Player : MonoBehaviour {
                 CloseSpeechBubble();
             else {
                 UITextRef.text = "";
-                if (selectedItem != null)
+                if (_selectedItem != null)
                     selectedItemField.SetActive(true);                    
             }
 
@@ -131,7 +133,7 @@ public class Player : MonoBehaviour {
                 if (item.selected)
                 {
                     item.selected = false;
-                    selectedItem = null;
+                    _selectedItem = null;
                     selectedItemField.SetActive(false);
                 }
             }
@@ -140,7 +142,7 @@ public class Player : MonoBehaviour {
 
     public void RemoveSelectedFromInventory()
     {
-        DeleteItemFromInventory(this.selectedItem);
+        DeleteItemFromInventory(this._selectedItem);
     }
 
     public bool DeleteItemFromInventory(GameItem item) {
@@ -150,7 +152,7 @@ public class Player : MonoBehaviour {
                 if (item.selected)
                 {
                     item.selected = false;
-                    selectedItem = null;
+                    _selectedItem = null;
                     selectedItemField.SetActive(false);
                 }
                 return true;
@@ -167,15 +169,15 @@ public class Player : MonoBehaviour {
             {
                 if (!item.selected)
                 {
-                    if (selectedItem != null)
+                    if (_selectedItem != null)
                     {
-                        DeselectItemFromInventory(selectedItem);  //deselected currently selected item
+                        DeselectItemFromInventory(_selectedItem);  //deselected currently selected item
                         foreach (Transform child in actionMenuContent.transform)
                         {
                             GameObject.Destroy(child.gameObject);
                         }
                     }
-                    selectedItem = item;
+                    _selectedItem = item;
                     item.selected = true;
                     SelectedItemButton.CreateComponent(selectedItemField, item);
                     selectedItemField.SetActive(true);
@@ -194,7 +196,7 @@ public class Player : MonoBehaviour {
                 if (!item.selected)
                     return;
                 item.selected = false;
-                selectedItem = null;
+                _selectedItem = null;
                 GameObject.Destroy(selectedItemField.GetComponentInChildren<SelectedItemButton>());
                 selectedItemField.SetActive(false);
                 //actionMenuContent = null;
@@ -204,7 +206,7 @@ public class Player : MonoBehaviour {
 
     public GameItem getSelectedItem()
     {
-        return selectedItem;
+        return _selectedItem;
     }
 
     public List<GameItem> GetInventory() {
@@ -240,11 +242,11 @@ public class Player : MonoBehaviour {
     }
 
     public void OpenActionMenu() {
-        if (noAction)
+        if (_noAction)
         {
-            message.GetComponentInChildren<Text>().text = noActionMessage;
+            message.GetComponentInChildren<Text>().text = _noActionMessage;
             Appear(message, messageTime);
-            noAction = false;
+            _noAction = false;
         }
         else
         {
@@ -257,12 +259,16 @@ public class Player : MonoBehaviour {
 
     public void OpenActionMenu(GameItem item)
     {
+        if(_actionMenuOpen)
+            CloseActionMenu();
         item.OnGameItemClicked(actionMenuContent, buttonPrefab, ActionHeader);
         OpenActionMenu();
     }
 
     public void OpenActionMenu(GameItem item, bool inventory)
     {
+        if (_actionMenuOpen)
+            CloseActionMenu();
         item.OnGameItemClicked(actionMenuContent, buttonPrefab, ActionHeader, inventory);
         OpenActionMenu();
     }

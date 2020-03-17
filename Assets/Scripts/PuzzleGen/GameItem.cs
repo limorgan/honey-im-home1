@@ -123,7 +123,7 @@ public class GameItem : MonoBehaviour {
             ActionBtn.CreateComponent(action, this, new Rule("Drop"));
             action.transform.SetParent(actionMenu.transform);
         }
-        Player.Instance.noAction = noAction;
+        Player.Instance._noAction = noAction;
     }
 
     public void ExecuteRule(Rule rule) {
@@ -306,30 +306,34 @@ public class GameItem : MonoBehaviour {
             if (!this.FulFillsProperties(rule.inputs[0])) 
                 return false;
             if (rule.inputs.Count > 1) {
-                if(rule.inputs.Count == 2)
+                int i = 1;
+                //if(rule.inputs.Count == 2)
+                //{
+                if (!rule.selectedInput)
                 {
-                    if (!rule.selectedInput)
+                    GameItem selectedItem = Player.Instance.getSelectedItem();
+                    if (selectedItem != null)
                     {
-                        GameItem selectedItem = Player.Instance.getSelectedItem();
-                        if (selectedItem != null)
-                        {
-                            if (selectedItem.name == rule.inputs[1].name || selectedItem.dbItem.GetSuperTypes().Contains(rule.inputs[1].name))
-                                if (selectedItem.FulFillsProperties(rule.inputs[1]))
-                                {
-                                    rule.inputs[1].gameItem = selectedItem;
-                                    return true;
-                                }
-                            return false;
-                        }
-                        return false;
+                        if (selectedItem.name == rule.inputs[1].name || selectedItem.dbItem.GetSuperTypes().Contains(rule.inputs[1].name))
+                            if (selectedItem.FulFillsProperties(rule.inputs[1]))
+                            {
+                                rule.inputs[1].gameItem = selectedItem;
+                                i = 2;
+                                //return true;
+                            }
+                        else
+                                return false;
                     }
+                    else
+                        return false;
                 }
+                //}
 
                 List<GameItem> inventory = Player.Instance.GetInventory();
                 if (inventory.Count == 0 && !rule.HasPlayerInput()) {
                     return false;
                 }
-                for (int i = 1; i < rule.inputs.Count; i++) {
+                for (; i < rule.inputs.Count; i++) {
                     bool found = false;
                     if (rule.inputs[i].name == "Player") {
                         Debug.Log("Rule input is " + rule.inputs[i].name + " - fulfils the properties? " + PuzzleManager.Instance.GetPlayer().FulFillsProperties(rule.inputs[i]));
