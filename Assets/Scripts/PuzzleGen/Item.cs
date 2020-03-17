@@ -101,9 +101,29 @@ public class Item : ScriptableObject{
         return true;
     }
 
+    public bool IsTypeOf(Term term)
+    {
+        if (term.name != this.name)
+        {
+            //Check type match with db item super types
+            bool found = false;
+            foreach (string type in this.GetSuperTypes())
+            {
+                if (this.name == "Flower")
+                    Debug.Log("Flower: supertype: " + type + " checking against " + term.name);
+                if (type == term.name)
+                    found = true;
+            }
+            if (!found) return false;
+        }
+        return true;    //case where names are equal
+    }
+
     public bool IsAccessible(List<Area> areas, List<Item> itemsInScene) {
-        if (this.name == "Car")
-            Debug.Log("Car: spawnable " + IsSpawnable() + " contained in scene " + itemsInScene.Contains(this)); 
+        if (name == "Player")       //Player is always accessible
+            return true;
+        /*if (this.name == "Car")
+            Debug.Log("Car: spawnable " + IsSpawnable() + " contained in scene " + itemsInScene.Contains(this)); */
         List<Property> areaProperties = this.GetPropertiesWithName("area");
         if (areaProperties.Count == 0) {
             if (IsSpawnable() || itemsInScene.Contains(this))

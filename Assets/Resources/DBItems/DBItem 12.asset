@@ -20,7 +20,11 @@ MonoBehaviour:
   - type: 2
     name: inspectable
     value: True
+  - type: 0
+    name: isa
+    value: Customer
   itemPrefab: {fileID: 8982966874634455305, guid: 92ebaf506913ca846b68726dcb6939ea,
     type: 3}
   description: Nettie
-  longDescription: Weird name.
+  longDescription: Weird name. Knows everything around here.
+  specificSpawnPoints: 0

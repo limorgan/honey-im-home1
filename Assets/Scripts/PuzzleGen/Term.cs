@@ -53,7 +53,11 @@ public class Term {
     public List<string> GetSuperTypes() {
         Item dbItemMatch = PuzzleManager.Instance.GetObject(this.name);
         if (dbItemMatch != null)
+        {
+            if(this.name == "Flower")
+                Debug.Log("Found matching dbItem for " + this.name);
             return dbItemMatch.GetSuperTypes();
+        }
         List<string> types = new List<string>();
         types.Add("Item");
         return types;

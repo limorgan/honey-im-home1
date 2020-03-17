@@ -10,24 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ea09481e588c9d45a95b8185d42d1d1, type: 3}
-  m_Name: DBItem 39
+  m_Name: DBItem 29
   m_EditorClassIdentifier: 
-  name: Lipstick
+  name: Flower
   properties:
   - type: 2
     name: carryable
     value: True
-  - type: 0
-    name: isa
-    value: Pen
   - type: 2
     name: inspectable
     value: True
   - type: 0
     name: isa
     value: Present
-  itemPrefab: {fileID: 5613240140370265201, guid: 3aae43e358b2cab41af87854e83967a1,
+  itemPrefab: {fileID: 6440721609700312934, guid: 01ae8685bf3fb2f4ebb9ff3428d0aa68,
     type: 3}
-  description: Lipstick
-  longDescription: Not very hygenic, but could be used for something else...
+  description: Flower
+  longDescription: 'It''s different. Might live a little longer...practical and (somewhat)
+    romantic? '
   specificSpawnPoints: 0

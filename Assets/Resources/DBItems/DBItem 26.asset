@@ -24,3 +24,4 @@ MonoBehaviour:
     type: 3}
   description: Cocktail
   longDescription: 
+  specificSpawnPoints: 0

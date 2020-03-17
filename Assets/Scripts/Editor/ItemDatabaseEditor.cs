@@ -68,6 +68,9 @@ public class ItemDatabaseEditor : EditorWindow {
                 GUILayout.Space(5);
                 dbAsset.name = EditorGUILayout.TextField("Item Name", dbAsset.name, GUILayout.MaxWidth(300));
 
+                GUILayout.Space(5);
+                EditorGUILayout.LabelField("Item File Name: " + GetFileName(dbAsset));
+
                 GUILayout.Space(10);
                 EditorGUILayout.LabelField("Properties:", EditorStyles.boldLabel);
                 for (int i = 0; i < dbAsset.properties.Count; i++) {
@@ -162,5 +165,10 @@ public class ItemDatabaseEditor : EditorWindow {
         else if (property.type == PropertyType.BoolProperty) {
             property.value = EditorGUILayout.Toggle(property.value == "True", GUILayout.MinWidth(100), GUILayout.MaxWidth(300)).ToString();
         }
+    }
+
+    private string GetFileName(Item item)
+    {
+        return ItemDatabase.GetPath(item);   
     }
 }

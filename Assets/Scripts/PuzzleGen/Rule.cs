@@ -60,20 +60,28 @@ public class Rule : ScriptableObject {
 
     //Type or super-type and all properties should match
     public bool MainOutputIs(Term term) {
-        if(term.dbItem != null) {
+        if (term.dbItem != null) {
+            //Debug.Log("Term: " + term.name + " - dbItem not null. ");
             if (term.dbItem.name != this.outputs[0].name) {
                 if (!term.dbItem.GetSuperTypes().Contains(this.outputs[0].name)) {
+                    Debug.Log("Term: " + term.name + " - does not have " + this.outputs[0].name + " as supertype");
                     return false;
                 }
             }
-            if (term.dbItem.name == this.outputs[0].name)
-                Debug.Log("term dbitem name equals output name " + term.dbItem.name + " = " + this.outputs[0].name);
-
+            /*if (term.dbItem.name == this.outputs[0].name)
+                Debug.Log("term dbitem name equals output name " + term.dbItem.name + " = " + this.outputs[0].name);*/
+            /*if (term.dbItem.IsTypeOf(outputs[0]))
+            {
+                Debug.Log("Term: " + term.name + " - does not have " + this.outputs[0].name + " as supertype");
+                return false;
+            }*/
         } else {
             if (term.name != this.outputs[0].name) {
-                if (!term.GetSuperTypes().Contains(this.outputs[0].name) && !this.outputs[0].GetSuperTypes().Contains(term.name)) {
+                if (!term.GetSuperTypes().Contains(this.outputs[0].name)){// && !this.outputs[0].GetSuperTypes().Contains(term.name)) {
+                    Debug.Log("Term: " + term.name + " - does not have " + this.outputs[0].name + " as supertype");
                     return false;
                 }
+                //if(!term.dbItem.Is)
             }
             if(term.name == this.outputs[0].name)
                 Debug.Log("term name equals output name " + term.name + " = " + this.outputs[0].name);
@@ -103,9 +111,11 @@ public class Rule : ScriptableObject {
             }
         }*/
 
-        foreach (Property ruleOutputProp in this.outputs[0].properties) {       //Original
+        foreach (Property ruleOutputProp in this.outputs[0].properties)
+        {       //Original
             bool found = false;
-            foreach (Property termProperty in term.properties) {
+            foreach (Property termProperty in term.properties)
+            {
                 if (termProperty.Equals(ruleOutputProp))
                 {
                     found = true;
@@ -131,9 +141,23 @@ public class Rule : ScriptableObject {
                     }
                 }*/
             }
-            if (!found) return false;
+            if (!found)
+            {
+                Debug.Log("Output property " + ruleOutputProp.name + " was not matched.");
+                return false;
+            }
         }
         return true;
+    }
+
+    public bool HasPlayerInput()
+    {
+        foreach (Term t in inputs)
+        {
+            if (t.name == "Player")
+                return true;
+        }
+        return false;
     }
 
     public string GetRuleAsString() {

@@ -114,6 +114,7 @@ public class Generator : MonoBehaviour {
         List<Rule> possibleRules = new List<Rule>();
         foreach (Rule rule in PuzzleManager.Instance.GetAllRules())
         {       //Previously: foreach (Rule rule in RuleDatabase.GetAllObjects()) {
+            Debug.Log("Main Output: " + rule.outputs[0].name + " vs Start Term: " + startTerm.name + " Main Output? " + rule.MainOutputIs(startTerm));
             if (rule.MainOutputIs(startTerm)) {
                 if(debugMode && startTerm.dbItem != null) Debug.Log("Found matching rule " + rule.outputs[0].name +
                     " with output dbItem: " + startTerm.dbItem.name + " at depth: " + depth);

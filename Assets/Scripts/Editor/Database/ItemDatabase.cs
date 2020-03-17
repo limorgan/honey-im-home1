@@ -55,5 +55,9 @@ public class ItemDatabase : Database<Item> {
         return matchingItems;
     }
 
+    /*public string GetPath(Item item)
+    {
+        ItemDatabase.GetPath(item);
+    }*/
 }
 

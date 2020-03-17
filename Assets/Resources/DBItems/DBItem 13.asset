@@ -17,10 +17,14 @@ MonoBehaviour:
   - type: 0
     name: isa
     value: NPC
+  - type: 0
+    name: isa
+    value: Customer
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 7268824414271422916, guid: 2b2780bddbbe81f4980016dac02c761f,
     type: 3}
   description: Stanley
-  longDescription: 
-  spawnPoints: []
+  longDescription: Bit grumpy. But rumour has it he is...creative.
   specificSpawnPoints: 0
-  spawnLength: 0

@@ -10,29 +10,48 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 21
+  m_Name: Rule 40
   m_EditorClassIdentifier: 
   outputs:
-  - name: Hat
+  - name: Flower
     properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Speech
+    properties:
+    - type: 0
+      name: text
+      value: A pretty flower...for a pretty...uh....
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Customer
+    properties:
+    - type: 2
+      name: happy
+      value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: Idea
+  - name: Customer
+    properties:
+    - type: 2
+      name: happy
+      value: False
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Paper
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Document
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  action: Combine
+  action: Give paper
   hint: 
   parent: {fileID: 0}
   children: []
-  reversible: 1
+  reversible: 0
   selectedInput: 0
   inventory: 0

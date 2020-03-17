@@ -20,6 +20,8 @@ public class PuzzleManager : MonoBehaviour {
     public AudioSource gameMusic;
     [SerializeField]
     public GameObject everything;
+    [SerializeField]
+    public GameObject player;
 
     [SerializeField]
     public List<Item> _itemAssets = new List<Item>();
@@ -231,7 +233,7 @@ public class PuzzleManager : MonoBehaviour {
         List<Item> matchingItems = new List<Item>();
         foreach (Item dbItem in _itemAssets)
         {
-            if (dbItem.name == "TaxiOrder")
+            if (dbItem.name == "Flower")
                 Debug.Log("checking: " + dbItem.name + " matches?" + dbItem.Matches(term) + " accessible: " + dbItem.IsAccessible(accessibleAreas, itemsInScene));
             if (dbItem.Matches(term) && dbItem.IsAccessible(accessibleAreas, itemsInScene))
             {
@@ -312,5 +314,18 @@ public class PuzzleManager : MonoBehaviour {
             objects.Add(ScriptableObject.Instantiate(asset) as Area);
         }
         return objects;
+    }
+
+    public void UpdatePlayerProperties(Property property)
+    {
+        if (player.GetComponent<GameItem>().GetProperty(property.name) != null)
+            player.GetComponent<GameItem>().GetProperty(property.name).value = property.value;
+        else
+            player.GetComponent<GameItem>().properties.Add(property);
+    }
+
+    public GameItem GetPlayer()
+    {
+        return player.GetComponent<GameItem>();
     }
 }

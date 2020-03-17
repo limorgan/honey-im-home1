@@ -31,7 +31,7 @@ public class GameItem : MonoBehaviour {
 
     public void OnGameItemMouseOver(Text UITextRef)
     {
-        Debug.Log(name + " has dbItem " + (dbItem != null) + " description: " + dbItem.description);
+        //Debug.Log(name + " has dbItem " + (dbItem != null) + " description: " + dbItem.description);
         UITextRef.text = dbItem.description;
     }
 
@@ -202,8 +202,8 @@ public class GameItem : MonoBehaviour {
                     }
                 }
             }
-            if (!found && this.isDestructible()) {
-                //Debug.Log("Destroying: " + rule.inputs[i].name);
+            if (!found && rule.inputs[i].gameItem.isDestructible()) {
+                Debug.Log("Destroying: " + rule.inputs[i].name);
                 if (i == 0) objectsToDestroy.Add(this.gameObject);
                 else {
                     if(!Player.Instance.DeleteItemFromInventory(rule.inputs[i].gameItem))
@@ -217,7 +217,12 @@ public class GameItem : MonoBehaviour {
             //Debug.Log("output terms: " + output.ToString() + "number of input rules: " + rule.inputs.Count);
             bool found = false;
             foreach (Term input in rule.inputs) {
-                //Debug.Log("output term: " + output.name + " input term: " + input.name);
+                Debug.Log("output term: " + output.name + " input term: " + input.name);
+                if(output.name == "Player")
+                {
+                    foreach (Property outputProperty in output.properties)
+                        PuzzleManager.Instance.UpdatePlayerProperties(outputProperty);
+                }
                 if (output.name == input.name) {
                     //Debug.Log("number of output properties " + output.properties.Count);
                     found = true;
@@ -298,9 +303,8 @@ public class GameItem : MonoBehaviour {
     private bool RuleFulFilled(Rule rule) {
         if (rule != null) {
             rule.inputs[0].gameItem = this;     // only matches if (at least) the item fulfils that of the first input item???
-            if (!this.FulFillsProperties(rule.inputs[0])) {
+            if (!this.FulFillsProperties(rule.inputs[0])) 
                 return false;
-            }
             if (rule.inputs.Count > 1) {
                 if(rule.inputs.Count == 2)
                 {
@@ -322,11 +326,19 @@ public class GameItem : MonoBehaviour {
                 }
 
                 List<GameItem> inventory = Player.Instance.GetInventory();
-                if (inventory.Count == 0) {
+                if (inventory.Count == 0 && !rule.HasPlayerInput()) {
                     return false;
                 }
                 for (int i = 1; i < rule.inputs.Count; i++) {
                     bool found = false;
+                    if (rule.inputs[i].name == "Player") {
+                        Debug.Log("Rule input is " + rule.inputs[i].name + " - fulfils the properties? " + PuzzleManager.Instance.GetPlayer().FulFillsProperties(rule.inputs[i]));
+                        if (PuzzleManager.Instance.GetPlayer().FulFillsProperties(rule.inputs[i]))
+                        {
+                            found = true;
+                            rule.inputs[i].gameItem = PuzzleManager.Instance.GetPlayer();
+                        }
+                    }
                     foreach (GameItem inventoryItem in inventory) {
                         if (inventoryItem.name == rule.inputs[i].name || inventoryItem.dbItem.GetSuperTypes().Contains(rule.inputs[i].name)) {
                             if (inventoryItem.FulFillsProperties(rule.inputs[i])) {

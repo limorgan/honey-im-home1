@@ -82,4 +82,15 @@ public class Database<T> where T : ScriptableObject {
         }
         return objects;
     }
+
+    public static string GetPath(T asset)      //should work for area and items, not necessarily for rules...
+    {
+        ValidateDatabase();
+        foreach (T asset2 in _assets)
+        {
+            if (asset2.name == asset.name)
+                return AssetDatabase.GetAssetPath(asset2);
+        }
+        return "?";
+    }
 }

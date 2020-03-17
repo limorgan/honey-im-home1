@@ -10,29 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 21
+  m_Name: Rule 38
   m_EditorClassIdentifier: 
   outputs:
-  - name: Hat
-    properties: []
+  - name: Player
+    properties:
+    - type: 2
+      name: drunk
+      value: True
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Speech
+    properties:
+    - type: 0
+      name: text
+      value: Uh...huh. Whuhtgdw gzeb. Sorry, not sure what I'm saying...or what was
+        in that?
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: Idea
+  - name: Drink
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Document
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  action: Combine
+  action: Drink
   hint: 
   parent: {fileID: 0}
   children: []
-  reversible: 1
+  reversible: 0
   selectedInput: 0
   inventory: 0
