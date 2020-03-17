@@ -30,9 +30,6 @@ MonoBehaviour:
   - name: Car
     properties:
     - type: 2
-      name: locked
-      value: False
-    - type: 2
       name: ready
       value: True
     dbItem: {fileID: 0}

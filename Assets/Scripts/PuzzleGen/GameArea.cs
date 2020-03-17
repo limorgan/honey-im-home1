@@ -20,7 +20,6 @@ public class GameArea : MonoBehaviour {
 
     void Awake() {
         itemsInArea = this.GetComponentsInChildren<GameItem>();
-        //Debug.Log(this.ToString());
         _index = Random.Range(0, _spawnPoints.Length);
         _NPCindex = Random.Range(0, _NPCSpawnPoints.Length);
         area.areaObject = areaContent;                // 05/03 associating actual content with the area
@@ -42,9 +41,8 @@ public class GameArea : MonoBehaviour {
             return GetNextSpawnPt();
     }
 
-    public Vector3 GetNextSpawnPt(Item item)
+    public Vector3 GetNextSpawnPt(Item item)        //for specific spawn point cases
     {
-        Debug.Log("first spawnpt: " + _spawnPoints[0].transform.position);
         if (item.specificSpawnPoints)
         {
             int idx = GetIndex(item);
@@ -52,26 +50,23 @@ public class GameArea : MonoBehaviour {
             {
                 if (_spawnPoints.Length - 1 < idx)
                     return GetNextSpawnPt();
-                Debug.Log("worked");
                 return _spawnPoints[idx].transform.position;
             }
             else
                 return GetNextSpawnPt();
+            
         }
         return GetNextSpawnPt();
     }
 
     public Vector3 GetNextSpawnPt() {
-        if (_spawnPoints.Length == 0)
-            Debug.Log("no spawn points");
         _index++;
         if (_index > _spawnPoints.Length - 1)
             _index = 0;
-        Debug.Log("Spawn point " + _index + ": " + _spawnPoints[_index].transform.position);
         return _spawnPoints[_index].transform.position;
     }
 
-    public Vector3 getRandomSpawnPt(bool NPC)
+    public Vector3 GetRandomSpawnPt(bool NPC)
     {
         if (NPC)
         {

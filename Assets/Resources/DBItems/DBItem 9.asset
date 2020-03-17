@@ -27,3 +27,4 @@ MonoBehaviour:
     type: 3}
   description: Door
   longDescription: Ah yes, what a great invention.
+  specificSpawnPoints: 0

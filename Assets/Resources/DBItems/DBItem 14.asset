@@ -12,22 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea09481e588c9d45a95b8185d42d1d1, type: 3}
   m_Name: DBItem 14
   m_EditorClassIdentifier: 
-  name: Edie
+  name: Bartender
   properties:
-  - type: 0
-    name: isa
-    value: NPC
-  - type: 0
-    name: isa
-    value: Bartender
   - type: 2
     name: spawnable
     value: False
   - type: 2
     name: inspectable
     value: True
-  itemPrefab: {fileID: 1048581574796601165, guid: 2d226cb47a3110f47a77bff1781e809a,
+  - type: 0
+    name: isa
+    value: NPC
+  itemPrefab: {fileID: 7597973462364083177, guid: 29163289cc59e43409eb6295ebc34f50,
     type: 3}
-  description: Edie
-  longDescription: 'Don''t really know her too well, probably has put up with too
-    much here. '
+  description: Bartender
+  longDescription: 'Have I seen you before? '
+  specificSpawnPoints: 0

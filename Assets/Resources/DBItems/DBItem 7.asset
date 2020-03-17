@@ -28,6 +28,4 @@ MonoBehaviour:
   description: Photo
   longDescription: A photo from a couple of years ago. Probably our anniversary? June
     16th...
-  spawnPoints: []
   specificSpawnPoints: 0
-  spawnLength: 0

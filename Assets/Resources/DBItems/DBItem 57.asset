@@ -10,21 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ea09481e588c9d45a95b8185d42d1d1, type: 3}
-  m_Name: DBItem 44
+  m_Name: DBItem 57
   m_EditorClassIdentifier: 
-  name: Gift
+  name: Bubbly
   properties:
   - type: 2
     name: carryable
     value: True
+  - type: 0
+    name: isa
+    value: Bottle
   - type: 2
     name: inspectable
     value: True
-  - type: 0
-    name: isa
-    value: Present
-  itemPrefab: {fileID: 1425230829685343297, guid: e429e6fc90d8519468a19f45e579028d,
+  - type: 2
+    name: spawnable
+    value: False
+  itemPrefab: {fileID: 14471877516138768, guid: 99565e34593f29845818802345200ccd,
     type: 3}
-  description: Present
-  longDescription: Looks decent, might be nice to bring home.
+  description: Bubbly
+  longDescription: Sitting on a shelf. Luke-warm. Lovely. But better than nothing...
   specificSpawnPoints: 0

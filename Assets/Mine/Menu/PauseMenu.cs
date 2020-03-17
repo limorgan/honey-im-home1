@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject confirmQuit;
     public GameObject confirmMenu;
     public GameObject interactionMenu;
+    public GameObject transcriptMenu;
+    public Text transcriptText;
 
     void Start()
     {
@@ -31,6 +34,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUi.SetActive(false);
+        CloseTranscript();
         Time.timeScale = 1f;
         GameIsPaused = false;
         interactionMenu.SetActive(true);
@@ -74,5 +78,27 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Quitting");
         Application.Quit();
+    }
+
+    public void ClosePause()
+    {
+        pauseMenuUi.SetActive(false);
+    }
+
+    public void OpenTranscript()
+    {
+        transcriptMenu.SetActive(true);
+        pauseMenuUi.SetActive(false);
+    }
+
+    public void CloseTranscript()
+    {
+        transcriptMenu.SetActive(false);
+        pauseMenuUi.SetActive(true);
+    }
+
+    public void SetTranscript()
+    {
+        transcriptText.text = Player.Instance.GetTranscript();
     }
 }

@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 117e2bdefdc480347a0dbc95d23691b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Present
+  name: Gift
   dbItem: {fileID: 0}
   properties: []
   containedValue: {fileID: 0}

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 297386180971144933}
   - component: {fileID: 542156792503553007}
   - component: {fileID: 2737249166670068660}
-  - component: {fileID: 8979180918079160390}
   m_Layer: 0
   m_Name: bf
   m_TagString: Untagged
@@ -83,22 +82,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2533543, y: 5.6463547}
   m_EdgeRadius: 0
---- !u!114 &8979180918079160390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048581574796601165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 117e2bdefdc480347a0dbc95d23691b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Edie
-  dbItem: {fileID: 0}
-  properties: []
-  containedValue: {fileID: 0}
 --- !u!1 &1289189515220269306
 GameObject:
   m_ObjectHideFlags: 0

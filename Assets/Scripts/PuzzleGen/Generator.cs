@@ -9,7 +9,7 @@ public class Generator : MonoBehaviour {
     public static Generator Instance { get { return _instance; } }
 
     void Awake() {
-        if (_instance != null & _instance != this)
+        if (_instance != null )//& _instance != this)
             Destroy(this.gameObject);
         else { 
             _instance = this;
@@ -34,7 +34,6 @@ public class Generator : MonoBehaviour {
             if (item.specificSpawnPoints)
             {
                 nextSpawnPoint = gameArea.GetNextSpawnPt(item);
-                Debug.Log("spawnpt: " + nextSpawnPoint);
             }
             else if (item.GetPropertyWithName("isa") != null && item.GetPropertyWithName("isa").value == "NPC")
             {
@@ -44,11 +43,9 @@ public class Generator : MonoBehaviour {
                 nextSpawnPoint = gameArea.GetNextSpawnPt();
             GameObject itemGO = (GameObject)Instantiate(item.itemPrefab,
                 nextSpawnPoint, Quaternion.identity);            //gameArea.GetNextSpawnPt() replaced by nextSpawnPoint
-            Debug.Log(itemGO.transform.position);
+            //Debug.Log(itemGO.transform.position);
             itemGO.transform.SetParent(gameArea.gameObject.transform);
-            Debug.Log("after set parent" + itemGO.transform.position);
             itemGO.GetComponent<GameItem>().Setup(item.name, item);
-            Debug.Log("after set up: " + itemGO.transform.position);
         }
     }
 
@@ -59,6 +56,8 @@ public class Generator : MonoBehaviour {
         List<Item> itemsInTheScene = new List<Item>();
         GameItem[] existingGameItems = GameObject.Find(area.name).GetComponentsInChildren<GameItem>();
         for(int i = 0; i < existingGameItems.Length; i++) {
+            if (existingGameItems[i].name == "Edie" || existingGameItems[i].name == "Ruby" || existingGameItems[i].name == "Lenny" || existingGameItems[i].name == "Jimmy")
+                Debug.Log(existingGameItems[i].name + ": in existing game items. ");
             itemsInTheScene.Add(existingGameItems[i].dbItem);
         }
         foreach(GameItem item in Player.Instance.GetInventory()) {
@@ -114,7 +113,7 @@ public class Generator : MonoBehaviour {
         List<Rule> possibleRules = new List<Rule>();
         foreach (Rule rule in PuzzleManager.Instance.GetAllRules())
         {       //Previously: foreach (Rule rule in RuleDatabase.GetAllObjects()) {
-            Debug.Log("Main Output: " + rule.outputs[0].name + " vs Start Term: " + startTerm.name + " Main Output? " + rule.MainOutputIs(startTerm));
+            //Debug.Log("Main Output: " + rule.outputs[0].name + " vs Start Term: " + startTerm.name + " Main Output? " + rule.MainOutputIs(startTerm));
             if (rule.MainOutputIs(startTerm)) {
                 if(debugMode && startTerm.dbItem != null) Debug.Log("Found matching rule " + rule.outputs[0].name +
                     " with output dbItem: " + startTerm.dbItem.name + " at depth: " + depth);
@@ -165,7 +164,7 @@ public class Generator : MonoBehaviour {
 
         if(debugMode) Debug.Log("No suitable rule found for: " + startTerm.name + " at depth " + depth);
         //Find DB item for input & add to spawn list
-        if (startTerm.dbItem == null) {
+        if (startTerm.dbItem == null && startTerm.name != "Player") {
             Debug.Log("GRAMMAR ERROR: No terminal or non-terminal match for term: " + startTerm.name);
             return false;
         }

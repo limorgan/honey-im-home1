@@ -61,30 +61,17 @@ public class Rule : ScriptableObject {
     //Type or super-type and all properties should match
     public bool MainOutputIs(Term term) {
         if (term.dbItem != null) {
-            //Debug.Log("Term: " + term.name + " - dbItem not null. ");
             if (term.dbItem.name != this.outputs[0].name) {
                 if (!term.dbItem.GetSuperTypes().Contains(this.outputs[0].name)) {
-                    Debug.Log("Term: " + term.name + " - does not have " + this.outputs[0].name + " as supertype");
                     return false;
                 }
             }
-            /*if (term.dbItem.name == this.outputs[0].name)
-                Debug.Log("term dbitem name equals output name " + term.dbItem.name + " = " + this.outputs[0].name);*/
-            /*if (term.dbItem.IsTypeOf(outputs[0]))
-            {
-                Debug.Log("Term: " + term.name + " - does not have " + this.outputs[0].name + " as supertype");
-                return false;
-            }*/
         } else {
             if (term.name != this.outputs[0].name) {
                 if (!term.GetSuperTypes().Contains(this.outputs[0].name)){// && !this.outputs[0].GetSuperTypes().Contains(term.name)) {
-                    Debug.Log("Term: " + term.name + " - does not have " + this.outputs[0].name + " as supertype");
                     return false;
                 }
-                //if(!term.dbItem.Is)
             }
-            if(term.name == this.outputs[0].name)
-                Debug.Log("term name equals output name " + term.name + " = " + this.outputs[0].name);
         }
 
         /*if(this.outputs[0].properties.Count != term.properties.Count) {       //this prevents things such as car and car[ready:false] from working.

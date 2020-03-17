@@ -122,8 +122,8 @@ public class Item : ScriptableObject{
     public bool IsAccessible(List<Area> areas, List<Item> itemsInScene) {
         if (name == "Player")       //Player is always accessible
             return true;
-        /*if (this.name == "Car")
-            Debug.Log("Car: spawnable " + IsSpawnable() + " contained in scene " + itemsInScene.Contains(this)); */
+        if (this.name == "Edie" || this.name == "Ruby" || this.name == "Lenny" || this.name == "Jimmy")
+            Debug.Log(this.name + ": spawnable " + IsSpawnable() + " contained in scene " + itemsInScene.Contains(this)); 
         List<Property> areaProperties = this.GetPropertiesWithName("area");
         if (areaProperties.Count == 0) {
             if (IsSpawnable() || itemsInScene.Contains(this))

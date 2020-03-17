@@ -10,40 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 21
+  m_Name: Rule 43
   m_EditorClassIdentifier: 
   outputs:
-  - name: Player
+  - name: Car
     properties:
     - type: 2
-      name: ready
-      value: True
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  - name: Bartender
-    properties:
-    - type: 2
-      name: distracted
+      name: locked
       value: False
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: Bartender
+  - name: Car
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Hat
+  - name: Crowbar
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Do Hat Trick
+  action: Break in
   hint: 
   parent: {fileID: 0}
   children: []
-  reversible: 1
+  reversible: 0
   selectedInput: 0
   inventory: 0

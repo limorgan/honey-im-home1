@@ -41,7 +41,7 @@ public class Player : MonoBehaviour {
     private List<Property> _properties;
     private string _noActionMessage = "No action currently available";
     private GameItem _selectedItem;
-    private StringBuilder _transcript;
+    private StringBuilder _transcript = new StringBuilder();
 
     private static Player _instance;
     public static Player Instance { get { return _instance; } }
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour {
                     CloseInventory();
                 else
                     OpenInventory();
-            } else if (hit){
+            } else if (hit && !_pauseMenuOpen){
                 if (hit.collider.GetComponentInParent<GameItem>() != null)
                     if(!_actionMenuOpen && !_inventoryOpen)
                         hit.collider.gameObject.GetComponentInParent<GameItem>().OnGameItemMouseOver(UITextRef);
@@ -117,7 +117,7 @@ public class Player : MonoBehaviour {
         else
             item.dbItem.GetPropertyWithName("inInventory").value = "True";
         _inventory.Add(item);
-        Debug.Log("added " + item.name + " to inventory. ");
+        //Debug.Log("added " + item.name + " to inventory. ");
         inventoryNotification.SetActive(true);
         SelectItemFromInventory(item);                  //automatically select the last item picked up: default
     }
@@ -287,6 +287,7 @@ public class Player : MonoBehaviour {
 
     public void ShowSpeechBubble(string speech, string name) {
         CloseActionMenu();
+        AddToTranscript(speech, name);
         //DisableMouseLook();
         _speechOpen = true;
         speechUI.gameObject.SetActive(true);
@@ -312,8 +313,6 @@ public class Player : MonoBehaviour {
         hintSystem.SetActive(true);
         StopAllCoroutines();
         StartCoroutine(TypeSentenceSlowly(PuzzleManager.Instance.getHint(), hintSystem.GetComponentInChildren<Text>()));
-        Debug.Log("hint: " + PuzzleManager.Instance.getHint() + " current text: " + hintSystem.GetComponentInChildren<Text>().text);
-        //hintSystem.GetComponentInChildren<Text>().text = PuzzleManager.Instance.getHint();
     }
 
     public void CloseHint()
@@ -385,5 +384,24 @@ public class Player : MonoBehaviour {
     public void PauseMenuStatus(bool open)
     {
         _pauseMenuOpen = open;
+    }
+
+    public void AddToTranscript(string line)
+    {
+        AddToTranscript(line, "");
+    }
+
+    public void AddToTranscript(string line, string name)
+    {
+        if (_transcript.Length > 0)
+            _transcript.Append("".PadLeft(100,'*'));
+        if (name.Length > 0)
+            _transcript.AppendLine(" - - " + name + ":");
+        _transcript.AppendLine(line);
+    }
+
+    public string GetTranscript()
+    {
+        return _transcript.ToString();
     }
 }

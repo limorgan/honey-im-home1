@@ -21,6 +21,8 @@ public class PuzzleManager : MonoBehaviour {
     [SerializeField]
     public GameObject everything;
     [SerializeField]
+    public GameObject generator;
+    [SerializeField]
     public GameObject player;
 
     [SerializeField]
@@ -29,8 +31,6 @@ public class PuzzleManager : MonoBehaviour {
     public List<Rule> _ruleAssets = new List<Rule>();
     [SerializeField]
     public List<Area> _areaAssets = new List<Area>();
-
-    
 
     private static PuzzleManager _instance;
     public static PuzzleManager Instance { get { return _instance; } }
@@ -42,13 +42,14 @@ public class PuzzleManager : MonoBehaviour {
             _instance = this;
             Debug.Log("PuzzleManager instance created. ");
             everything.SetActive(true);
+            generator.SetActive(true);
+
             /*_itemAssets = Resources.LoadAll<Item>("Assets/Resources/DBItems");
             _ruleAssets = Resources.LoadAll<Rule>("Assets/Resources/Rules");
-            _areaAssets = Resources.LoadAll<Area>("Assets/Resources/Areas");
-            Debug.Log("items: " + _itemAssets.Length + " rules: " + _ruleAssets.Length + " area: " + _areaAssets.Length);*/
-            bool nothere = true;
+            _areaAssets = Resources.LoadAll<Area>("Assets/Resources/Areas");*/
         }
     }
+
 
     void Start() {
         //_gameOverRules = RuleDatabase.GetRulesWithOutput(new Term("Player"));
@@ -64,18 +65,13 @@ public class PuzzleManager : MonoBehaviour {
         _puzzleRules.Add(area, new List<Rule>());
         FindLeaves(root, area);
         _currentArea = area;    // 05/03 updating otherwise not used private variable _currentArea
-        //Debug.Log("Rule generated: " + root.GetRuleAsString());
     }
 
     public List<Rule> RulesFor(GameItem gameItem, Area area) {      
         List<Rule> rules = new List<Rule>();
-        Debug.Log("rules for game item " + gameItem.name + " in " + area.name);
+        //Debug.Log("rules for game item " + gameItem.name + " in " + area.name);
         foreach(Rule rule in _leaves[area]) {
             addApplicableRule(rule, gameItem, rules);
-            /*if (rule.reversible) {
-                foreach (Rule modRule in rule.InputPermutation())
-                    addApplicableRule(modRule, gameItem, rules);
-            }*/
             /*foreach(Rule gameOver in _gameOverRules) {
                 if(!rules.Contains(rule))
                     rules.Add(gameOver);
@@ -112,12 +108,6 @@ public class PuzzleManager : MonoBehaviour {
     }
 
     public void ExecuteRule(Rule rule, Area area) {
-        /*Debug.Log("Started to execute rule of " + rule.GetRuleAsString() + " in" + area.ToString());
-        foreach (Rule r in _leaves[area])
-        {
-            Debug.Log("Rule in " + area.name + " : " + r.GetRuleAsString());
-        }
-        Debug.Log("Done with rules in _leaves. ");*/
         if (_leaves[area].Contains(rule)) {
             Debug.Log("Execute: " + rule.parent.outputs[0].name);
             _leaves[area].Remove(rule);
@@ -209,6 +199,8 @@ public class PuzzleManager : MonoBehaviour {
     {
         foreach (Item dbItem in _itemAssets)
         {
+            if (dbItem.GetSuperTypes().Contains("Present"))
+                Debug.Log(dbItem.name + " is a Bartender, in scene: " + dbItem.IsAccessible(accessibleAreas, itemsInScene));
             if ((dbItem.name == term.name || dbItem.GetSuperTypes().Contains(term.name)) && dbItem.IsAccessible(accessibleAreas, itemsInScene))
                 return true;
         }
@@ -233,8 +225,6 @@ public class PuzzleManager : MonoBehaviour {
         List<Item> matchingItems = new List<Item>();
         foreach (Item dbItem in _itemAssets)
         {
-            if (dbItem.name == "Flower")
-                Debug.Log("checking: " + dbItem.name + " matches?" + dbItem.Matches(term) + " accessible: " + dbItem.IsAccessible(accessibleAreas, itemsInScene));
             if (dbItem.Matches(term) && dbItem.IsAccessible(accessibleAreas, itemsInScene))
             {
                 matchingItems.Add(ScriptableObject.Instantiate(dbItem) as Item);
@@ -274,10 +264,10 @@ public class PuzzleManager : MonoBehaviour {
                 rules.Add(ruleToAdd);
             }
         }
-        foreach (Rule r in rules)
+        /*foreach (Rule r in rules)
         {
             Debug.Log("term: " + term.GetTermAsString() + " rules: " + r.GetRuleAsString());
-        }
+        }*/
         return rules;
     }
 

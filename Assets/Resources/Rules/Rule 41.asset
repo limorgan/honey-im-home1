@@ -17,7 +17,7 @@ MonoBehaviour:
     properties:
     - type: 0
       name: contains
-      value: Record
+      value: Vinyl
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -27,7 +27,7 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Crowbar
+  - name: Drink
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
@@ -36,7 +36,7 @@ MonoBehaviour:
     properties:
     - type: 2
       name: ready
-      value: False
+      value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 

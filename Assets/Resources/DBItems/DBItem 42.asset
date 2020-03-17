@@ -28,6 +28,4 @@ MonoBehaviour:
   description: Wallet
   longDescription: Keeps change safe, better than just having it in your pocket. Do
     I even have any change?
-  spawnPoints: []
   specificSpawnPoints: 0
-  spawnLength: 0

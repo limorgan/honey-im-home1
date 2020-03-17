@@ -14,13 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Pub
   goals:
-  - name: Flower
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: Should find something nice to bring home...people in the pub might
-      be able to help?
-  - name: Record
+  - name: Present
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}

@@ -22,7 +22,6 @@ public class Intro : MonoBehaviour
 
     public void Start()
     {
-        //Debug.Log("started intro portion. ");
         index = 0;
         NextSentence();
         

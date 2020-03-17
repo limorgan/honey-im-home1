@@ -35,9 +35,6 @@ MonoBehaviour:
     - type: 2
       name: locked
       value: False
-    - type: 2
-      name: ready
-      value: False
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 

@@ -31,8 +31,8 @@ public class GameItem : MonoBehaviour {
 
     public void OnGameItemMouseOver(Text UITextRef)
     {
-        //Debug.Log(name + " has dbItem " + (dbItem != null) + " description: " + dbItem.description);
-        UITextRef.text = dbItem.description;
+        if(name != "Player")
+            UITextRef.text = dbItem.description;
     }
 
     // Addition 10/01/2020
@@ -77,6 +77,8 @@ public class GameItem : MonoBehaviour {
             noAction = false;
         foreach (Rule puzzleRule in PuzzleManager.Instance.RulesFor(this, PuzzleManager.Instance.GetCurrentArea()))
         {         //not necessarily accurate (nested areas) previous version: GetComponentInParent<GameArea>().area)
+            if (this.name == "Car")
+                Debug.Log("Checking rule " + puzzleRule.ToString() + " fulfilled by " + this.name + " ? " + RuleFulFilled(puzzleRule));
             if (RuleFulFilled(puzzleRule)) {
                 noAction = false;
                 GameObject action = GameObject.Instantiate(buttonPrefab);
@@ -217,7 +219,7 @@ public class GameItem : MonoBehaviour {
             //Debug.Log("output terms: " + output.ToString() + "number of input rules: " + rule.inputs.Count);
             bool found = false;
             foreach (Term input in rule.inputs) {
-                Debug.Log("output term: " + output.name + " input term: " + input.name);
+                //Debug.Log("output term: " + output.name + " input term: " + input.name);
                 if(output.name == "Player")
                 {
                     foreach (Property outputProperty in output.properties)
@@ -295,6 +297,13 @@ public class GameItem : MonoBehaviour {
 
         Player.Instance.CloseActionMenu();
 
+        /*foreach (Term term in rule.outputs)
+        {
+            GameObject GO = term.gameItem.gameObject;
+            if(GO.GetComponent<CustomReaction>() != null)
+                GO.GetComponent<CustomReaction>().PlayAnimation();
+        }*/
+
         foreach (GameObject GO in objectsToDestroy) {
             Destroy(GO);
         }
@@ -336,7 +345,7 @@ public class GameItem : MonoBehaviour {
                 for (; i < rule.inputs.Count; i++) {
                     bool found = false;
                     if (rule.inputs[i].name == "Player") {
-                        Debug.Log("Rule input is " + rule.inputs[i].name + " - fulfils the properties? " + PuzzleManager.Instance.GetPlayer().FulFillsProperties(rule.inputs[i]));
+                        //Debug.Log("Rule input is " + rule.inputs[i].name + " - fulfils the properties? " + PuzzleManager.Instance.GetPlayer().FulFillsProperties(rule.inputs[i]));
                         if (PuzzleManager.Instance.GetPlayer().FulFillsProperties(rule.inputs[i]))
                         {
                             found = true;
