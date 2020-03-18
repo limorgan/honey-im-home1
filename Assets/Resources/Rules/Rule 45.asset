@@ -13,24 +13,33 @@ MonoBehaviour:
   m_Name: Rule 45
   m_EditorClassIdentifier: 
   outputs:
-  - name: Player
+  - name: Customer
     properties:
-    - type: 2
-      name: happy
-      value: True
+    - type: 0
+      name: wants
+      value: Music
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Speech
+    properties:
+    - type: 0
+      name: name
+      value: Customer
+    - type: 0
+      name: text
+      value: It's getting a bit dull in here...liven the place up and we can talk
+        again.
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: Jukebox
-    properties:
-    - type: 2
-      name: paidfor
-      value: True
+  - name: Customer
+    properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Switch on
+  action: Talk
   hint: 
   parent: {fileID: 0}
   children: []

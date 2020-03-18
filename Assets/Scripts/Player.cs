@@ -393,11 +393,14 @@ public class Player : MonoBehaviour {
 
     public void AddToTranscript(string line, string name)
     {
-        if (_transcript.Length > 0)
-            _transcript.Append("".PadLeft(100,'*'));
+        StringBuilder total = new StringBuilder();
         if (name.Length > 0)
-            _transcript.AppendLine(" - - " + name + ":");
-        _transcript.AppendLine(line);
+            total.AppendLine(name + ":");
+        total.AppendLine(line);
+        if (_transcript.Length > 0)
+            total.AppendLine("".PadLeft(60, '*'));
+        _transcript.Insert(0, total);
+
     }
 
     public string GetTranscript()

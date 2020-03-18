@@ -24,3 +24,4 @@ MonoBehaviour:
     type: 3}
   description: Glasses
   longDescription: 'Handy things. Blind as all three blind mice combined without. '
+  specificSpawnPoints: 0

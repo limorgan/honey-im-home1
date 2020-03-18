@@ -71,7 +71,7 @@ public class GameItem : MonoBehaviour {
     }
 
     public void OnGameItemClicked(GameObject actionMenu, GameObject buttonPrefab, Text ActionHeader) {
-        ActionHeader.text = name;
+        ActionHeader.text = this.dbItem.description;
         bool noAction = true;   //keep track of whether or not there are any actions
         if (GetProperty("inInventory") != null && GetProperty("inInventory").value == "True")
             noAction = false;
@@ -137,7 +137,7 @@ public class GameItem : MonoBehaviour {
 
         if (rule.action == "Inspect")
         {
-            Player.Instance.ShowSpeechBubble(dbItem.longDescription, dbItem.name);
+            Player.Instance.ShowSpeechBubble(dbItem.longDescription, dbItem.description);
             return;
         }
         

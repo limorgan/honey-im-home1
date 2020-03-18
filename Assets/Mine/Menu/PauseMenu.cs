@@ -34,7 +34,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUi.SetActive(false);
-        CloseTranscript();
+        transcriptMenu.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
         interactionMenu.SetActive(true);
@@ -88,6 +88,7 @@ public class PauseMenu : MonoBehaviour
     public void OpenTranscript()
     {
         transcriptMenu.SetActive(true);
+        transcriptText.text = Player.Instance.GetTranscript();
         pauseMenuUi.SetActive(false);
     }
 

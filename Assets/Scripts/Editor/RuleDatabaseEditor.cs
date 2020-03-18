@@ -30,6 +30,7 @@ public class RuleDatabaseEditor : EditorWindow {
         _scrollPositionBottom = EditorGUILayout.BeginScrollView(_scrollPositionBottom, true, true);
 
         EditorGUILayout.LabelField("Rules:", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField(" -S: second input item doesn't need to be selected. -I: main output goes straight to inventory.");
         if (GUILayout.Button("Add New Rule", GUILayout.ExpandWidth(false))) {
             foldedOut.Add(false);
             RuleDatabase.CreateAsset();
@@ -38,7 +39,12 @@ public class RuleDatabaseEditor : EditorWindow {
         for (int ruleIndx = 0; ruleIndx < RuleDatabase.GetNumOfAssets(); ruleIndx++) {
             Rule rule = RuleDatabase.GetAsset(ruleIndx);
             EditorUtility.SetDirty(rule);
-            foldedOut[ruleIndx] = EditorGUILayout.Foldout(foldedOut[ruleIndx], rule.GetRuleAsString());
+            string additionalProperties = "";
+            if (rule.selectedInput)
+                additionalProperties += " -S ";
+            if (rule.inventory)
+                additionalProperties += " -I ";
+            foldedOut[ruleIndx] = EditorGUILayout.Foldout(foldedOut[ruleIndx], rule.GetRuleAsString() + additionalProperties);
 
             if (foldedOut[ruleIndx]) {
                 // === OUTPUT ===

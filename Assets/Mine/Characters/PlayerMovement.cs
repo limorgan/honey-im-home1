@@ -121,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
         }
         rb.transform.position = nextSpawnPoint;
         Player.Instance.areaText.text = nextAreaName;
+        Player.Instance.AddToTranscript("-- Area: " + nextAreaName + " --");
         Player.Instance.closeAllMenus();
         moveMenuOpen = false;
         moveMenuUI.SetActive(false);

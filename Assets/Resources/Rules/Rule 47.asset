@@ -10,28 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 44
+  m_Name: Rule 47
   m_EditorClassIdentifier: 
   outputs:
-  - name: Lipstick
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  - name: Customer
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  inputs:
-  - name: Customer
-    properties:
-    - type: 0
-      name: wants
-      value: Music
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
   - name: Player
     properties:
     - type: 2
@@ -40,10 +21,27 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Ask for Present
+  - name: Jukebox
+    properties:
+    - type: 2
+      name: ison
+      value: True
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  inputs:
+  - name: Jukebox
+    properties:
+    - type: 2
+      name: paidfor
+      value: True
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  action: Switch on
   hint: 
   parent: {fileID: 0}
   children: []
   reversible: 0
-  selectedInput: 1
+  selectedInput: 0
   inventory: 0

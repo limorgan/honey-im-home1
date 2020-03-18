@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Pub
   goals:
-  - name: Present
+  - name: Lipstick
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
