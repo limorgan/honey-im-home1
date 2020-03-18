@@ -25,3 +25,4 @@ MonoBehaviour:
   description: Elevator
   longDescription: 'Don''t know when they introduced the card system but it''s caused
     me some amount of trouble...just keep losing that ID. Stuck here. '
+  specificSpawnPoints: 0

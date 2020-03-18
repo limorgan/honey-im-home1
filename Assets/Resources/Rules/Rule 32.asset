@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Rule 32
   m_EditorClassIdentifier: 
   outputs:
-  - name: Car
+  - name: Envelope
     properties:
     - type: 2
-      name: ready
+      name: story
       value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
@@ -25,25 +25,22 @@ MonoBehaviour:
     properties:
     - type: 0
       name: text
-      value: That's handy. Time to go.
+      value: Looks important.ish. Just send it off now...
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: Car
-    properties:
-    - type: 2
-      name: locked
-      value: False
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  - name: Key
+  - name: Envelope
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Start car
+  - name: Scribbles
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  action: Collect & Stamp
   hint: 
   parent: {fileID: 0}
   children: []

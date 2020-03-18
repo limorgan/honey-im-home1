@@ -27,3 +27,4 @@ MonoBehaviour:
     type: 3}
   description: ID Card
   longDescription: The picture is never flattering. Ever.
+  specificSpawnPoints: 0

@@ -25,3 +25,4 @@ MonoBehaviour:
   description: Idea
   longDescription: 'The physical form of an idea. A lightbulb. Original. Might help
     me figure out where to go from here. '
+  specificSpawnPoints: 0

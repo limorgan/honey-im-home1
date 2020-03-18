@@ -38,6 +38,6 @@ MonoBehaviour:
   itemPrefab: {fileID: 2112240497354545656, guid: b3ac58c54ce887d42aea45cd7e6923b5,
     type: 3}
   description: Jukebox
-  longDescription: Sturdy. Questionable collection of records. But there has to be
-    a decent one in there...
+  longDescription: Sturdy, but the glass could shatter if hit with something. Questionable
+    collection of records. But there has to be a decent one in there...
   specificSpawnPoints: 0

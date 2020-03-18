@@ -25,3 +25,4 @@ MonoBehaviour:
   description: Film Cannister
   longDescription: Try not to expose that film before it's sent off...always losing
     these guys.
+  specificSpawnPoints: 0

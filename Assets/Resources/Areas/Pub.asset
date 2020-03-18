@@ -14,13 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Pub
   goals:
-  - name: Lipstick
-    properties: []
+  - name: Postbox
+    properties:
+    - type: 2
+      name: full
+      value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
-    description: Find something nice to bring home...
+    description: Maybe the pub will give me some inspiration for this story of mine...and
+      send it off in the postbox there.
   connectedTo:
   - {fileID: 11400000, guid: dba5ef4086bd9844bbe8a68f991f46b0, type: 2}
   inGameArea: {fileID: 0}
-  maxDepth: 10
+  maxDepth: 12
   areaObject: {fileID: 0}

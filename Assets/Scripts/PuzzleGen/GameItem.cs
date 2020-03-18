@@ -276,7 +276,7 @@ public class GameItem : MonoBehaviour {
                         if (itemGO.GetComponent<GameItem>().name == rule.outputs[0].name)
                         {
                             Player.Instance.AddItemToInventory(itemGO.GetComponent<GameItem>());
-                            //Debug.Log("straight to inventory...");
+                            Debug.Log("straight to inventory: " + itemGO.GetComponent<GameItem>().name);
                         }
                     }
                 } else {

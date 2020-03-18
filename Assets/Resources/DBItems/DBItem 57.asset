@@ -22,13 +22,13 @@ MonoBehaviour:
     value: True
   - type: 2
     name: spawnable
-    value: False
-  - type: 0
-    name: isa
-    value: Drink
+    value: True
   - type: 2
     name: available
     value: False
+  - type: 0
+    name: isa
+    value: Present
   itemPrefab: {fileID: 8025447482295224323, guid: 789e1d6f1313053499634b427eaaa09e,
     type: 3}
   description: Drink

@@ -27,3 +27,4 @@ MonoBehaviour:
     type: 3}
   description: Crowbar
   longDescription: 'Good for breaking things. '
+  specificSpawnPoints: 0

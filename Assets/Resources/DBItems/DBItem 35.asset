@@ -29,3 +29,5 @@ MonoBehaviour:
   itemPrefab: {fileID: 1726506164656354749, guid: 9d3e87477bdb02842a27bb1c64bf1d69,
     type: 3}
   description: Document
+  longDescription: 
+  specificSpawnPoints: 0

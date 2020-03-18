@@ -26,3 +26,4 @@ MonoBehaviour:
   itemPrefab: {fileID: 0}
   description: Coffee
   longDescription: 
+  specificSpawnPoints: 0

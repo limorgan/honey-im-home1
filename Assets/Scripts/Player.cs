@@ -43,6 +43,9 @@ public class Player : MonoBehaviour {
     private GameItem _selectedItem;
     private StringBuilder _transcript = new StringBuilder();
 
+    private bool _isTyping = false;
+    private string _currentSpeech = "";
+
     private static Player _instance;
     public static Player Instance { get { return _instance; } }
 
@@ -286,6 +289,7 @@ public class Player : MonoBehaviour {
     }
 
     public void ShowSpeechBubble(string speech, string name) {
+        _currentSpeech = speech;
         CloseActionMenu();
         AddToTranscript(speech, name);
         //DisableMouseLook();
@@ -303,9 +307,18 @@ public class Player : MonoBehaviour {
     }
 
     public void CloseSpeechBubble() {
-        _speechOpen = false;
-        speechUI.gameObject.SetActive(false);
-        //EnableMouseLook();
+        if (_isTyping)
+        {
+            StopAllCoroutines();
+            speechBubble.text = _currentSpeech;
+            _isTyping = false;
+        }
+        else
+        {
+            _speechOpen = false;
+            speechUI.gameObject.SetActive(false);
+            //EnableMouseLook();
+        }
     }
 
     public void ShowHint()
@@ -353,11 +366,13 @@ public class Player : MonoBehaviour {
     IEnumerator TypeSentenceSlowly(string sentence, Text goal)
     {//Brackeys, How to make a Dialogue System in Unity https://www.youtube.com/watch?v=_nRzoTzeyxU
         goal.text = "";
+        _isTyping = true;
         foreach (char c in sentence.ToCharArray())
         {
             goal.text += c;
             yield return null;
         }
+        _isTyping = false;
     }
 
     IEnumerator CloseSlowly(GameObject obj, float timeInS)

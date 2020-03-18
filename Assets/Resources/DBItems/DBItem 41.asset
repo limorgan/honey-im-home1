@@ -24,3 +24,4 @@ MonoBehaviour:
     type: 3}
   description: Hat
   longDescription: 'Makes me look kind of silly. '
+  specificSpawnPoints: 0

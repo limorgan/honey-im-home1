@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea09481e588c9d45a95b8185d42d1d1, type: 3}
+  m_Name: DBItem 16
+  m_EditorClassIdentifier: 
+  name: Biro
+  properties:
+  - type: 2
+    name: carryable
+    value: True
+  - type: 2
+    name: inspectable
+    value: True
+  - type: 0
+    name: isa
+    value: Pen
+  itemPrefab: {fileID: 2773808216522011083, guid: e08fccb1ebb2df14ea3b54f11b5ed25d,
+    type: 3}
+  description: Biro
+  longDescription: 'Reliable. '
+  specificSpawnPoints: 0

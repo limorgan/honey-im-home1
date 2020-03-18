@@ -23,3 +23,5 @@ MonoBehaviour:
   itemPrefab: {fileID: 3520148279009430866, guid: 656887d33b4343d4eb62356d613d97d0,
     type: 3}
   description: Change
+  longDescription: 
+  specificSpawnPoints: 0

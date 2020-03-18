@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rule 44
   m_EditorClassIdentifier: 
   outputs:
-  - name: Lipstick
+  - name: Present
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}

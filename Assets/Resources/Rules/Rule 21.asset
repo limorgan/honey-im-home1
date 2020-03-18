@@ -21,11 +21,14 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Bartender
+  - name: Speech
     properties:
-    - type: 2
-      name: distracted
-      value: False
+    - type: 0
+      name: name
+      value: Bartender
+    - type: 0
+      name: text
+      value: Ouff, too much. I'll be back in a bit...
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -37,6 +40,14 @@ MonoBehaviour:
     description: 
   - name: Hat
     properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Player
+    properties:
+    - type: 2
+      name: stealthy
+      value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 

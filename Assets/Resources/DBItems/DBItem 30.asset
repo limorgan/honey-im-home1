@@ -33,6 +33,4 @@ MonoBehaviour:
     type: 3}
   description: Payphone
   longDescription: No important phone calls have ever been made here.
-  spawnPoints: []
   specificSpawnPoints: 0
-  spawnLength: 0

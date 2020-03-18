@@ -30,8 +30,8 @@ MonoBehaviour:
   - name: Car
     properties:
     - type: 2
-      name: ready
-      value: True
+      name: locked
+      value: False
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 

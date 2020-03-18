@@ -40,6 +40,4 @@ MonoBehaviour:
   description: Car
   longDescription: Might not be too good on the eyes, but it could be handy to get
     home in.
-  spawnPoints: []
   specificSpawnPoints: 0
-  spawnLength: 0

@@ -13,11 +13,21 @@ MonoBehaviour:
   m_Name: Rule 6
   m_EditorClassIdentifier: 
   outputs:
+  - name: Change
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
   - name: Wallet
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Speech
     properties:
     - type: 0
-      name: contains
-      value: Change
+      name: text
+      value: Not much in there, but it will do.
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -27,10 +37,10 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Keep safe
+  action: Grab Change
   hint: 
   parent: {fileID: 0}
   children: []
   reversible: 0
   selectedInput: 0
-  inventory: 0
+  inventory: 1

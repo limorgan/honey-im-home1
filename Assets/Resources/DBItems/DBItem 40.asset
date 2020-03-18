@@ -26,3 +26,5 @@ MonoBehaviour:
   itemPrefab: {fileID: 2795237112835936576, guid: 969644630aa07814aba4ad2bb15dcd2f,
     type: 3}
   description: Briefcase
+  longDescription: 
+  specificSpawnPoints: 0

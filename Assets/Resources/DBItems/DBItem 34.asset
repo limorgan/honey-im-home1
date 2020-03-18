@@ -31,3 +31,4 @@ MonoBehaviour:
   description: Envelope
   longDescription: A place to put important documents. Or useless ones if you want
     to pretend they're actually important.
+  specificSpawnPoints: 0

@@ -24,3 +24,4 @@ MonoBehaviour:
     type: 3}
   description: Flipchart
   longDescription: 
+  specificSpawnPoints: 0

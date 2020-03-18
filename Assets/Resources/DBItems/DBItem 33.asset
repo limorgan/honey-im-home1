@@ -31,3 +31,4 @@ MonoBehaviour:
   description: Decanter
   longDescription: It might be a bit unorthodox to drink straight from the bottle...but
     when you really need a container (or drink)...
+  specificSpawnPoints: 0

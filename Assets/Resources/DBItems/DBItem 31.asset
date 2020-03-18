@@ -23,3 +23,5 @@ MonoBehaviour:
   itemPrefab: {fileID: 8445238388263907137, guid: 58be631b4d775e34e91bb4ccccc38478,
     type: 3}
   description: Camera
+  longDescription: 
+  specificSpawnPoints: 0

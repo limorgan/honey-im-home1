@@ -30,6 +30,4 @@ MonoBehaviour:
     type: 3}
   description: Lager
   longDescription: 'It will do. '
-  spawnPoints: []
   specificSpawnPoints: 0
-  spawnLength: 0
