@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: StreetFinal
   goals:
-  - name: Home
+  - name: Customer
     properties:
-    - type: 2
-      name: gameover
-      value: True
+    - type: 0
+      name: has
+      value: Car
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: Must have a look around the street and the pub to find a way home

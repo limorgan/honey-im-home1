@@ -8,24 +8,28 @@ public class GameArea : MonoBehaviour {
     public GameObject areaContent;              // 05/03 using for activation on starting/entering
     [SerializeField]
     private GameObject[] _spawnPoints;
-    [SerializeField]
+    /*[SerializeField]
     private List<GameObject> _specificSpawnPoints = new List<GameObject>();
     [SerializeField]
-    private List<Item> _spawnItems = new List<Item>();
+    private List<Item> _spawnItems = new List<Item>();*/
     [SerializeField]
     private GameObject[] _NPCSpawnPoints;       // 04/03 adding option of specific NPC spawn points
+    [SerializeField]
+    private GameObject[] _floorSpawnPoints;
 
     private int _index = 0;
     private int _NPCindex = 0;
+    private int _floorIndex = 0;
 
     void Awake() {
         itemsInArea = this.GetComponentsInChildren<GameItem>();
         _index = Random.Range(0, _spawnPoints.Length);
         _NPCindex = Random.Range(0, _NPCSpawnPoints.Length);
+        _floorIndex = Random.Range(0, _floorSpawnPoints.Length);
         area.areaObject = areaContent;                // 05/03 associating actual content with the area
     }
 
-    public Vector3 GetNextSpawnPt(bool NPC)     //if item to be spawned is an NPC
+    public Vector3 GetNextSpawnPt(bool NPC, bool floor)     //if item to be spawned is an NPC
     {
         if (NPC)
         {
@@ -37,11 +41,20 @@ public class GameArea : MonoBehaviour {
             return _NPCSpawnPoints[_NPCindex].transform.position;
 
         }
+        else if (floor)
+        {
+            if (_floorSpawnPoints.Length == 0)
+                return GetNextSpawnPt();
+            _floorIndex++;
+            if (_floorIndex > _floorSpawnPoints.Length - 1)
+                _floorIndex = 0;
+            return _floorSpawnPoints[_floorIndex].transform.position;
+        }
         else
             return GetNextSpawnPt();
     }
 
-    public Vector3 GetNextSpawnPt(Item item)        //for specific spawn point cases
+    /*public Vector3 GetNextSpawnPt(Item item)        //for specific spawn point cases
     {
         if (item.specificSpawnPoints)
         {
@@ -50,14 +63,16 @@ public class GameArea : MonoBehaviour {
             {
                 if (_spawnPoints.Length - 1 < idx)
                     return GetNextSpawnPt();
-                return _spawnPoints[idx].transform.position;
+                //Debug.Log("returning specific spawnpoint. ");
+                //SpawnSpecific(item, _spawnPoints[idx]);
+                return GetNextSpawnPt();
             }
             else
                 return GetNextSpawnPt();
             
         }
         return GetNextSpawnPt();
-    }
+    }*/
 
     public Vector3 GetNextSpawnPt() {
         _index++;
@@ -91,13 +106,13 @@ public class GameArea : MonoBehaviour {
         return debug_str;
     }
 
-    public int GetIndex(Item item)
+    /*public int GetIndex(Item item)
     {
         if (_spawnItems.Contains(item))
             return _spawnItems.IndexOf(item);
         else
             return -1;
-    }
+    }*/
     
     /*public string getHint()
     {

@@ -13,6 +13,8 @@ public class PuzzleManager : MonoBehaviour {
     [SerializeField]
     private List<Rule> _gameOverRules = new List<Rule>();
     private List<Area> _accessibleAreas = new List<Area>();
+    [SerializeField]
+    private List<ConditionalObject> _conditionalObjects = new List<ConditionalObject>();
 
     [SerializeField]
     public GameObject finalFade;
@@ -24,6 +26,8 @@ public class PuzzleManager : MonoBehaviour {
     public GameObject generator;
     [SerializeField]
     public GameObject player;
+    [SerializeField]
+    public GameObject startingInventory;
 
     [SerializeField]
     public List<Item> _itemAssets = new List<Item>();
@@ -42,6 +46,8 @@ public class PuzzleManager : MonoBehaviour {
             _instance = this;
             Debug.Log("PuzzleManager instance created. ");
             everything.SetActive(true);
+            player.SetActive(true);
+            startingInventory.SetActive(true);
             generator.SetActive(true);
 
             /*_itemAssets = Resources.LoadAll<Item>("Assets/Resources/DBItems");
@@ -65,6 +71,18 @@ public class PuzzleManager : MonoBehaviour {
         _puzzleRules.Add(area, new List<Rule>());
         FindLeaves(root, area);
         _currentArea = area;    // 05/03 updating otherwise not used private variable _currentArea
+
+        foreach (ConditionalObject CO in _conditionalObjects)
+        {
+            if (CO.area.name == area.name)
+                if (PuzzleContains(CO.condition, _puzzleRules[area][1]))
+                {
+                    //Debug.Log("Contains it? ");
+                    CO.affectedItem.SetActive(true);
+                }
+        }
+
+        //Debug.Log("All Rules: \n" + GetFullPuzzle());
     }
 
     public List<Rule> RulesFor(GameItem gameItem, Area area) {      
@@ -162,25 +180,7 @@ public class PuzzleManager : MonoBehaviour {
         return true;
     }
 
-    public string getHint()
-    {
-        return _currentArea.getHint();
-    }
-
-    public string GetCurrentAreaName()
-    {
-        return _currentArea.name;
-    }
-
-    public Area GetCurrentArea()
-    {
-        return _currentArea;
-    }
-
-    public void TriggerEnd()
-    {
-        finalFade.SetActive(true);
-    }
+    
 
     // == PREVIOUSLY ITEM DATABASE METHODS ==
 
@@ -306,6 +306,9 @@ public class PuzzleManager : MonoBehaviour {
         return objects;
     }
 
+
+    //== ADDITIONAL FUNCTIONALITIES ==
+
     public void UpdatePlayerProperties(Property property)
     {
         if (player.GetComponent<GameItem>().GetProperty(property.name) != null)
@@ -317,5 +320,45 @@ public class PuzzleManager : MonoBehaviour {
     public GameItem GetPlayer()
     {
         return player.GetComponent<GameItem>();
+    }
+
+    public bool PuzzleContains(Item item, Rule parent)
+    {
+        if (parent.ContainsItem(item))
+            return true;
+        if (parent.children.Count == 0)
+        {
+            Debug.Log("Rule " + parent.ToString() + " has no children. ");
+            return false;
+        }
+        else
+        {
+            foreach (Rule child in parent.children)
+            {
+                if (PuzzleContains(item, child))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public string getHint()
+    {
+        return _currentArea.getHint();
+    }
+
+    public string GetCurrentAreaName()
+    {
+        return _currentArea.name;
+    }
+
+    public Area GetCurrentArea()
+    {
+        return _currentArea;
+    }
+
+    public void TriggerEnd()
+    {
+        finalFade.SetActive(true);
     }
 }

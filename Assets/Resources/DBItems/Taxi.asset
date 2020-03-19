@@ -26,11 +26,11 @@ MonoBehaviour:
   - type: 2
     name: paidfor
     value: False
+  - type: 2
+    name: floor
+    value: True
   itemPrefab: {fileID: 2324057410419385254, guid: 31d57743a889e2e4da68873199e1f1db,
     type: 3}
   description: Taxi
   longDescription: The later it gets, the weirder they get.
-  spawnPoints:
-  - {x: 56.72, y: 21.13, z: 0}
-  specificSpawnPoints: 1
-  spawnLength: 1
+  specificSpawnPoints: 0

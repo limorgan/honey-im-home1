@@ -130,7 +130,7 @@ public class Rule : ScriptableObject {
             }
             if (!found)
             {
-                Debug.Log("Output property " + ruleOutputProp.name + " was not matched.");
+                //Debug.Log("Output property " + ruleOutputProp.name + " was not matched.");
                 return false;
             }
         }
@@ -232,5 +232,21 @@ public class Rule : ScriptableObject {
     public string ToString()
     {
         return GetRuleAsString();
+    }
+
+    public bool ContainsItem(Item item)
+    {
+        string itemName = item.name;
+        foreach (Term t in inputs)
+        {
+            if (t.name == itemName)
+                return true;
+        }
+        foreach (Term t in outputs)
+        {
+            if (t.name == itemName)
+                return true;
+        }
+        return false;
     }
 }

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 48
+  m_Name: Rule 70
   m_EditorClassIdentifier: 
   outputs:
-  - name: Key
+  - name: Drink
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Customer
+  - name: Bartender
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
@@ -27,27 +27,31 @@ MonoBehaviour:
     properties:
     - type: 0
       name: name
-      value: Customer
+      value: Bartender
     - type: 0
       name: text
-      value: As promised...although I can't remember whether these were the car keys...or
-        the keys to the park. Hm.
+      value: Enjoy...don't tell anybody about this...
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: Customer
-    properties:
-    - type: 0
-      name: has
-      value: Car
+  - name: Bartender
+    properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Ask for Key
+  - name: Player
+    properties:
+    - type: 2
+      name: favour
+      value: True
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  action: Ask for drink
   hint: 
   parent: {fileID: 0}
   children: []
   reversible: 0
-  selectedInput: 0
-  inventory: 1
+  selectedInput: 1
+  inventory: 0

@@ -36,7 +36,7 @@ public class Player : MonoBehaviour {
     private bool _pauseMenuOpen = false;
     public bool _noAction;
     [SerializeField]
-    private List<GameItem> _inventory;
+    private List<GameItem> _inventory = new List<GameItem>();
     private Item _dbItem;
     private List<Property> _properties;
     private string _noActionMessage = "No action currently available";
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour {
     }
 
     void Start() {
-        _inventory = new List<GameItem>();
+        //_inventory = new List<GameItem>();
         _dbItem = PuzzleManager.Instance.GetObject("Player");
         _properties = _dbItem.properties;
         closeAllMenus();

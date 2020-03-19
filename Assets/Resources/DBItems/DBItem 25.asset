@@ -17,9 +17,6 @@ MonoBehaviour:
   - type: 2
     name: carryable
     value: True
-  - type: 0
-    name: isa
-    value: Paper
   - type: 2
     name: inspectable
     value: True

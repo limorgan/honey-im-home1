@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: DBItem 52
   m_EditorClassIdentifier: 
   name: ChalkOutline
-  properties: []
+  properties:
+  - type: 2
+    name: floor
+    value: True
   itemPrefab: {fileID: 1326599168958676127, guid: 21896fe8aeab98b4d937326036bc612b,
     type: 3}
   description: Chalk Outline
   longDescription: 
-  specificSpawnPoints: 1
+  specificSpawnPoints: 0

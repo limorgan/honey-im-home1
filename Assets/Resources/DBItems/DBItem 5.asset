@@ -24,6 +24,4 @@ MonoBehaviour:
     type: 3}
   description: UFO
   longDescription: Just the usual...things do seem a little off...
-  spawnPoints: []
   specificSpawnPoints: 0
-  spawnLength: 0

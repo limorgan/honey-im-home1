@@ -37,11 +37,6 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Hat
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
   inputs:
   - name: Customer
     properties: []
@@ -61,5 +56,5 @@ MonoBehaviour:
   parent: {fileID: 0}
   children: []
   reversible: 0
-  selectedInput: 0
+  selectedInput: 1
   inventory: 0

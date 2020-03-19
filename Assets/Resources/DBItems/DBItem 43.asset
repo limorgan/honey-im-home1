@@ -23,7 +23,6 @@ MonoBehaviour:
   itemPrefab: {fileID: 8784811806414200711, guid: 87b0a5633ad4c1942b9f37528a7c7f28,
     type: 3}
   description: Watch
-  longDescription: Ouch. It's late. Very late.
-  spawnPoints: []
+  longDescription: Ouch. It's late. Very late. Oh...true, this watch doesn't work
+    properly...
   specificSpawnPoints: 0
-  spawnLength: 0

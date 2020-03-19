@@ -77,8 +77,7 @@ public class GameItem : MonoBehaviour {
             noAction = false;
         foreach (Rule puzzleRule in PuzzleManager.Instance.RulesFor(this, PuzzleManager.Instance.GetCurrentArea()))
         {         //not necessarily accurate (nested areas) previous version: GetComponentInParent<GameArea>().area)
-            if (this.name == "Car")
-                Debug.Log("Checking rule " + puzzleRule.ToString() + " fulfilled by " + this.name + " ? " + RuleFulFilled(puzzleRule));
+            Debug.Log("Checking rule " + puzzleRule.ToString() + " fulfilled by " + this.name + " ? " + RuleFulFilled(puzzleRule));
             if (RuleFulFilled(puzzleRule)) {
                 noAction = false;
                 GameObject action = GameObject.Instantiate(buttonPrefab);
@@ -215,6 +214,7 @@ public class GameItem : MonoBehaviour {
         }
         int spawnIndex = 0;
         // Check for property change and new items
+        bool firstOutput = true;
         foreach (Term output in rule.outputs) {
             //Debug.Log("output terms: " + output.ToString() + "number of input rules: " + rule.inputs.Count);
             bool found = false;
@@ -273,7 +273,7 @@ public class GameItem : MonoBehaviour {
                     }*/
                     if (rule.inventory)
                     {
-                        if (itemGO.GetComponent<GameItem>().name == rule.outputs[0].name)
+                        if (itemGO.GetComponent<GameItem>().name == rule.outputs[0].name || firstOutput)
                         {
                             Player.Instance.AddItemToInventory(itemGO.GetComponent<GameItem>());
                             Debug.Log("straight to inventory: " + itemGO.GetComponent<GameItem>().name);
@@ -292,6 +292,7 @@ public class GameItem : MonoBehaviour {
                     }
                 }
             }
+            firstOutput = false;
         }
         PuzzleManager.Instance.ExecuteRule(rule, PuzzleManager.Instance.GetCurrentArea());     //Original: GetComponentInParent<GameArea>().area - issue with nested areas
 

@@ -31,6 +31,6 @@ MonoBehaviour:
     value: Present
   itemPrefab: {fileID: 8025447482295224323, guid: 789e1d6f1313053499634b427eaaa09e,
     type: 3}
-  description: Drink
+  description: Bottle
   longDescription: Sitting on a shelf. Luke-warm. Lovely. But better than nothing...
   specificSpawnPoints: 0

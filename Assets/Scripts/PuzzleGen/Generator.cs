@@ -8,12 +8,24 @@ public class Generator : MonoBehaviour {
     private static Generator _instance;
     public static Generator Instance { get { return _instance; } }
 
+    [SerializeField]
+    private List<GameItem> _startingInventory = new List<GameItem>(); 
+
     void Awake() {
         if (_instance != null )//& _instance != this)
             Destroy(this.gameObject);
         else { 
             _instance = this;
             Debug.Log("Generator instance created. ");
+            /*foreach (GameItem item in _startingInventory)
+            {
+                /*GameObject itemGO = (GameObject)Instantiate(item.itemPrefab,
+                nextSpawnPoint, Quaternion.identity);            //gameArea.GetNextSpawnPt() replaced by nextSpawnPoint
+                Debug.Log(itemGO.transform.position);
+                itemGO.transform.SetParent(gameArea.gameObject.transform);
+                itemGO.GetComponent<GameItem>().Setup(item.name, item);
+                Player.Instance.AddItemToInventory(item);
+            }*/
         }
     }
 
@@ -31,21 +43,21 @@ public class Generator : MonoBehaviour {
         if (!found) {
             // 04/03 specific spawn points for NPCs + 11/03 specific spawnpoints for an item 
             Vector3 nextSpawnPoint = new Vector3(0,0,0);
-            if (item.specificSpawnPoints)
-            {
-                nextSpawnPoint = gameArea.GetNextSpawnPt(item);
-            }
+            if (item.GetPropertyWithName("floor") != null && item.GetPropertyWithName("floor").value == "True")
+                nextSpawnPoint = gameArea.GetNextSpawnPt(false, true);
             else if (item.GetPropertyWithName("isa") != null && item.GetPropertyWithName("isa").value == "NPC")
             {
-                nextSpawnPoint = gameArea.GetNextSpawnPt(true);
+                nextSpawnPoint = gameArea.GetNextSpawnPt(true, false);
             }
             else
                 nextSpawnPoint = gameArea.GetNextSpawnPt();
+            Debug.Log("Spawn pt: " + nextSpawnPoint.ToString() + " ( " + item.name + " ) ");
             GameObject itemGO = (GameObject)Instantiate(item.itemPrefab,
                 nextSpawnPoint, Quaternion.identity);            //gameArea.GetNextSpawnPt() replaced by nextSpawnPoint
-            //Debug.Log(itemGO.transform.position);
+            Debug.Log(itemGO.transform.position);
             itemGO.transform.SetParent(gameArea.gameObject.transform);
             itemGO.GetComponent<GameItem>().Setup(item.name, item);
+            Debug.Log("Post set-up: " + itemGO.transform.position);
         }
     }
 

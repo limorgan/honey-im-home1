@@ -21,8 +21,14 @@ MonoBehaviour:
       value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
-    description: Maybe the pub will give me some inspiration for this story of mine...and
-      send it off in the postbox there.
+    description: Maybe the pub will give me some inspiration for this story of mine...must
+      send something, anything, off before I go home.
+  - name: Present
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: Uh, it's getting very late...might be a good idea to pick something
+      nice up on the way? To apologise for this mess...the pub could be a good start?
   connectedTo:
   - {fileID: 11400000, guid: dba5ef4086bd9844bbe8a68f991f46b0, type: 2}
   inGameArea: {fileID: 0}

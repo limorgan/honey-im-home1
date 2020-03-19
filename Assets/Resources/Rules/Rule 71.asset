@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 48
+  m_Name: Rule 71
   m_EditorClassIdentifier: 
   outputs:
-  - name: Key
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-  - name: Customer
-    properties: []
+  - name: Player
+    properties:
+    - type: 2
+      name: favour
+      value: False
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -27,27 +25,29 @@ MonoBehaviour:
     properties:
     - type: 0
       name: name
-      value: Customer
+      value: Annoyed Bartender
     - type: 0
       name: text
-      value: As promised...although I can't remember whether these were the car keys...or
-        the keys to the park. Hm.
+      value: Now...I'll give you a drink if you do me a favour...it really annoys
+        me when people don't use beer mats under their glasses...
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Bartender
+    properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: Customer
-    properties:
-    - type: 0
-      name: has
-      value: Car
+  - name: Bartender
+    properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Ask for Key
+  action: Ask for drink
   hint: 
   parent: {fileID: 0}
   children: []
   reversible: 0
   selectedInput: 0
-  inventory: 1
+  inventory: 0

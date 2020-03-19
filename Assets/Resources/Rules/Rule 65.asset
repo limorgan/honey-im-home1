@@ -21,12 +21,17 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: ChalkOutline
+  - name: Speech
     properties:
     - type: 0
       name: text
       value: This isn't normally part of the decor...is it? Must find out what happened.
         Tonight's story?
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: ChalkOutline
+    properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 

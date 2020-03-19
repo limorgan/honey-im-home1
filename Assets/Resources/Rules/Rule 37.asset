@@ -25,8 +25,8 @@ MonoBehaviour:
     properties:
     - type: 0
       name: text
-      value: '''Whuihj hwuwda hiipnd...gzeg!''? What is that supposed to mean? Suppose
-        I''m not on the same level...'
+      value: '''Whuihj hwuwda hiipnd...gzeg!''? What is that supposed to mean? Wonder
+        if it''s something in the drink...?'
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 

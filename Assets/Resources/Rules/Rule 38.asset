@@ -25,8 +25,8 @@ MonoBehaviour:
     properties:
     - type: 0
       name: text
-      value: Uh...huh. Whuhtgdw gzeb. Sorry, not sure what I'm saying...or what was
-        in that?
+      value: Uh...huh. Whuhtgdw gzeb. Sorry, not sure what I'm saying...what was in
+        that drink???
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
