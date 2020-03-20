@@ -20,8 +20,12 @@ MonoBehaviour:
   - type: 0
     name: isa
     value: Paper
+  - type: 2
+    name: inspectable
+    value: True
   itemPrefab: {fileID: 37702672919669983, guid: 6f20583da25a59c46bd264b87b31159b,
     type: 3}
   description: Flipchart
-  longDescription: 
+  longDescription: First thing you see when you enter. Dead giveaway of an unproductive
+    day. Might be a good idea to make it look less sad...
   specificSpawnPoints: 0

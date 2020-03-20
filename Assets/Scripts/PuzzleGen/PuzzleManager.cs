@@ -359,6 +359,7 @@ public class PuzzleManager : MonoBehaviour {
 
     public void TriggerEnd()
     {
+        //Player.Instance.gameObject.SetActive(false);
         finalFade.SetActive(true);
     }
 }

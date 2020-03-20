@@ -20,6 +20,8 @@ public class Intro : MonoBehaviour
     public GameObject continueButton;
     public AudioSource typingAudio;
 
+    private bool _isTyping = false;
+
     public void Start()
     {
         index = 0;
@@ -39,15 +41,24 @@ public class Intro : MonoBehaviour
 
     public void NextSentence()
     {
-        if (index < sentences.Length)
+        if (_isTyping)
         {
-            //textBox.text = sentences[index];
             StopAllCoroutines();
-            StartCoroutine(TypeSentenceSlowly(sentences[index], textBox, characterPrintDelay));
-            index++;
+            textBox.text = sentences[index-1];
+            _isTyping = false;
         }
-        else if(!lastPart)
+        else
+        {
+            if (index < sentences.Length)
+            {
+                //textBox.text = sentences[index];
+                StopAllCoroutines();
+                StartCoroutine(TypeSentenceSlowly(sentences[index], textBox, characterPrintDelay));
+                index++;
+            }
+            else if (!lastPart)
                 TriggerNextInterface(nextInterface);
+        }
     }
 
     /*public void SkipAll()
@@ -92,6 +103,7 @@ public class Intro : MonoBehaviour
 
     IEnumerator TypeSentenceSlowly(string sentence, Text goal, float delay)
     {//Brackeys, How to make a Dialogue System in Unity https://www.youtube.com/watch?v=_nRzoTzeyxU
+        _isTyping = true;
         if (delay == 0)
             TypeSentenceSlowly(sentence, goal);
         goal.text = "";
@@ -109,5 +121,6 @@ public class Intro : MonoBehaviour
                 odd = true;
             yield return new WaitForSeconds(delay);
         }
+        _isTyping = false;
     }
 }

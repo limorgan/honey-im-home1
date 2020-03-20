@@ -23,16 +23,11 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Photo
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
   - name: Speech
     properties:
     - type: 0
       name: text
-      value: Is it that time of the year again already? How could I forget our anniversary?
+      value: Uh oh...it is today. Better get going soon...
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -42,8 +37,11 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Photo
-    properties: []
+  - name: Player
+    properties:
+    - type: 0
+      name: saw
+      value: Photo
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -52,5 +50,5 @@ MonoBehaviour:
   parent: {fileID: 0}
   children: []
   reversible: 0
-  selectedInput: 0
+  selectedInput: 1
   inventory: 0

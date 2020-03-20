@@ -7,7 +7,9 @@ public class ChangeArea : MonoBehaviour
     public GameObject spawnPoint;
     public bool zoomOut = false;
     public bool locked = true;
-    public string nextAreaName = "";     
+    public string nextAreaName = "";
+    //public List<MusicControl> currentMusic = new List<MusicControl>();
+    //public List<MusicControl> nextMusic = new List<MusicControl>();
     
     // Update is called once per frame
     void Update()

@@ -26,5 +26,5 @@ MonoBehaviour:
   itemPrefab: {fileID: 5489296764963432308, guid: 3c3b6985db7ef734fbe298c110c49cb1,
     type: 3}
   description: Calendar
-  longDescription: Time is flying...16th of June, alreay??
+  longDescription: Time is flying...
   specificSpawnPoints: 0

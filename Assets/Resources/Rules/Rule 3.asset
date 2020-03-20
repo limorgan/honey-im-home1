@@ -25,10 +25,7 @@ MonoBehaviour:
     properties:
     - type: 0
       name: text
-      value: Dadidiiidaaaa...
-    - type: 0
-      name: name
-      value: Radio
+      value: Inspiring.........uh.
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 

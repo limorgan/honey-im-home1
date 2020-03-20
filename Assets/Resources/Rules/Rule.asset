@@ -28,7 +28,7 @@ MonoBehaviour:
       value: Wesley
     - type: 0
       name: text
-      value: I'm just so bored, something to read might help...
+      value: I'm just so bored, something new to read might help...
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 

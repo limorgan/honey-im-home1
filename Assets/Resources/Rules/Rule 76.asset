@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
+  m_Name: Rule 76
+  m_EditorClassIdentifier: 
+  outputs:
+  - name: Flipchart
+    properties:
+    - type: 2
+      name: full
+      value: True
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Speech
+    properties:
+    - type: 0
+      name: text
+      value: Ah yes. Almost makes it look like I got something done today...
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  inputs:
+  - name: Flipchart
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Idea
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  action: Fake Productivity
+  hint: 
+  parent: {fileID: 0}
+  children: []
+  reversible: 0
+  selectedInput: 0
+  inventory: 0

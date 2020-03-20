@@ -18,11 +18,6 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: CalendarAnniv
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
   - name: Photo
     properties: []
     dbItem: {fileID: 0}
@@ -32,7 +27,7 @@ MonoBehaviour:
     properties:
     - type: 0
       name: text
-      value: It looks like...surely not...it's hardly our anniversary already??
+      value: Uh oh...looks like...today's the day...better get home soon.
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -42,8 +37,11 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Calendar
-    properties: []
+  - name: Player
+    properties:
+    - type: 0
+      name: saw
+      value: Calendar
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -52,5 +50,5 @@ MonoBehaviour:
   parent: {fileID: 0}
   children: []
   reversible: 0
-  selectedInput: 0
+  selectedInput: 1
   inventory: 0

@@ -16,9 +16,11 @@ public class PlayerMovement : MonoBehaviour
     private float xPosition;
     private float yPosition;
 
-    //TEMPORARY confirm leaving area menu
+    //confirm leaving area menu
     public GameObject moveMenuUI;
     private bool moveMenuOpen = false;
+
+    //aspects involved in changing areas
     Vector3 nextSpawnPoint;
     private bool zoomOut = false;
     private bool thisZoomOut = false;
@@ -26,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     public CinemachineVirtualCamera cam1;
     public CinemachineVirtualCamera cam2;
     private string areaMessage;
+    //private List<MusicControl> currentMusic;
+    //private List<MusicControl> nextMusic;
 
     // Start is called before the first frame update
     private void Start()
@@ -92,7 +96,9 @@ public class PlayerMovement : MonoBehaviour
                 GameObject spawnp = collider.GetComponentInChildren<ChangeArea>().spawnPoint;
                 nextSpawnPoint = spawnp.transform.position;
                 thisZoomOut = collider.GetComponentInChildren<ChangeArea>().zoomOut;
-                this.nextAreaName = collider.GetComponentInChildren<ChangeArea>().nextAreaName; 
+                this.nextAreaName = collider.GetComponentInChildren<ChangeArea>().nextAreaName;
+                //this.currentMusic = collider.GetComponentInChildren<ChangeArea>().currentMusic;
+                //this.nextMusic = collider.GetComponentInChildren<ChangeArea>().nextMusic;
             }
         }
     }
@@ -123,6 +129,9 @@ public class PlayerMovement : MonoBehaviour
         Player.Instance.areaText.text = nextAreaName;
         Player.Instance.AddToTranscript("-- Area: " + nextAreaName + " --");
         Player.Instance.closeAllMenus();
+        //foreach (MusicControl m in currentMusic)
+           // m.StopPlaying();
+        //this.currentMusic = this.nextMusic;
         moveMenuOpen = false;
         moveMenuUI.SetActive(false);
         Time.timeScale = 1f;        

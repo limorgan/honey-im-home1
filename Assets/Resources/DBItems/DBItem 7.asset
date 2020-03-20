@@ -26,6 +26,5 @@ MonoBehaviour:
   itemPrefab: {fileID: 1740740633994021055, guid: e5da093a6da0b45468a9ad624b7c3946,
     type: 3}
   description: Photo
-  longDescription: A photo from a couple of years ago. Probably our anniversary? June
-    16th...
+  longDescription: A photo from a couple of years ago. One of very few decent ones.
   specificSpawnPoints: 0

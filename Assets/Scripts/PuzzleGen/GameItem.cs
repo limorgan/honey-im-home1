@@ -125,6 +125,17 @@ public class GameItem : MonoBehaviour {
             action.transform.SetParent(actionMenu.transform);
         }
         Player.Instance._noAction = noAction;
+
+        if(GetProperty("ison") != null && GetProperty("ison").value == "True" && this.gameObject.GetComponent<MusicControl>() != null)
+        {
+            noAction = false;
+            GameObject action = GameObject.Instantiate(buttonPrefab);
+            if (this.gameObject.GetComponent<MusicControl>().IsMuted())
+                ActionBtn.CreateComponent(action, this, new Rule("Unmute"));
+            else
+                ActionBtn.CreateComponent(action, this, new Rule("Mute"));
+            action.transform.SetParent(actionMenu.transform);
+        }
     }
 
     public void ExecuteRule(Rule rule) {
@@ -169,6 +180,30 @@ public class GameItem : MonoBehaviour {
             this.containedValue.gameObject.transform.position = (this.transform.position) + new Vector3(0, 2, 0); //this.transform.forward * 2f; Appears to the side of character
             this.containedValue = null;
             this.GetProperty("contains").RemoveProperty();
+            Player.Instance.CloseActionMenu();
+            return;
+        }
+
+        if (rule.action == "Mute")
+        {
+            MusicControl m = this.gameObject.GetComponent<MusicControl>();
+            if (m != null)
+            {
+                m.TurnDownVolume();
+                m.Mute();
+                Player.Instance.GetComponent<AudioSource>().volume = 1f;
+            }
+            Player.Instance.CloseActionMenu();
+            return;
+        }
+
+        if (rule.action == "Unmute")
+        {
+            MusicControl m = this.gameObject.GetComponent<MusicControl>();
+            if (m != null)
+            {
+                m.Unmute();
+            }
             Player.Instance.CloseActionMenu();
             return;
         }
