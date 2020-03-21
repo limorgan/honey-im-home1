@@ -98,6 +98,7 @@ MonoBehaviour:
   dbItem: {fileID: 0}
   properties: []
   containedValue: {fileID: 0}
+  selected: 0
 --- !u!60 &8616252951819429122
 PolygonCollider2D:
   m_ObjectHideFlags: 0

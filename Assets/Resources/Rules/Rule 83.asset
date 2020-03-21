@@ -39,7 +39,7 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: 
+  action: Talk
   hint: 
   parent: {fileID: 0}
   children: []

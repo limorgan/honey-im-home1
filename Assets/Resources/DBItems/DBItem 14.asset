@@ -26,5 +26,6 @@ MonoBehaviour:
   itemPrefab: {fileID: 7597973462364083177, guid: 29163289cc59e43409eb6295ebc34f50,
     type: 3}
   description: Bartender
-  longDescription: 'Have I seen you before? '
+  longDescription: Have I seen you before? Cash and small favours go a long-ish way...and
+    I hear they're rather easily distracted here...
   specificSpawnPoints: 0

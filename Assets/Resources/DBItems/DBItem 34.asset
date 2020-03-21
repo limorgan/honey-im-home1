@@ -20,9 +20,6 @@ MonoBehaviour:
   - type: 0
     name: isa
     value: Container
-  - type: 0
-    name: isa
-    value: Paper
   - type: 2
     name: inspectable
     value: True

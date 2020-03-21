@@ -37,9 +37,14 @@ MonoBehaviour:
     description: 
   inputs:
   - name: Jukebox
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Player
     properties:
     - type: 2
-      name: ison
+      name: music
       value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}

@@ -12,7 +12,7 @@ public class Generator : MonoBehaviour {
     private List<GameItem> _startingInventory = new List<GameItem>(); 
 
     void Awake() {
-        if (_instance != null )//& _instance != this)
+        if (_instance != null ) //& _instance != this)
             Destroy(this.gameObject);
         else { 
             _instance = this;
@@ -68,8 +68,7 @@ public class Generator : MonoBehaviour {
         List<Item> itemsInTheScene = new List<Item>();
         GameItem[] existingGameItems = GameObject.Find(area.name).GetComponentsInChildren<GameItem>();
         for(int i = 0; i < existingGameItems.Length; i++) {
-            if (existingGameItems[i].name == "Edie" || existingGameItems[i].name == "Ruby" || existingGameItems[i].name == "Lenny" || existingGameItems[i].name == "Jimmy")
-                Debug.Log(existingGameItems[i].name + ": in existing game items. ");
+            Debug.Log("Existing Game Items: " + existingGameItems[i].name);
             itemsInTheScene.Add(existingGameItems[i].dbItem);
         }
         foreach(GameItem item in Player.Instance.GetInventory()) {

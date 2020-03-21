@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GameArea : MonoBehaviour {
+    [SerializeField]
     public GameItem[] itemsInArea;
     public Area area;
     public GameObject areaContent;              // 05/03 using for activation on starting/entering
@@ -27,6 +28,7 @@ public class GameArea : MonoBehaviour {
         _NPCindex = Random.Range(0, _NPCSpawnPoints.Length);
         _floorIndex = Random.Range(0, _floorSpawnPoints.Length);
         area.areaObject = areaContent;                // 05/03 associating actual content with the area
+        
     }
 
     public Vector3 GetNextSpawnPt(bool NPC, bool floor)     //if item to be spawned is an NPC

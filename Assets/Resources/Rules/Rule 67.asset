@@ -28,7 +28,8 @@ MonoBehaviour:
       value: Customer
     - type: 0
       name: text
-      value: Hmm...I found this earlier...just spinning in the corner...
+      value: Hmm...I found a hat earlier...just spinning in the corner...nobody there
+        though. Could be good to see in the newspaper tomorrow...
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 

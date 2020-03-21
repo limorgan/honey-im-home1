@@ -43,21 +43,26 @@ public class PuzzleManager : MonoBehaviour {
     public static PuzzleManager Instance { get { return _instance; } }
 
     void Awake() {
-        if (_instance != null & _instance != this)
+        if (_instance != null && _instance != this)
+        {
+            Debug.Log("Destroying PuzzleManager. ");
             Destroy(this.gameObject);
-        else {
+        }
+        else
+        {
             _instance = this;
             Debug.Log("PuzzleManager instance created. ");
-            everything.SetActive(true);
-            player.SetActive(true);
-            startingInventory.SetActive(true);
-            generator.SetActive(true);
 
             _areaAssets = Resources.LoadAll<Area>("Areas");
             Debug.Log("Areas loaded. ");
             _itemAssets = Resources.LoadAll<Item>("DBItems");
             Debug.Log("items loaded.");
             _ruleAssets = Resources.LoadAll<Rule>("Rules");
+
+            everything.SetActive(true);
+            player.SetActive(true);
+            startingInventory.SetActive(true);
+            generator.SetActive(true);
         }
     }
 
@@ -80,11 +85,15 @@ public class PuzzleManager : MonoBehaviour {
         foreach (ConditionalObject CO in _conditionalObjects)
         {
             if (CO.area.name == area.name)
-                if (PuzzleContains(CO.condition, _puzzleRules[area][1]))
+            {
+                foreach (Rule rule in _puzzleRules[area])
                 {
-                    //Debug.Log("Contains it? ");
-                    CO.affectedItem.SetActive(true);
+                    if (PuzzleContains(CO.condition, rule))
+                    {
+                        CO.affectedItem.SetActive(true);
+                    }
                 }
+            }
         }
 
         //Debug.Log("All Rules: \n" + GetFullPuzzle());
@@ -194,6 +203,7 @@ public class PuzzleManager : MonoBehaviour {
         //ValidateDatabase();
         foreach (Item item in _itemAssets)
         {
+            //Debug.Log("Checking for " + itemName + " DBItem name: " + item.name);
             if (item.name == itemName)
                 return ScriptableObject.Instantiate(item) as Item;
         }

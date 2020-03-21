@@ -16,10 +16,7 @@ MonoBehaviour:
   properties:
   - type: 2
     name: carryable
-    value: True
-  - type: 2
-    name: copyable
-    value: True
+    value: False
   - type: 2
     name: inspectable
     value: True
