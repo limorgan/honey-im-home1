@@ -20,12 +20,12 @@ MonoBehaviour:
   - type: 2
     name: inspectable
     value: True
-  - type: 0
-    name: isa
-    value: Present
+  - type: 2
+    name: office
+    value: True
   itemPrefab: {fileID: 5613240140370265201, guid: 3aae43e358b2cab41af87854e83967a1,
     type: 3}
   description: Lipstick
   longDescription: Make-up or, in a pinch, could be used as a pen...not ideal, but
-    not the worst.
+    not the worst. Or mixed...it's very pigmented.
   specificSpawnPoints: 0

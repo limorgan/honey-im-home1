@@ -9,12 +9,16 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     
     Vector2 movement;
-    public float runSpeed = 40f;
+    public float walkSpeed = 40f;
+    public float runSpeed = 60f;
     public Rigidbody2D rb;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing
 
     private float xPosition;
     private float yPosition;
+
+    public bool _run = false;
+    public bool _moving = false;
 
     //confirm leaving area menu
     public GameObject moveMenuUI;
@@ -28,9 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public CinemachineVirtualCamera cam1;
     public CinemachineVirtualCamera cam2;
     private string areaMessage;
-    //private List<MusicControl> currentMusic;
-    //private List<MusicControl> nextMusic;
-
+    
     // Start is called before the first frame update
     private void Start()
     {
@@ -44,11 +46,24 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)
+            || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+            _moving = true;
+        else
+            _moving = false;
+
+        /*if (Input.GetKeyDown(KeyCode.LeftShift))
+            _run = true;
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+            _run = false;*/
+        _run = (Input.GetKey(KeyCode.LeftShift) && _moving);
+
         xPosition = rb.transform.position.x;
         yPosition = rb.transform.position.y;
 
-        bool moving = (movement.x != 0 || movement.y != 0);
-        animator.SetBool("Moving", moving);
+        //bool moving = (movement.x != 0 || movement.y != 0);
+        animator.SetBool("Moving", _moving);
+        animator.SetBool("Run", _run);
         
         if (Input.GetKeyDown(KeyCode.Escape) && moveMenuOpen)
         {
@@ -60,7 +75,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * runSpeed * Time.fixedDeltaTime);
+        if (_run)
+            rb.MovePosition(rb.position + movement * runSpeed * Time.fixedDeltaTime);
+        else
+            rb.MovePosition(rb.position + movement * walkSpeed * Time.fixedDeltaTime);
         if (movement.x > 0 && !m_FacingRight)
         {
             Flip();

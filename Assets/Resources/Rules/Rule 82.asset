@@ -10,11 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 20
+  m_Name: Rule 82
   m_EditorClassIdentifier: 
   outputs:
-  - name: Idea
-    properties: []
+  - name: Player
+    properties:
+    - type: 0
+      name: fixed
+      value: Typewriter
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Typewriter
+    properties:
+    - type: 0
+      name: has
+      value: Ink
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -22,17 +33,26 @@ MonoBehaviour:
     properties:
     - type: 0
       name: text
-      value: Fascinating...anything I could do with this?
+      value: It's not a total waste...you might be able to type a couple of letters
+        with with it?
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: Document
+  - name: Typewriter
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Research
+  - name: Biro
+    properties:
+    - type: 2
+      name: broken
+      value: True
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  action: Pour ink
   hint: 
   parent: {fileID: 0}
   children: []

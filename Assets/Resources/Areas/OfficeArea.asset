@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: OfficeArea
   goals:
-  - name: Flipchart
+  - name: Radio
     properties:
     - type: 2
-      name: full
+      name: ison
       value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}

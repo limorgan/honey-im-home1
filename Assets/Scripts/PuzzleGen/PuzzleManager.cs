@@ -29,12 +29,15 @@ public class PuzzleManager : MonoBehaviour {
     [SerializeField]
     public GameObject startingInventory;
 
-    [SerializeField]
+    /*[SerializeField]
     public List<Item> _itemAssets = new List<Item>();
     [SerializeField]
     public List<Rule> _ruleAssets = new List<Rule>();
     [SerializeField]
-    public List<Area> _areaAssets = new List<Area>();
+    public List<Area> _areaAssets = new List<Area>();*/
+    public Item[] _itemAssets;
+    public Rule[] _ruleAssets;
+    public Area[] _areaAssets;
 
     private static PuzzleManager _instance;
     public static PuzzleManager Instance { get { return _instance; } }
@@ -50,9 +53,11 @@ public class PuzzleManager : MonoBehaviour {
             startingInventory.SetActive(true);
             generator.SetActive(true);
 
-            /*_itemAssets = Resources.LoadAll<Item>("Assets/Resources/DBItems");
-            _ruleAssets = Resources.LoadAll<Rule>("Assets/Resources/Rules");
-            _areaAssets = Resources.LoadAll<Area>("Assets/Resources/Areas");*/
+            _areaAssets = Resources.LoadAll<Area>("Areas");
+            Debug.Log("Areas loaded. ");
+            _itemAssets = Resources.LoadAll<Item>("DBItems");
+            Debug.Log("items loaded.");
+            _ruleAssets = Resources.LoadAll<Rule>("Rules");
         }
     }
 
@@ -239,7 +244,7 @@ public class PuzzleManager : MonoBehaviour {
     {
         List<Rule> rules = new List<Rule>();
         //Rule[] assets = Resources.LoadAll<Rule>("Assets/Resources/Rules");
-        for (int i = 0; i < _ruleAssets.Count; i++)
+        for (int i = 0; i < _ruleAssets.Length; i++)
         {
             if ((_ruleAssets[i].inputs[0].name == dbItem.name ||
                 dbItem.GetSuperTypes().Contains(_ruleAssets[i].inputs[0].name)))
@@ -256,7 +261,7 @@ public class PuzzleManager : MonoBehaviour {
         List<Rule> rules = new List<Rule>();
         //Rule[] assets = Resources.LoadAll<Rule>("Assets/Resources/Rules");
         Debug.Log("GetRulesWithOutput - term: " + term.GetTermAsString());
-        for (int i = 0; i < _ruleAssets.Count; i++)
+        for (int i = 0; i < _ruleAssets.Length; i++)
         {
             if (_ruleAssets[i].outputs[0].name == term.name)
             {

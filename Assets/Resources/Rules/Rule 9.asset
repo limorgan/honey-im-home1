@@ -28,7 +28,7 @@ MonoBehaviour:
       value: Wesley
     - type: 0
       name: text
-      value: Cheers for that!
+      value: Cheers for that! Anything I can do for you?
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 

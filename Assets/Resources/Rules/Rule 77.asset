@@ -10,32 +10,49 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 20
+  m_Name: Rule 77
   m_EditorClassIdentifier: 
   outputs:
-  - name: Idea
-    properties: []
+  - name: Secretary
+    properties:
+    - type: 2
+      name: happy
+      value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   - name: Speech
     properties:
     - type: 0
+      name: name
+      value: Secretary
+    - type: 0
       name: text
-      value: Fascinating...anything I could do with this?
+      value: Perfect! No reason to leave now...what was it you wanted?
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: Document
-    properties: []
+  - name: Secretary
+    properties:
+    - type: 0
+      name: wants
+      value: Typewriter
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Research
+  - name: Player
+    properties:
+    - type: 0
+      name: fixed
+      value: Typewriter
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  action: Ask to Try Typewriter
   hint: 
   parent: {fileID: 0}
   children: []
   reversible: 0
-  selectedInput: 0
+  selectedInput: 1
   inventory: 0

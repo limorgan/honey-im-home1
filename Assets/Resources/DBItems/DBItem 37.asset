@@ -22,7 +22,7 @@ MonoBehaviour:
     value: True
   itemPrefab: {fileID: 3820341391946275904, guid: 8da18b1176bb2264b8088222beae3e44,
     type: 3}
-  description: Film Cannister
-  longDescription: Try not to expose that film before it's sent off...always losing
-    these guys.
+  description: Film Canister
+  longDescription: Forever losing these things. I wonder how many great photos I could
+    have had...
   specificSpawnPoints: 0

@@ -262,6 +262,8 @@ public class Player : MonoBehaviour {
 
     public void OpenActionMenu(GameItem item)
     {
+        if (_inventoryOpen)
+            CloseInventory();
         if(_actionMenuOpen)
             CloseActionMenu();
         item.OnGameItemClicked(actionMenuContent, buttonPrefab, ActionHeader);

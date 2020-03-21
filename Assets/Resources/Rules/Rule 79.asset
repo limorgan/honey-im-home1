@@ -10,11 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 20
+  m_Name: Rule 79
   m_EditorClassIdentifier: 
   outputs:
-  - name: Idea
-    properties: []
+  - name: Player
+    properties:
+    - type: 0
+      name: fixed
+      value: Typewriter
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  - name: Typewriter
+    properties:
+    - type: 0
+      name: has
+      value: Ink
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -22,17 +33,25 @@ MonoBehaviour:
     properties:
     - type: 0
       name: text
-      value: Fascinating...anything I could do with this?
+      value: Anything typed with this "ink" will look sad. And smell sad...
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
   inputs:
-  - name: Document
+  - name: Typewriter
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  action: Research
+  - name: Decanter
+    properties:
+    - type: 2
+      name: ink
+      value: True
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+  action: Pour "Ink"
   hint: 
   parent: {fileID: 0}
   children: []

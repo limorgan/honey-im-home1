@@ -27,7 +27,10 @@ public class MusicControl : MonoBehaviour
             item = this.gameObject.GetComponent<GameItem>();
             if (item.GetProperty("ison") != null && item.GetProperty("ison").value == "True")
                 if (!music.isPlaying && muted == false)
+                {
                     music.Play();
+                    TurnOnVolume();
+                }
             if (music.isPlaying && muted == false)
             {
                 if (_volumeDown)
