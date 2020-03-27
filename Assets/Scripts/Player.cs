@@ -202,6 +202,10 @@ public class Player : MonoBehaviour {
                 _selectedItem = null;
                 GameObject.Destroy(selectedItemField.GetComponentInChildren<SelectedItemButton>());
                 selectedItemField.SetActive(false);
+                foreach (Transform child in actionMenuContent.transform)
+                {
+                    GameObject.Destroy(child.gameObject);
+                }
                 //actionMenuContent = null;
             }
         }
