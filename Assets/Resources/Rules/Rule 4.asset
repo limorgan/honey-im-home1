@@ -18,11 +18,6 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
-  - name: Calendar
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
   - name: Speech
     properties:
     - type: 0
@@ -49,6 +44,6 @@ MonoBehaviour:
   hint: 
   parent: {fileID: 0}
   children: []
-  reversible: 0
+  automatic: 0
   selectedInput: 1
   inventory: 0

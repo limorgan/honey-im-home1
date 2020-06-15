@@ -28,6 +28,8 @@ public class PuzzleManager : MonoBehaviour {
     public GameObject player;
     [SerializeField]
     public GameObject startingInventory;
+    [SerializeField]
+    public GameObject puzzleTree;
 
     /*[SerializeField]
     public List<Item> _itemAssets = new List<Item>();
@@ -58,17 +60,18 @@ public class PuzzleManager : MonoBehaviour {
             _itemAssets = Resources.LoadAll<Item>("DBItems");
             Debug.Log("items loaded.");
             _ruleAssets = Resources.LoadAll<Rule>("Rules");
+            Debug.Log(_ruleAssets.Length + " rules loaded.");
 
             everything.SetActive(true);
             player.SetActive(true);
             startingInventory.SetActive(true);
+            //puzzleTree.SetActive(true);
             generator.SetActive(true);
         }
     }
 
 
     void Start() {
-        //_gameOverRules = RuleDatabase.GetRulesWithOutput(new Term("Player"));
         GenerateForArea(startArea);
     }
 
@@ -80,7 +83,7 @@ public class PuzzleManager : MonoBehaviour {
         _leaves.Add(area, new List<Rule>());
         _puzzleRules.Add(area, new List<Rule>());
         FindLeaves(root, area);
-        _currentArea = area;    // 05/03 updating otherwise not used private variable _currentArea
+        _currentArea = area;    
 
         foreach (ConditionalObject CO in _conditionalObjects)
         {
@@ -95,19 +98,12 @@ public class PuzzleManager : MonoBehaviour {
                 }
             }
         }
-
-        //Debug.Log("All Rules: \n" + GetFullPuzzle());
     }
 
     public List<Rule> RulesFor(GameItem gameItem, Area area) {      
         List<Rule> rules = new List<Rule>();
-        //Debug.Log("rules for game item " + gameItem.name + " in " + area.name);
         foreach(Rule rule in _leaves[area]) {
             addApplicableRule(rule, gameItem, rules);
-            /*foreach(Rule gameOver in _gameOverRules) {
-                if(!rules.Contains(rule))
-                    rules.Add(gameOver);
-            }*/
         }
         if (useAllRules) {
             List<Rule> dbRules = GetAllRulesWithInput(gameItem.dbItem);
@@ -118,8 +114,8 @@ public class PuzzleManager : MonoBehaviour {
                 }
             }            
         }
-        foreach (Rule r in rules)
-            Debug.Log("Rule: " + r.ToString() + " for " + gameItem.name);
+        /*foreach (Rule r in rules)
+            Debug.Log("Rule: " + r.ToString() + " for " + gameItem.name);*/
         return rules;
     }
 
@@ -140,14 +136,24 @@ public class PuzzleManager : MonoBehaviour {
     }
 
     public void ExecuteRule(Rule rule, Area area) {
-        if (_leaves[area].Contains(rule)) {
+        if (_leaves[area].Contains(rule)) {                         // addition: start to using automatic rules
             Debug.Log("Execute: " + rule.parent.outputs[0].name);
             _leaves[area].Remove(rule);
             if (rule.parent.parent != null)
-                _leaves[area].Add(rule.parent);
-            else {
+            {                        
+                Rule parent = rule.parent;
+                parent.children.Remove(rule);
+                if (parent.children.Count == 0)
+                {
+                    _leaves[area].Add(parent);
+                    if (parent.automatic)
+                        GameItem.ExecuteRule(parent, true, parent.inputs[0].gameItem);
+                }
+            }
+            else
+            {
                 Debug.Log("Finished this area!");
-                Player.Instance.showFinishMessage(_currentArea.name);
+                Player.Instance.ShowFinishMessage(_currentArea.name);
                 if (area.isFinal())
                     TriggerEnd();
                 else
@@ -162,7 +168,7 @@ public class PuzzleManager : MonoBehaviour {
     }
 
     private void FindLeaves(Rule parent, Area area) {
-        Debug.Log("Checking children for rule " + parent.GetRuleAsString());
+        //Debug.Log("Checking children for rule " + parent.GetRuleAsString());
         if (parent.children.Count == 0) {
             Debug.Log("Rule " + parent.ToString() + " has no children. ");
             _leaves[area].Add(parent);
@@ -200,10 +206,8 @@ public class PuzzleManager : MonoBehaviour {
 
     public Item GetObject(string itemName)
     {
-        //ValidateDatabase();
         foreach (Item item in _itemAssets)
         {
-            //Debug.Log("Checking for " + itemName + " DBItem name: " + item.name);
             if (item.name == itemName)
                 return ScriptableObject.Instantiate(item) as Item;
         }
@@ -374,7 +378,6 @@ public class PuzzleManager : MonoBehaviour {
 
     public void TriggerEnd()
     {
-        //Player.Instance.gameObject.SetActive(false);
         finalFade.SetActive(true);
     }
 }

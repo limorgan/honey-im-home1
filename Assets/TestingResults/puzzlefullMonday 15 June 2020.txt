@@ -1,0 +1,269 @@
+OVERVIEW Monday 15 June 2020
+Areas: 4
+Rules: 84
+Items: 59
+AREA: LANDING
+Goal 1: Elevator[locked:False]  null db item 
+Elevator[locked:False] Speech[text:Huh...no green light? But the elevator is here...time to leave.] --> Swipe Card Elevator[locked:True] ID 	(depth 0)
+Elevator[locked:False] --> Swipe Card Elevator[locked:True] ID 
+	ELEVATOR[LOCKED:TRUE]  NULL DB ITEM 
+		ID Secretary Speech[name:Secretary, text:Sure...off you go now!] --> Ask for ID Secretary[tired:False] 	(depth 2)
+		ID Secretary Speech[name:Secretary, text:Of course! There you go!] --> Ask for ID Secretary[happy:True] 	(depth 2)
+ID Secretary --> Ask for ID Secretary[tired:False] 
+			Secretary[tired:False] Speech[name:Secretary, text:Thanks, can I help you with anything?] --> Wake up Secretary[tired:True] Container[contains:Coffee] 	(depth 3)
+Secretary[tired:False] --> Wake up Secretary[tired:True] Container[contains:Coffee] 
+				Secretary[tired:True] Speech[text:I'm too tired to even speak..., name:Secretary] --> Talk Secretary 	(depth 4)
+Secretary[tired:True] --> Talk Secretary 
+					SECRETARY NULL DB ITEM 
+					Container[contains:Coffee] CoffeeMachine --> Get Coffee CoffeeMachine[paidfor:True] Container[liquids:True] 	(depth 5)
+Container[contains:Coffee] CoffeeMachine --> Get Coffee CoffeeMachine[paidfor:True] Container[liquids:True] 
+						CoffeeMachine[paidfor:True] --> Insert Coins CoffeeMachine[paidfor:False] Change 	(depth 6)
+CoffeeMachine[paidfor:True] --> Insert Coins CoffeeMachine[paidfor:False] Change 
+							COFFEEMACHINE[PAIDFOR:FALSE]  NULL DB ITEM 
+								Change Wallet Speech[text:Not much in there, but it will do.] --> Grab Change Wallet 	(depth 8)
+Change Wallet --> Grab Change Wallet 
+									WALLET NULL DB ITEM 
+							CONTAINER[LIQUIDS:TRUE]  NULL DB ITEM 
+ID Secretary --> Ask for ID Secretary[happy:True] 
+				Secretary[happy:True] Speech[name:Secretary, text:Perfect! No reason to leave now...what was it you wanted?] --> Ask to Try Typewriter Secretary[wants:Typewriter] Player[fixed:Typewriter] 	(depth 4)
+Secretary[happy:True] --> Ask to Try Typewriter Secretary[wants:Typewriter] Player[fixed:Typewriter] 
+					Secretary[wants:Typewriter] Speech[name:Secretary, text:Don't talk to me. Too stressed. Unless you can fix this stupid typewriter...Don't know what's wrong with it...] --> Talk Secretary 	(depth 5)
+Secretary[wants:Typewriter] --> Talk Secretary 
+						SECRETARY NULL DB ITEM 
+						Player[fixed:Typewriter] Typewriter[has:Paper] --> Feed Paper Typewriter Paper 	(depth 6)
+						Player[fixed:Typewriter] Typewriter[has:Ink] Speech[text:Anything typed with this "ink" will look sad. And smell sad...] --> Pour "Ink" Typewriter Decanter[ink:True] 	(depth 6)
+						Player[fixed:Typewriter] Typewriter[has:Ink] Speech[text:It's not a total waste...you might be able to type a couple of letters with with it?] --> Pour ink Typewriter Biro[broken:True] 	(depth 6)
+Player[fixed:Typewriter] Typewriter[has:Paper] --> Feed Paper Typewriter Paper 
+							TYPEWRITER NULL DB ITEM 
+								PAPER NULL DB ITEM 
+Player[fixed:Typewriter] Typewriter[has:Ink] --> Pour "Ink" Typewriter Decanter[ink:True] 
+									TYPEWRITER NULL DB ITEM 
+										Decanter[ink:True] Speech[text:Does not look appealing. Desperate times...] --> Mix With Lipstick Decanter Lipstick[office:True] 	(depth 10)
+Decanter[ink:True] --> Mix With Lipstick Decanter Lipstick[office:True] 
+											DECANTER NULL DB ITEM 
+												LIPSTICK[OFFICE:TRUE]  NULL DB ITEM 
+Player[fixed:Typewriter] Typewriter[has:Ink] --> Pour ink Typewriter Biro[broken:True] 
+											TYPEWRITER NULL DB ITEM 
+												Biro[broken:True] Speech[text:Ouch. I got ink all over myself. Better use this somehow before it's all gone...] --> Break Biro 	(depth 12)
+Biro[broken:True] --> Break Biro 
+													BIRO NULL DB ITEM 
+AREA: OFFICEAREA
+Goal 1: Flipchart[full:True] Flipchart
+Flipchart[full:True] Speech[text:Ah yes. Almost makes it look like I got something done today...] --> Fake Productivity Flipchart Idea 	(depth 0)
+Flipchart[full:True] --> Fake Productivity Flipchart Idea 
+	FLIPCHART NULL DB ITEM 
+		Idea Speech[text:Ahhh, so that's what's going on...] --> Read Document Glasses 	(depth 2)
+		Idea Radio[ison:True] Speech[text:That song always reminds me of...something...] --> Listen Radio[ison:True] 	(depth 2)
+		Idea Speech[text:Fascinating...anything I could do with this?] --> Research Document 	(depth 2)
+		Idea Photo Speech[text:Uh oh...looks like...today's the day...better get home soon.] --> Look closer Photo Player[saw:Calendar] 	(depth 2)
+		Idea Speech[text:Uh oh...it is today. Better get going soon...] --> Check date Calendar Player[saw:Photo] 	(depth 2)
+Idea --> Read Document Glasses 
+			DOCUMENT NULL DB ITEM 
+				GLASSES NULL DB ITEM 
+Idea Radio[ison:True] --> Listen Radio[ison:True] 
+					Radio[ison:True] Speech[text:Inspiring.........uh.] --> Switch on Radio[ison:False] 	(depth 5)
+Radio[ison:True] --> Switch on Radio[ison:False] 
+						RADIO[ISON:FALSE]  NULL DB ITEM 
+Idea --> Research Document 
+						DOCUMENT NULL DB ITEM 
+Idea Photo --> Look closer Photo Player[saw:Calendar] 
+							PHOTO NULL DB ITEM 
+								Player[saw:Calendar] Calendar Speech[text:Already? Must've slept half the year away...is something important coming up soon?] --> Check Date Calendar 	(depth 8)
+Player[saw:Calendar] Calendar --> Check Date Calendar 
+									CALENDAR NULL DB ITEM 
+Idea --> Check date Calendar Player[saw:Photo] 
+									CALENDAR NULL DB ITEM 
+										Player[saw:Photo] Photo Speech[text:Huh...summery looking...what date is it today?] --> Look Closer Photo 	(depth 10)
+Player[saw:Photo] Photo --> Look Closer Photo 
+											PHOTO NULL DB ITEM 
+AREA: PUB
+Goal 1: Present null db item 
+Present Customer Speech[text:Thanks...there you go now. , name:Customer] --> Ask for Present Customer[wants:Music] Player[music:True] 	(depth 0)
+Present Customer --> Ask for Present Customer[wants:Music] Player[music:True] 
+	Customer[wants:Music] Speech[name:Customer, text:It's getting a bit dull in here...liven the place up and we can talk again.] --> Talk Customer 	(depth 1)
+Customer[wants:Music] --> Talk Customer 
+		CUSTOMER NULL DB ITEM 
+		Player[music:True] Jukebox[ison:True] --> Switch on Jukebox[paidfor:True] 	(depth 2)
+Player[music:True] Jukebox[ison:True] --> Switch on Jukebox[paidfor:True] 
+			Jukebox[paidfor:True] --> Insert Coins Jukebox Change 	(depth 3)
+Jukebox[paidfor:True] --> Insert Coins Jukebox Change 
+				JUKEBOX NULL DB ITEM 
+					Change Wallet Speech[text:Not much in there, but it will do.] --> Grab Change Wallet 	(depth 5)
+Change Wallet --> Grab Change Wallet 
+						WALLET NULL DB ITEM 
+Goal 2: Postbox[full:True]  null db item 
+Postbox[full:True] --> Send Postbox Envelope[story:True] 	(depth 0)
+Postbox[full:True] --> Send Postbox Envelope[story:True] 
+	POSTBOX NULL DB ITEM 
+		Envelope[story:True] Speech[text:Looks important.ish. Just send it off now...] --> Collect & Stamp Envelope Scribbles 	(depth 2)
+Envelope[story:True] --> Collect & Stamp Envelope Scribbles 
+			ENVELOPE NULL DB ITEM 
+				Scribbles Customer Speech[name:Customer, text:Wbiawzd! If this doesn't make it to the front page...this is priceless knowledge.] --> Ask for masterplan Customer[penPaper:True] 	(depth 4)
+				Scribbles Speech[text:It might not look like much...and it isn't much...almost ready to send. Can't post loose papers...] --> Inspired Scribbling Paper Pen Player[inspired:True] 	(depth 4)
+Scribbles Customer --> Ask for masterplan Customer[penPaper:True] 
+					Customer[penPaper:True] Speech[name:Customer, text:Now let me work away...ask again in a sec...] --> Give Pen Customer[penPaper:False] Biro 	(depth 5)
+Customer[penPaper:True] --> Give Pen Customer[penPaper:False] Biro 
+						Customer[penPaper:False] Speech[name:Customer, text:Paper is lovely, but a pen might be handy too? Cheers.] --> Give paper Customer[inspired:True] Paper 	(depth 6)
+Customer[penPaper:False] --> Give paper Customer[inspired:True] Paper 
+							Customer[inspired:True] Speech[name:Customer, text:You know...Ibhdwai bhwdi...I might have a story...get me some paper.] --> Chat nonsense Customer[understandable:True] 	(depth 7)
+Customer[inspired:True] --> Chat nonsense Customer[understandable:True] 
+								Customer[understandable:True] Speech[text:Yes...heard...you wanted something...from me?] --> Talk again Customer[understandable:False] Player[drunk:True] 	(depth 8)
+Customer[understandable:True] --> Talk again Customer[understandable:False] Player[drunk:True] 
+									Customer[understandable:False] Speech[text:'Whuihj hwuwda hiipnd...gzeg!'? What is that supposed to mean? Wonder if it's something in the drink...?] --> Talk Customer 	(depth 9)
+Customer[understandable:False] --> Talk Customer 
+										CUSTOMER NULL DB ITEM 
+										Player[drunk:True] Speech[text:Uh...huh. Whuhtgdw gzeb. Sorry, not sure what I'm saying...what was in that drink???] --> Drink Drink 	(depth 10)
+Player[drunk:True] --> Drink Drink 
+											Drink Bartender Speech[name:Bartender, text:Enjoy...] --> Order drink Bartender Change 	(depth 11)
+											Drink Bartender Speech[name:Bartender, text:Enjoy...don't tell anybody about this...] --> Ask for drink Bartender Player[favour:True] 	(depth 11)
+Drink Bartender --> Order drink Bartender Change 
+												BARTENDER NULL DB ITEM 
+													Change Wallet Speech[text:Not much in there, but it will do.] --> Grab Change Wallet 	(depth 13)
+Change Wallet --> Grab Change Wallet 
+														WALLET NULL DB ITEM 
+Drink Bartender --> Ask for drink Bartender Player[favour:True] 
+														BARTENDER NULL DB ITEM 
+															Player[favour:True] Customer Speech[name:Customer, text:Sure...OHhfhao...ifh...uhw....] --> Teach manners Customer Coasters Player[favour:False] 	(depth 15)
+Player[favour:True] Customer --> Teach manners Customer Coasters Player[favour:False] 
+																CUSTOMER NULL DB ITEM 
+																	COASTERS NULL DB ITEM 
+																		Player[favour:False] Speech[name:Annoyed Bartender, text:Now...I'll give you a drink if you do me a favour...it really annoys me when people don't use beer mats under their glasses...] Bartender --> Ask for drink Bartender 	(depth 18)
+Player[favour:False] Bartender --> Ask for drink Bartender 
+																			BARTENDER NULL DB ITEM 
+								PAPER NULL DB ITEM 
+							BIRO NULL DB ITEM 
+Scribbles --> Inspired Scribbling Paper Pen Player[inspired:True] 
+						PAPER NULL DB ITEM 
+							PEN NULL DB ITEM 
+								Player[inspired:True] Jukebox Speech[text:Inspiringly mediocre. With some paper and a pen I might get a story of the same quality.] --> Listen Jukebox Player[music:True] 	(depth 8)
+								Player[inspired:True] Speech[text:Liquid courage...to produce an unoriginal story and be pround of it. Pen and Paper needed.] --> Get inspired Drink 	(depth 8)
+								Player[inspired:True] Speech[name:Customer, text:Hmm...I found a hat earlier...just spinning in the corner...nobody there though. Could be good to see in the newspaper tomorrow...] Customer --> Ask about outline Customer Player[progress:curiouser_b] 	(depth 8)
+								Player[inspired:True] Bartender Speech[name:Bartender, text:Found a broken watch next to it...brought it to the jeweller, couldn't figure out what was wrong...] --> Ask about outline Bartender Player[progress:curiouser_c] 	(depth 8)
+Player[inspired:True] Jukebox --> Listen Jukebox Player[music:True] 
+									JUKEBOX NULL DB ITEM 
+										Player[music:True] Jukebox[ison:True] --> Switch on Jukebox[paidfor:True] 	(depth 10)
+Player[music:True] Jukebox[ison:True] --> Switch on Jukebox[paidfor:True] 
+											Jukebox[paidfor:True] --> Insert Coins Jukebox Change 	(depth 11)
+Jukebox[paidfor:True] --> Insert Coins Jukebox Change 
+												JUKEBOX NULL DB ITEM 
+													Change Wallet Speech[text:Not much in there, but it will do.] --> Grab Change Wallet 	(depth 13)
+Change Wallet --> Grab Change Wallet 
+														WALLET NULL DB ITEM 
+Player[inspired:True] --> Get inspired Drink 
+											Drink Bartender Speech[name:Bartender, text:Enjoy...] --> Order drink Bartender Change 	(depth 11)
+											Drink Bartender Speech[name:Bartender, text:Enjoy...don't tell anybody about this...] --> Ask for drink Bartender Player[favour:True] 	(depth 11)
+Drink Bartender --> Order drink Bartender Change 
+												BARTENDER NULL DB ITEM 
+													Change Wallet Speech[text:Not much in there, but it will do.] --> Grab Change Wallet 	(depth 13)
+Change Wallet --> Grab Change Wallet 
+														WALLET NULL DB ITEM 
+Drink Bartender --> Ask for drink Bartender Player[favour:True] 
+														BARTENDER NULL DB ITEM 
+															Player[favour:True] Customer Speech[name:Customer, text:Sure...OHhfhao...ifh...uhw....] --> Teach manners Customer Coasters Player[favour:False] 	(depth 15)
+Player[favour:True] Customer --> Teach manners Customer Coasters Player[favour:False] 
+																CUSTOMER NULL DB ITEM 
+																	COASTERS NULL DB ITEM 
+																		Player[favour:False] Speech[name:Annoyed Bartender, text:Now...I'll give you a drink if you do me a favour...it really annoys me when people don't use beer mats under their glasses...] Bartender --> Ask for drink Bartender 	(depth 18)
+Player[favour:False] Bartender --> Ask for drink Bartender 
+																			BARTENDER NULL DB ITEM 
+Player[inspired:True] Customer --> Ask about outline Customer Player[progress:curiouser_b] 
+												CUSTOMER NULL DB ITEM 
+													Player[progress:curiouser_b] Bartender Speech[name:Bartender, text:Oh. Never even noticed...we're very busy tonight, as I'm sure you can see. ] --> Ask about outline Bartender Player[progress:curious] 	(depth 13)
+Player[progress:curiouser_b] Bartender --> Ask about outline Bartender Player[progress:curious] 
+														BARTENDER NULL DB ITEM 
+															Player[progress:curious] Speech[text:This isn't normally part of the decor...is it? Must find out what happened. Tonight's story?] ChalkOutline --> Investigate ChalkOutline 	(depth 15)
+Player[progress:curious] ChalkOutline --> Investigate ChalkOutline 
+																CHALKOUTLINE NULL DB ITEM 
+Player[inspired:True] Bartender --> Ask about outline Bartender Player[progress:curiouser_c] 
+														BARTENDER NULL DB ITEM 
+															Player[progress:curiouser_c] Customer Speech[name:Customer, text:HUihi...don't know what my name is...don't know what that is about.] --> Ask about outline Customer Player[progress:curious] 	(depth 15)
+Player[progress:curiouser_c] Customer --> Ask about outline Customer Player[progress:curious] 
+																CUSTOMER NULL DB ITEM 
+																	Player[progress:curious] Speech[text:This isn't normally part of the decor...is it? Must find out what happened. Tonight's story?] ChalkOutline --> Investigate ChalkOutline 	(depth 17)
+Player[progress:curious] ChalkOutline --> Investigate ChalkOutline 
+																		CHALKOUTLINE NULL DB ITEM 
+AREA: STREETFINAL
+Goal 1: Home[gameover:True]  null db item 
+Home[gameover:True] Car --> Drive Home Car[locked:False] 	(depth 0)
+Home[gameover:True] Gate[locked:False] --> Enter Gate[locked:False] 	(depth 0)
+Home[gameover:True] Taxi --> Go Home Taxi[paidfor:True] 	(depth 0)
+Home[gameover:True] Car --> Drive Home Car[locked:False] 
+	Car[locked:False] Key Speech[text:Works like a charm.] --> Unlock Car Key 	(depth 1)
+	Car[locked:False] --> Break in Car Crowbar 	(depth 1)
+Car[locked:False] Key --> Unlock Car Key 
+		CAR NULL DB ITEM 
+			Key Speech[text:Really?? Sure. I'll take the key.] --> Catch UFO 	(depth 3)
+			Key Customer Speech[name:Customer, text:As promised...although I can't remember whether these were the car keys...or the keys to the park. Hm.] --> Ask for Key Customer[has:Car] 	(depth 3)
+Key --> Catch UFO 
+				UFO NULL DB ITEM 
+Key Customer --> Ask for Key Customer[has:Car] 
+					Customer[has:Car] Speech[name:Drunk Conspirator, text:And nobody believed me. Now they will. Anything you want now?] --> Prove Conspiracy Customer[wants:Favour] FilmCan 	(depth 5)
+Customer[has:Car] --> Prove Conspiracy Customer[wants:Favour] FilmCan 
+						Customer[wants:Favour] Speech[name:Drunk Customer, text:Bad idea...but I'll give you my key if you do me a favour. Get proof - photographic - of something weird. Flying things, disappearances...] Camera --> Ask for Lift Customer 	(depth 6)
+Customer[wants:Favour] Camera --> Ask for Lift Customer 
+							CUSTOMER NULL DB ITEM 
+							FilmCan UFO Speech[text:That should do well for a story...] --> Take Photo UFO Camera 	(depth 7)
+							FilmCan Camera UFO Speech[text:Too bad night-time photography and cheap cameras don't go well together...might convince some though?] --> Take picture UFO Camera 	(depth 7)
+							FilmCan ChalkOutline Camera Speech[text:How long has this been here? Nobody seems to be talking about it...what happened?] --> Take Picture ChalkOutline Camera 	(depth 7)
+FilmCan UFO --> Take Photo UFO Camera 
+								UFO NULL DB ITEM 
+									CAMERA NULL DB ITEM 
+FilmCan Camera UFO --> Take picture UFO Camera 
+										UFO NULL DB ITEM 
+											CAMERA NULL DB ITEM 
+FilmCan ChalkOutline Camera --> Take Picture ChalkOutline Camera 
+												CHALKOUTLINE NULL DB ITEM 
+													CAMERA NULL DB ITEM 
+Car[locked:False] --> Break in Car Crowbar 
+				CAR NULL DB ITEM 
+					Crowbar Car --> Take out crowbar Car[contains:Crowbar] 	(depth 5)
+Crowbar Car --> Take out crowbar Car[contains:Crowbar] 
+						Car[contains:Crowbar] Speech[text:Let's see...looks like there might be something in here...] --> Check boot Car 	(depth 6)
+Car[contains:Crowbar] --> Check boot Car 
+							CAR NULL DB ITEM 
+Home[gameover:True] Gate[locked:False] --> Enter Gate[locked:False] 
+		Gate[locked:False] --> Break lock Gate[locked:True] Crowbar 	(depth 2)
+		Gate[locked:False] --> Unlock Gate[locked:True] Key 	(depth 2)
+Gate[locked:False] --> Break lock Gate[locked:True] Crowbar 
+			GATE[LOCKED:TRUE]  NULL DB ITEM 
+				Crowbar Car --> Take out crowbar Car[contains:Crowbar] 	(depth 4)
+Crowbar Car --> Take out crowbar Car[contains:Crowbar] 
+					Car[contains:Crowbar] Speech[text:Let's see...looks like there might be something in here...] --> Check boot Car 	(depth 5)
+Car[contains:Crowbar] --> Check boot Car 
+						CAR NULL DB ITEM 
+Gate[locked:False] --> Unlock Gate[locked:True] Key 
+					GATE[LOCKED:TRUE]  NULL DB ITEM 
+						Key Speech[text:Really?? Sure. I'll take the key.] --> Catch UFO 	(depth 6)
+						Key Customer Speech[name:Customer, text:As promised...although I can't remember whether these were the car keys...or the keys to the park. Hm.] --> Ask for Key Customer[has:Car] 	(depth 6)
+Key --> Catch UFO 
+							UFO NULL DB ITEM 
+Key Customer --> Ask for Key Customer[has:Car] 
+								Customer[has:Car] Speech[name:Drunk Conspirator, text:And nobody believed me. Now they will. Anything you want now?] --> Prove Conspiracy Customer[wants:Favour] FilmCan 	(depth 8)
+Customer[has:Car] --> Prove Conspiracy Customer[wants:Favour] FilmCan 
+									Customer[wants:Favour] Speech[name:Drunk Customer, text:Bad idea...but I'll give you my key if you do me a favour. Get proof - photographic - of something weird. Flying things, disappearances...] Camera --> Ask for Lift Customer 	(depth 9)
+Customer[wants:Favour] Camera --> Ask for Lift Customer 
+										CUSTOMER NULL DB ITEM 
+										FilmCan UFO Speech[text:That should do well for a story...] --> Take Photo UFO Camera 	(depth 10)
+										FilmCan Camera UFO Speech[text:Too bad night-time photography and cheap cameras don't go well together...might convince some though?] --> Take picture UFO Camera 	(depth 10)
+										FilmCan ChalkOutline Camera Speech[text:How long has this been here? Nobody seems to be talking about it...what happened?] --> Take Picture ChalkOutline Camera 	(depth 10)
+FilmCan UFO --> Take Photo UFO Camera 
+											UFO NULL DB ITEM 
+												CAMERA NULL DB ITEM 
+FilmCan Camera UFO --> Take picture UFO Camera 
+													UFO NULL DB ITEM 
+														CAMERA NULL DB ITEM 
+FilmCan ChalkOutline Camera --> Take Picture ChalkOutline Camera 
+															CHALKOUTLINE NULL DB ITEM 
+																CAMERA NULL DB ITEM 
+Home[gameover:True] Taxi --> Go Home Taxi[paidfor:True] 
+			Taxi[paidfor:True] Speech[text:Get in and go.] --> Give address Taxi[paidfor:False] TaxiOrder 	(depth 3)
+Taxi[paidfor:True] --> Give address Taxi[paidfor:False] TaxiOrder 
+				TAXI[PAIDFOR:FALSE]  NULL DB ITEM 
+					TaxiOrder Payphone Speech[text:Taxi may or may not be on its way. Never reliable here. Better check...] --> Call Taxi Payphone[paidfor:True] 	(depth 5)
+TaxiOrder Payphone --> Call Taxi Payphone[paidfor:True] 
+						Payphone[paidfor:True] --> Insert Coins Payphone[paidfor:False] Change 	(depth 6)
+Payphone[paidfor:True] --> Insert Coins Payphone[paidfor:False] Change 
+							PAYPHONE[PAIDFOR:FALSE]  NULL DB ITEM 
+								Change Wallet Speech[text:Not much in there, but it will do.] --> Grab Change Wallet 	(depth 8)
+Change Wallet --> Grab Change Wallet 
+									WALLET NULL DB ITEM 

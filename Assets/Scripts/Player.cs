@@ -7,25 +7,26 @@ using System.Text;
 
 public class Player : MonoBehaviour {
 
+    //NOTE: This class contains too many variables and functions which should generally be managed differently. 
+
     public Text UITextRef;
-    public Text ActionHeader;
-    //public Image CrossHair;
+    public Text actionHeader;
     public GameObject actionMenu;
     public GameObject actionMenuContent;
-    public GameObject message;
-    public float messageTime;
+    public GameObject message;              //Addition: used to display messages, e.g. when an item has no avaiable actions
+    public float messageTime;               //        -  time that that action is displayed for 
     public GameObject buttonPrefab;
     public GameObject inventoryMenu;
-    public GameObject inventoryButton;
-    public GameObject inventoryNotification;
-    public GameObject speechUI;
-    public GameObject selectedItemField;
+    public GameObject inventoryButton;          
+    public GameObject inventoryNotification;    
+    public GameObject speechUI;                 
+    public GameObject selectedItemField;        
     public Text speechBubble;
     public Text speechBubbleName;
     public Text gameOver;
-    public Text areaText;
+    public Text areaText;                       
     public GameObject hintSystem;
-    public AudioSource spawnNoise;
+    public AudioSource spawnNoise;          //Addition: specific sound feedback for certain actions (not general)
     public AudioSource dropNoise;
     public AudioSource completeNoise;
 
@@ -35,11 +36,11 @@ public class Player : MonoBehaviour {
     private bool _gameOver = false;
     private bool _pauseMenuOpen = false;
     public bool _noAction;
+    private string _noActionMessage = "No Action Currently Available. ";
     [SerializeField]
     private List<GameItem> _inventory = new List<GameItem>();
     private Item _dbItem;
     private List<Property> _properties;
-    private string _noActionMessage = "No action currently available";
     private GameItem _selectedItem;
     private StringBuilder _transcript = new StringBuilder();
 
@@ -57,24 +58,21 @@ public class Player : MonoBehaviour {
     }
 
     void Start() {
-        //_inventory = new List<GameItem>();
         _dbItem = PuzzleManager.Instance.GetObject("Player");
         _properties = _dbItem.properties;
-        closeAllMenus();
+        CloseAllMenus();
         inventoryNotification.SetActive(false);
     }
 
     void Update() {
         if (!_gameOver) {            
-            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
+            RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));         //Ray casts  were modified to suit 2D features
             if (Input.GetMouseButtonDown(0) && !_actionMenuOpen && !_inventoryOpen && !_speechOpen && !_pauseMenuOpen) {
                 Vector2 v = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
                 if (hit) {
                     if (hit.collider.GetComponentInParent<GameItem>() != null) {
-                        hit.collider.gameObject.GetComponentInParent<GameItem>().OnGameItemClicked(actionMenuContent, buttonPrefab, ActionHeader);
+                        hit.collider.gameObject.GetComponentInParent<GameItem>().OnGameItemClicked(actionMenuContent, buttonPrefab, actionHeader);
                         OpenActionMenu();
-                        //UITextRef.text = "";
                         }
                 }
             } else if (_actionMenuOpen && Input.GetKeyDown(KeyCode.Q)) {
@@ -120,18 +118,17 @@ public class Player : MonoBehaviour {
         else
             item.dbItem.GetPropertyWithName("inInventory").value = "True";
         _inventory.Add(item);
-        //Debug.Log("added " + item.name + " to inventory. ");
         inventoryNotification.SetActive(true);
-        SelectItemFromInventory(item);                  //automatically select the last item picked up: default
+        SelectItemFromInventory(item);                  //Addition: automatically select the last item picked up: default
     }
 
     public void RemoveItemFromInventory(GameItem item) {
         for(int i = _inventory.Count - 1; i >= 0 ; i--) {
             if(_inventory[i] == item) {
                 _inventory.RemoveAt(i);
-                item.dbItem.GetPropertyWithName("inInventory").RemoveProperty();             // property showing if in inventory or not.  
-                item.transform.position = (this.transform.position) + new Vector3(3, 15, 0); //this.transform.forward * 2f; Appears to the side of character
-                dropNoise.Play();   //plays drop noise
+                item.dbItem.GetPropertyWithName("inInventory").RemoveProperty();                // property showing if in inventory or not.  
+                item.transform.position = (this.transform.position) + new Vector3(3, 15, 0);    // Item appears to the side of character -- awkward?
+                dropNoise.Play();                                                               // plays drop noise
                 item.gameObject.SetActive(true);
                 if (item.selected)
                 {
@@ -244,8 +241,7 @@ public class Player : MonoBehaviour {
         foreach (Transform child in inventoryMenu.transform.Find("Viewport").Find("Content")) {
             GameObject.Destroy(child.gameObject);
         }
-        //EnableMouseLook();
-        Time.timeScale = 1f;        //movement back on
+        Time.timeScale = 1f;        
     }
 
     public void OpenActionMenu() {
@@ -259,8 +255,7 @@ public class Player : MonoBehaviour {
         {
             _actionMenuOpen = true;
             actionMenu.SetActive(true);
-            //DisableMouseLook();       //not needed in 2D
-            Time.timeScale = 0f;        //instead - to avoid background movement while menu is open
+            Time.timeScale = 0f;            
         }
     }
 
@@ -270,7 +265,7 @@ public class Player : MonoBehaviour {
             CloseInventory();
         if(_actionMenuOpen)
             CloseActionMenu();
-        item.OnGameItemClicked(actionMenuContent, buttonPrefab, ActionHeader);
+        item.OnGameItemClicked(actionMenuContent, buttonPrefab, actionHeader);
         OpenActionMenu();
     }
 
@@ -278,7 +273,7 @@ public class Player : MonoBehaviour {
     {
         if (_actionMenuOpen)
             CloseActionMenu();
-        item.OnGameItemClicked(actionMenuContent, buttonPrefab, ActionHeader, inventory);
+        item.OnGameItemClicked(actionMenuContent, buttonPrefab, actionHeader, inventory);
         OpenActionMenu();
     }
 
@@ -289,8 +284,7 @@ public class Player : MonoBehaviour {
             foreach (Transform child in actionMenuContent.transform) {
                 GameObject.Destroy(child.gameObject);
             }
-            //EnableMouseLook();
-            Time.timeScale = 1f;        //reenable background movement on closing menu
+            Time.timeScale = 1f;       
         }
     }
 
@@ -298,12 +292,10 @@ public class Player : MonoBehaviour {
         _currentSpeech = speech;
         CloseActionMenu();
         AddToTranscript(speech, name);
-        //DisableMouseLook();
         _speechOpen = true;
         speechUI.gameObject.SetActive(true);
         StopAllCoroutines();
         StartCoroutine(TypeSentenceSlowly(speech, speechBubble));
-        //speechBubble.text = speech;
         speechBubbleName.text = name;
     }
 
@@ -340,34 +332,18 @@ public class Player : MonoBehaviour {
         hintSystem.GetComponentInChildren<Text>().text = "";
     }
 
-    public void updateAreaName(string nextArea)
+    public void UpdateAreaName(string nextArea)
     {
         areaText.text = nextArea;
     }
 
-    public void showFinishMessage(string name)
+    public void ShowFinishMessage(string name)
     {
         /*message.GetComponentInChildren<Text>().text = "This area is completed [" + name + "]";
         Appear(message, messageTime);*/
         //other option: play finished sound: 
         completeNoise.Play();
-    }
-
-    private void DisableMouseLook() {
-        //CrossHair.enabled = false;
-        UITextRef.enabled = false;
-        GetComponentInParent<FirstPersonController>().enabled = false;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
-
-    private void EnableMouseLook() {
-        //CrossHair.enabled = true;
-        UITextRef.enabled = true;
-        GetComponentInParent<FirstPersonController>().enabled = true;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
+    }   
 
     IEnumerator TypeSentenceSlowly(string sentence, Text goal)
     {//Brackeys, How to make a Dialogue System in Unity https://www.youtube.com/watch?v=_nRzoTzeyxU
@@ -393,7 +369,7 @@ public class Player : MonoBehaviour {
         StartCoroutine(CloseSlowly(obj, time));
     }
 
-    public void closeAllMenus()
+    public void CloseAllMenus()
     {
         CloseInventory();
         CloseActionMenu();

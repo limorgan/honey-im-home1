@@ -1,0 +1,13 @@
+OVERVIEW Friday 5 June 2020
+Areas: 4
+Rules: 84
+Items: 59
+AREA: OFFICEAREA
+Flipchart[full:True]  null db item 	(depth 0)
+Flipchart[full:True] Speech[text:Ah yes. Almost makes it look like I got something done today...] --> Fake Productivity Flipchart Idea 	(depth 0)
+	Idea Speech[text:Ahhh, so that's what's going on...] --> Read Document Glasses 	(depth 1)
+	Idea Radio[ison:True] Speech[text:That song always reminds me of...something...] --> Listen Radio[ison:True] 	(depth 1)
+	Idea Speech[text:Fascinating...anything I could do with this?] --> Research Document 	(depth 1)
+	Idea Photo Speech[text:Uh oh...looks like...today's the day...better get home soon.] --> Look closer Photo Player[saw:Calendar] 	(depth 1)
+	Idea Speech[text:Uh oh...it is today. Better get going soon...] --> Check date Calendar Player[saw:Photo] 	(depth 1)
+		Player[saw:Photo] Photo Speech[text:Huh...summery looking...what date is it today?] --> Look Closer Photo 	(depth 2)

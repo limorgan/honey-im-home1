@@ -91,7 +91,6 @@ public class GameItem : MonoBehaviour {
             ActionBtn.CreateComponent(action, this, new Rule("PickUp"));
             action.transform.SetParent(actionMenu.transform);
         }
-        //Addition: 07/03/2020 --- "Inspect" button which, if available, displays a "hint"/long description associated with the item
         if (dbItem.IsInspectable())
         {
             noAction = false;
@@ -99,7 +98,6 @@ public class GameItem : MonoBehaviour {
             ActionBtn.CreateComponent(action, this, new Rule("Inspect"));
             action.transform.SetParent(actionMenu.transform);
         }
-        //end of addition
         if (containedValue && containedValue.GetProperty("carryable") != null) {
             if (containedValue.GetProperty("carryable").value == "True")
             {
@@ -139,6 +137,7 @@ public class GameItem : MonoBehaviour {
     }
 
     public void ExecuteRule(Rule rule) {
+        //NOTE: These are rules which are automatically available if certain properties are fulfilled
         if (rule.action == "PickUp") {
             Player.Instance.AddItemToInventory(this);
             Player.Instance.CloseActionMenu();
@@ -175,7 +174,6 @@ public class GameItem : MonoBehaviour {
 
         if (rule.action == "TakeOut")
         {
-            //Debug.Log("Contained value: " + this.containedValue.ToString());
             this.containedValue.gameObject.SetActive(true);
             this.containedValue.gameObject.transform.position = (this.transform.position) + new Vector3(0, 2, 0); //this.transform.forward * 2f; Appears to the side of character
             this.containedValue = null;
@@ -207,20 +205,31 @@ public class GameItem : MonoBehaviour {
             Player.Instance.CloseActionMenu();
             return;
         }
+        ExecuteRule(rule, true, this);
+    }
 
-        //PuzzleManager.Instance.ExecuteRule(rule, GetComponentInParent<GameArea>().area);
-
+    public static void ExecuteRule(Rule rule, bool full, GameItem gameI)
+    {
+        // Change:  This is normally part of the above ExecuteRule() function, but was separated to  
+        //          be able to call if from within the puzzle manager script when executing "automatic"
+        //          rules -- isn't implemented fully though
         // Check for items to destroy
         List<GameObject> objectsToDestroy = new List<GameObject>();
-        for (int i = 0; i < rule.inputs.Count; i++) {
+        for (int i = 0; i < rule.inputs.Count; i++)
+        {
             bool found = false;
-            foreach (Term output in rule.outputs) {
-                if (output.name == rule.inputs[i].name) {
+            foreach (Term output in rule.outputs)
+            {
+                if (output.name == rule.inputs[i].name)
+                {
                     found = true;
                     output.gameItem = rule.inputs[i].gameItem;
                     break;
-                } else if (output.GetPropertyWithName("contains") != null) {
-                    if (output.GetPropertyWithName("contains").value == rule.inputs[i].name) {
+                }
+                else if (output.GetPropertyWithName("contains") != null)
+                {
+                    if (output.GetPropertyWithName("contains").value == rule.inputs[i].name)
+                    {
                         //Debug.Log("To insert: " + i);
                         if (rule.inputs[i].name == Player.Instance.getSelectedItem().name)
                         {
@@ -238,11 +247,14 @@ public class GameItem : MonoBehaviour {
                     }
                 }
             }
-            if (!found && rule.inputs[i].gameItem.isDestructible()) {
+            Debug.Log("Intput Item at " + i + ": " + rule.inputs[i] + "of rule: " + rule.ToString());
+            if (!found && rule.inputs[i].gameItem.IsDestructible())
+            {
                 Debug.Log("Destroying: " + rule.inputs[i].name);
-                if (i == 0) objectsToDestroy.Add(this.gameObject);
-                else {
-                    if(!Player.Instance.DeleteItemFromInventory(rule.inputs[i].gameItem))
+                if (i == 0) objectsToDestroy.Add(gameI.gameObject);
+                else
+                {
+                    if (!Player.Instance.DeleteItemFromInventory(rule.inputs[i].gameItem))
                         objectsToDestroy.Add(rule.inputs[i].gameItem.gameObject);
                 }
             }
@@ -250,30 +262,35 @@ public class GameItem : MonoBehaviour {
         int spawnIndex = 0;
         // Check for property change and new items
         bool firstOutput = true;
-        foreach (Term output in rule.outputs) {
+        foreach (Term output in rule.outputs)
+        {
             //Debug.Log("output terms: " + output.ToString() + "number of input rules: " + rule.inputs.Count);
             bool found = false;
-            foreach (Term input in rule.inputs) {
+            foreach (Term input in rule.inputs)
+            {
                 //Debug.Log("output term: " + output.name + " input term: " + input.name);
-                if(output.name == "Player")
+                if (output.name == "Player")
                 {
                     foreach (Property outputProperty in output.properties)
                         PuzzleManager.Instance.UpdatePlayerProperties(outputProperty);
                 }
-                if (output.name == input.name) {
+                if (output.name == input.name)
+                {
                     //Debug.Log("number of output properties " + output.properties.Count);
                     found = true;
-                    foreach (Property outputProperty in output.properties) {
+                    foreach (Property outputProperty in output.properties)
+                    {
                         Property property = input.gameItem.GetProperty(outputProperty.name);
                         if (property != null && property.name != "contains")
                         {
                             property.value = outputProperty.value;
                             Debug.Log("Property to change: " + property.name);
                             break;        //this means only the first property to be changed will be changed?! 
-                            //}
-                            
+                                          //}
+
                         }
-                        else {
+                        else
+                        {
                             input.gameItem.properties.Add(outputProperty);
                         }
                         //Check if there is a better match, given the properties
@@ -281,31 +298,28 @@ public class GameItem : MonoBehaviour {
                 }
             }
             // Spawn new item
-            if (!found) {
-                if(output.dbItem != null) {
+            if (!found)
+            {
+                if (output.dbItem != null)
+                {
                     //Debug.Log("spawning item on exectution of rule: " + output.dbItem.name);
                     GameObject itemGO;
-                    if(objectsToDestroy.Count > spawnIndex) {
+                    if (objectsToDestroy.Count > spawnIndex)
+                    {
                         Transform transform = objectsToDestroy[spawnIndex].transform;
                         itemGO = (GameObject)Instantiate(output.dbItem.itemPrefab, transform.position + new Vector3(0, 1, 0), transform.rotation);
                         spawnIndex++;
-                    } else {
-                        Vector3 position = Player.Instance.transform.position + new Vector3(0, 20, 0); //Player.Instance.transform.forward; changed to x axis
-                        position.z = 0;     // items kept spawning with bizarre z values
-                        itemGO = (GameObject)Instantiate(output.dbItem.itemPrefab, position, Quaternion.identity);
-                    }                    
-                    itemGO.GetComponent<GameItem>().Setup(output.dbItem.name, output.dbItem);
-                    itemGO.transform.SetParent(this.gameObject.transform.parent);
-                    //Debug.Log("Spawning: " + output.dbItem);
-                    if(Player.Instance.spawnNoise != null)  // 04/03 play spawn noise
-                        Player.Instance.spawnNoise.Play();
-                    /*if (output.dbItem.GetPropertyWithName("inInventory") != null)
+                    }
+                    else
                     {
-                        //Debug.Log("trying inventory");
-                        if(output.dbItem.GetPropertyWithName("inInventory").value == "True")
-                            Player.Instance.AddItemToInventory(itemGO.GetComponent<GameItem>());
-                        //Debug.Log("straight to inventory...");
-                    }*/
+                        Vector3 position = Player.Instance.transform.position + new Vector3(0, 20, 0); //2D: changed to x axis
+                        position.z = 0;     // Addition: items kept spawning with bizarre z values - not necessary in 3D 
+                        itemGO = (GameObject)Instantiate(output.dbItem.itemPrefab, position, Quaternion.identity);
+                    }
+                    itemGO.GetComponent<GameItem>().Setup(output.dbItem.name, output.dbItem);
+                    itemGO.transform.SetParent(gameI.gameObject.transform.parent);
+                    if (Player.Instance.spawnNoise != null)  // Addition: plays spawn noise
+                        Player.Instance.spawnNoise.Play();
                     if (rule.inventory)
                     {
                         if (itemGO.GetComponent<GameItem>().name == rule.outputs[0].name || firstOutput)
@@ -314,15 +328,18 @@ public class GameItem : MonoBehaviour {
                             Debug.Log("straight to inventory: " + itemGO.GetComponent<GameItem>().name);
                         }
                     }
-                } else {
-                    //Debug.Log(output.name);
-                    if(output.name == "Speech") {
+                }
+                else
+                {
+                    if (output.name == "Speech")
+                    {
                         if (output.GetPropertyWithName("name") != null)
                             Player.Instance.ShowSpeechBubble(output.GetPropertyWithName("text").value, output.GetPropertyWithName("name").value);
                         else
                             Player.Instance.ShowSpeechBubble(output.GetPropertyWithName("text").value);
                     }
-                    if(output.name == "Player") {
+                    if (output.name == "Player")
+                    {
                         Player.Instance.Execute(output);
                     }
                 }
@@ -333,27 +350,19 @@ public class GameItem : MonoBehaviour {
 
         Player.Instance.CloseActionMenu();
 
-        /*foreach (Term term in rule.outputs)
+        foreach (GameObject GO in objectsToDestroy)
         {
-            GameObject GO = term.gameItem.gameObject;
-            if(GO.GetComponent<CustomReaction>() != null)
-                GO.GetComponent<CustomReaction>().PlayAnimation();
-        }*/
-
-        foreach (GameObject GO in objectsToDestroy) {
             Destroy(GO);
         }
     }
 
     private bool RuleFulFilled(Rule rule) {
-        if (rule != null) {
-            rule.inputs[0].gameItem = this;     // only matches if (at least) the item fulfils that of the first input item???
+        if (rule != null) {                                         //Addition: handling of "selected" item restriction
+            rule.inputs[0].gameItem = this;     
             if (!this.FulFillsProperties(rule.inputs[0])) 
                 return false;
             if (rule.inputs.Count > 1) {
                 int i = 1;
-                //if(rule.inputs.Count == 2)
-                //{
                 if (!rule.selectedInput)
                 {
                     GameItem selectedItem = Player.Instance.getSelectedItem();
@@ -364,7 +373,6 @@ public class GameItem : MonoBehaviour {
                             {
                                 rule.inputs[1].gameItem = selectedItem;
                                 i = 2;
-                                //return true;
                             }
                         else
                                 return false;
@@ -372,8 +380,6 @@ public class GameItem : MonoBehaviour {
                     else
                         return false;
                 }
-                //}
-
                 List<GameItem> inventory = Player.Instance.GetInventory();
                 if (inventory.Count == 0 && !rule.HasPlayerInput()) {
                     return false;
@@ -381,7 +387,6 @@ public class GameItem : MonoBehaviour {
                 for (; i < rule.inputs.Count; i++) {
                     bool found = false;
                     if (rule.inputs[i].name == "Player") {
-                        //Debug.Log("Rule input is " + rule.inputs[i].name + " - fulfils the properties? " + PuzzleManager.Instance.GetPlayer().FulFillsProperties(rule.inputs[i]));
                         if (PuzzleManager.Instance.GetPlayer().FulFillsProperties(rule.inputs[i]))
                         {
                             found = true;
@@ -429,7 +434,7 @@ public class GameItem : MonoBehaviour {
         return null;
     }
 
-    public bool isDestructible()
+    public bool IsDestructible()
     {
         Property destructible = this.GetProperty("indestructible");
         if (destructible != null)

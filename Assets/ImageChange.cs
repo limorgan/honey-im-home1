@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ImageChange : MonoBehaviour
 {
+    // Addition: changing the appearance of an item based on change in properties. Very basic and contains no error checking,
+    // provided more for demonstration and added more visual effects to the game
+
     [SerializeField]
     private GameObject _imageToAdd;
     [SerializeField]

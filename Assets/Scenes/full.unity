@@ -468,13 +468,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 14609988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa53e3b9298e004dbc6da78622a769b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d399c700bc5664469d02d4d7752a61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 398382124}
   zoomOut: 0
-  locked: 1
-  nextAreaName: 
+  locked: 0
+  nextAreaName: Office
 --- !u!1 &16292535
 GameObject:
   m_ObjectHideFlags: 0
@@ -6892,6 +6892,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &430982727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 430982728}
+  m_Layer: 0
+  m_Name: Testing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &430982728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430982727}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1262315644}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &432839219
 GameObject:
   m_ObjectHideFlags: 0
@@ -7194,7 +7225,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 438900110}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa53e3b9298e004dbc6da78622a769b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d399c700bc5664469d02d4d7752a61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 1609763388}
@@ -8310,7 +8341,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 500758050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa53e3b9298e004dbc6da78622a769b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d399c700bc5664469d02d4d7752a61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 1598204727}
@@ -13809,7 +13840,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 779743713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0d8515918f295c4781e4aaaadbefeb7, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c17db5a53245c04f946e2b5c80ed49a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   condition: {fileID: 11400000, guid: 30dde29856ab1ea4e89a1999a191844d, type: 2}
@@ -14282,13 +14313,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 815542405}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa53e3b9298e004dbc6da78622a769b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d399c700bc5664469d02d4d7752a61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 1944917841}
   zoomOut: 1
-  locked: 0
-  nextAreaName: Street
+  locked: 1
+  nextAreaName: 
 --- !u!212 &815542407
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16670,7 +16701,7 @@ RectTransform:
   m_Children:
   - {fileID: 1457893427}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -18273,7 +18304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067996842}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -187.70001, y: 4.8000045, z: 0}
+  m_LocalPosition: {x: -179.08, y: -1.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1496663562}
@@ -21612,6 +21643,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: de55aeb96e954604b9b2f08eec0448df,
         type: 2}
+    - target: {fileID: 1725211133949833798, guid: b5443745b2cdbca4d88ccfc8396981df,
+        type: 3}
+      propertyPath: puzzleTree
+      value: 
+      objectReference: {fileID: 1262315643}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5443745b2cdbca4d88ccfc8396981df, type: 3}
 --- !u!1 &1235325224
@@ -22285,6 +22321,49 @@ Transform:
   m_Father: {fileID: 1850118750}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1262315643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1262315644}
+  - component: {fileID: 1262315645}
+  m_Layer: 0
+  m_Name: PuzzleTree
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1262315644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262315643}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 430982728}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1262315645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262315643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7f03ccb1df92974c8c801b1d87093f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1263898080
 GameObject:
   m_ObjectHideFlags: 0
@@ -26859,12 +26938,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1500157062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa53e3b9298e004dbc6da78622a769b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d399c700bc5664469d02d4d7752a61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 1067996842}
+  spawnPoint: {fileID: 0}
   zoomOut: 0
-  locked: 1
+  locked: 0
   nextAreaName: 
 --- !u!212 &1500157066
 SpriteRenderer:
@@ -38047,7 +38126,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2123186526}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0d8515918f295c4781e4aaaadbefeb7, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c17db5a53245c04f946e2b5c80ed49a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   condition: {fileID: 11400000, guid: 30dde29856ab1ea4e89a1999a191844d, type: 2}
@@ -39088,6 +39167,11 @@ PrefabInstance:
       propertyPath: nextAreaName
       value: Street
       objectReference: {fileID: 0}
+    - target: {fileID: 3588913185012083258, guid: aa8a787ecb64f224fb4abc15f45bcf54,
+        type: 3}
+      propertyPath: zoomOut
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3588913185012083261, guid: aa8a787ecb64f224fb4abc15f45bcf54,
         type: 3}
       propertyPath: m_Offset.y
@@ -39376,6 +39460,11 @@ PrefabInstance:
       propertyPath: _inventory.Array.data[0]
       value: 
       objectReference: {fileID: 258059654}
+    - target: {fileID: 6476509642780936577, guid: d0fa3492ec4a40346a09bbde908d0646,
+        type: 3}
+      propertyPath: actionHeader
+      value: 
+      objectReference: {fileID: 561864704}
     - target: {fileID: 585130503218097340, guid: d0fa3492ec4a40346a09bbde908d0646,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -43924,7 +44013,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5377659919150103685}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa53e3b9298e004dbc6da78622a769b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d399c700bc5664469d02d4d7752a61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 1083795288}
@@ -45881,7 +45970,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5941141160477230201}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa53e3b9298e004dbc6da78622a769b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d399c700bc5664469d02d4d7752a61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 432839219}

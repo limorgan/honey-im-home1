@@ -30,7 +30,9 @@ public class Database<T> where T : ScriptableObject {
         T[] resources = Resources.LoadAll<T>("");
         foreach (T item in resources) {
             if (!_assets.Contains(item))
+            {
                 _assets.Add(item);
+            }
         }
     }
 

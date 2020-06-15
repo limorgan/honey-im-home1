@@ -55,6 +55,6 @@ MonoBehaviour:
   hint: 
   parent: {fileID: 0}
   children: []
-  reversible: 1
+  automatic: 0
   selectedInput: 0
   inventory: 0

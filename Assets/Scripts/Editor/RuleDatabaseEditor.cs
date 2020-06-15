@@ -2,14 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using System.Text.RegularExpressions;
 
 public class RuleDatabaseEditor : EditorWindow {
 
     private int _viewIndex = 0;
     private Vector2 _scrollPositionBottom = Vector2.zero;
     private List<bool> foldedOut = new List<bool>();
-    private PropertyType _newPropertyType = PropertyType.StringProperty;
-    
+    private PropertyType _newPropertyType = PropertyType.StringProperty;    
     
 
     [MenuItem("Window/Rules Editor %#e")]
@@ -18,7 +18,8 @@ public class RuleDatabaseEditor : EditorWindow {
     }
 
     void OnEnable() {
-        RuleDatabase.LoadDatabase();
+        RuleDatabase.LoadDatabaseForce();
+        Debug.Log("Rule Editor - post force load: #Rules " + RuleDatabase.GetNumOfAssets());
         for (int i = 0; i < RuleDatabase.GetNumOfAssets(); i++)
             foldedOut.Add(false);
     }
@@ -30,21 +31,27 @@ public class RuleDatabaseEditor : EditorWindow {
         _scrollPositionBottom = EditorGUILayout.BeginScrollView(_scrollPositionBottom, true, true);
 
         EditorGUILayout.LabelField("Rules:", EditorStyles.boldLabel);
-        EditorGUILayout.LabelField(" -S: second input item doesn't need to be selected. -I: main output goes straight to inventory.");
+        EditorGUILayout.LabelField(" -S: second input item doesn't need to be selected. -I: main output goes straight to inventory. #Rules: " + RuleDatabase.GetNumOfAssets()); // +
+            //"-A: rule is executed automatically. ");
         if (GUILayout.Button("Add New Rule", GUILayout.ExpandWidth(false))) {
             foldedOut.Add(false);
             RuleDatabase.CreateAsset();
         }
 
+
+
         for (int ruleIndx = 0; ruleIndx < RuleDatabase.GetNumOfAssets(); ruleIndx++) {
             Rule rule = RuleDatabase.GetAsset(ruleIndx);
             EditorUtility.SetDirty(rule);
-            string additionalProperties = "";
+            string additionalProperties = "";       //Addition - indicating Rule properties: 
             if (rule.selectedInput)
-                additionalProperties += " -S ";
+                additionalProperties += " -S ";     //Second input item does not need to be selected
             if (rule.inventory)
-                additionalProperties += " -I ";
-            foldedOut[ruleIndx] = EditorGUILayout.Foldout(foldedOut[ruleIndx], rule.GetRuleAsString() + additionalProperties);
+                additionalProperties += " -I ";     //First output item is spawned directly in the inventory
+            /*if (rule.automatic)
+                additionalProperties += " -A ";  */   //Such rules are excuted automatically
+            string ruleNumber = "#" + GetFileNameShort(rule) + ": ";
+            foldedOut[ruleIndx] = EditorGUILayout.Foldout(foldedOut[ruleIndx], ruleNumber + rule.GetRuleAsString() + additionalProperties);
 
             if (foldedOut[ruleIndx]) {
                 // === OUTPUT ===
@@ -120,24 +127,25 @@ public class RuleDatabaseEditor : EditorWindow {
                     rule.AddInput();
                 }
 
-                /* // === REVERSIBLE === 
-                EditorGUILayout.LabelField("Rule does not rely on order:", EditorStyles.boldLabel);
-                rule.reversible = EditorGUILayout.Toggle(rule.reversible);*/
 
-
-                // === InIventory === 
+                // === InIventory ===                   (addition)
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("Input doesn't need to be selected:", EditorStyles.boldLabel);
                 rule.selectedInput = EditorGUILayout.Toggle(rule.selectedInput);
                 EditorGUILayout.EndHorizontal();
 
-                // === Straight to Inventory === 
+                // === Straight to Inventory ===        (addition)
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("First output goes straight to inventory:", EditorStyles.boldLabel);
                 rule.inventory = EditorGUILayout.Toggle(rule.inventory);
                 EditorGUILayout.EndHorizontal();
 
-
+                /*// === Automatic Rule ===        (addition)       This is a starting point for including rules which can be executed without player interaction
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("Automatically executed rule:", EditorStyles.boldLabel);
+                rule.automatic = EditorGUILayout.Toggle(rule.automatic);
+                EditorGUILayout.EndHorizontal();
+                */
                 if (GUILayout.Button("Delete Rule", GUILayout.ExpandWidth(false))) {
                     RuleDatabase.DeleteAsset(ruleIndx);
                 }
@@ -161,6 +169,27 @@ public class RuleDatabaseEditor : EditorWindow {
         else if (property.type == PropertyType.BoolProperty) {
             property.value = EditorGUILayout.Toggle(property.value == "True", GUILayout.MinWidth(100), GUILayout.MaxWidth(300)).ToString();
         }
+    }
+
+    public string GetFileNameShort(Rule rule)
+    {
+        string fullPath = GetFileName(rule);
+        Regex reg = new Regex(@"\d+");
+        Match match = reg.Match(fullPath);
+        if (match.Success)
+            return match.Value;
+        else
+            return "0";
+    }
+
+    public string GetFileName(Rule rule)
+    {
+        return RuleDatabase.GetPath(rule);
+    }
+
+    public void TestRegex()
+    {
+        
     }
 }
  

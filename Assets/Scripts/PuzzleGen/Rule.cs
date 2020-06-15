@@ -10,9 +10,10 @@ public class Rule : ScriptableObject {
     public string hint;
     public Rule parent;
     public List<Rule> children;
-    public bool reversible; // 06/03 order of input items does not matter
+    public bool automatic; // Addition: automatically excuted rules
     public bool selectedInput;  // 10/03 second input term (i.e. usually the item in inventory, never the clicked item), doesn't need to be selected if true
     public bool inventory;  // main output item goes straight to inventory
+    public string ruleNumber;
 
     public Rule(){
         outputs = new List<Term>();
@@ -74,30 +75,6 @@ public class Rule : ScriptableObject {
             }
         }
 
-        /*if(this.outputs[0].properties.Count != term.properties.Count) {       //this prevents things such as car and car[ready:false] from working.
-            return false;                                                       //the default for a property that isn't there is false. 
-        }*/                                                                     //
-
-        /*foreach (Property termProperty in term.properties)                      //the 
-        {
-            bool found = false;
-            foreach (Property ruleOutputProp in this.outputs[0].properties)
-            {
-                if (termProperty.Equals(ruleOutputProp))
-                {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found)
-            {
-                if (this.outputs[0].GetPropertyWithName(termProperty.name) == null && termProperty.value == "False")
-                    found = true;
-                else
-                    return false;
-            }
-        }*/
-
         foreach (Property ruleOutputProp in this.outputs[0].properties)
         {       //Original
             bool found = false;
@@ -108,29 +85,10 @@ public class Rule : ScriptableObject {
                     found = true;
                     break;
                 }
-                /*else if (ruleOutputProp.name != "contains")
-                {
-                    if (term.dbItem != null)
-                    {
-                        if (term.dbItem.GetPropertyWithName(ruleOutputProp.name) != null)
-                        {
-                            if (term.dbItem.GetPropertyWithName(ruleOutputProp.name).value != "True")
-                            {
-                                found = true;
-                                break;
-                            }
-                        }
-                    }
-                    if (term.GetPropertyWithName(ruleOutputProp.name) == null && ruleOutputProp.value == "False")
-                    {
-                        found = true;
-                        break;
-                    }
-                }*/
+                
             }
             if (!found)
             {
-                //Debug.Log("Output property " + ruleOutputProp.name + " was not matched.");
                 return false;
             }
         }
@@ -147,9 +105,18 @@ public class Rule : ScriptableObject {
         return false;
     }
 
-    public string GetRuleAsString() {
+    public string GetRuleAsString()
+    {
+        return GetRuleAsString(true);
+    }
+
+    public string GetRuleAsString(bool speech) {
         string ruleAsString = "";
         foreach (Term output in outputs) {
+
+            if (output.name == "Speech" && !speech)
+                continue;
+
             ruleAsString += output.name;
             if (output.properties.Count > 0) {
                 ruleAsString += "[";
@@ -182,56 +149,14 @@ public class Rule : ScriptableObject {
         return ruleAsString;
     }
 
-    public List<Rule> InputPermutation()        // 06/03 gives all permutations of the input terms
-    {
-        List<Rule> permutations = new List<Rule>();
-        if (inputs.Count <= 1)
-            permutations.Add(this);
-        else
-        {
-            List<List<Term>> inputPermutations = InputPermutation(this.inputs, 0, this.inputs.Count - 1);
-            Rule modRule = this;
-            foreach (List<Term> modInput in inputPermutations)
-            {
-                modRule.inputs = modInput;
-                permutations.Add(modRule);
-            }
-        }
-        return permutations;
-    }
-
-    public List<List<Term>> InputPermutation(List<Term> input, int i, int j)
-    {
-        List<List<Term>> permutations = new List<List<Term>>();
-        if (i == j)
-        {
-            permutations.Add(input);
-            return permutations;
-        }
-        else
-        {
-            for(int k = i; k <= j; k++)
-            {
-                input = SwapInputTerms(input, i, k);
-                InputPermutation(input, i + 1, j);
-                input = SwapInputTerms(input, i, k);
-            }
-        }
-        return null;
-    }
-
-    public List<Term> SwapInputTerms(List<Term> input, int i, int j)
-    {
-        Term temp = input[i];
-        input.Insert(i, input[j]);
-        input.Insert(j, temp);
-        return input;
-    }
-    
-
     public string ToString()
     {
         return GetRuleAsString();
+    }
+
+    public string ToShortString()
+    {
+        return GetRuleAsString(false);
     }
 
     public bool ContainsItem(Item item)

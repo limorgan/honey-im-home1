@@ -114,13 +114,13 @@ public class ItemDatabaseEditor : EditorWindow {
                 EditorGUILayout.LabelField("Prefab:", EditorStyles.boldLabel);
                 dbAsset.itemPrefab = (GameObject)EditorGUILayout.ObjectField(dbAsset.itemPrefab, typeof(GameObject), false);
 
-                GUILayout.Space(10);
+                /*GUILayout.Space(10);
                 GUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("Specific Spawn Points: ", EditorStyles.boldLabel);
                 dbAsset.specificSpawnPoints = EditorGUILayout.Toggle(dbAsset.specificSpawnPoints);
                 GUILayout.EndHorizontal();
 
-                /*if (dbAsset.specificSpawnPoints)
+                if (dbAsset.specificSpawnPoints)
                 {
                     GUILayout.Space(10);
                     GUILayout.BeginHorizontal();

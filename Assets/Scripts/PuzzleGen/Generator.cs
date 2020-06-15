@@ -17,20 +17,10 @@ public class Generator : MonoBehaviour {
         else { 
             _instance = this;
             Debug.Log("Generator instance created. ");
-            /*foreach (GameItem item in _startingInventory)
-            {
-                /*GameObject itemGO = (GameObject)Instantiate(item.itemPrefab,
-                nextSpawnPoint, Quaternion.identity);            //gameArea.GetNextSpawnPt() replaced by nextSpawnPoint
-                Debug.Log(itemGO.transform.position);
-                itemGO.transform.SetParent(gameArea.gameObject.transform);
-                itemGO.GetComponent<GameItem>().Setup(item.name, item);
-                Player.Instance.AddItemToInventory(item);
-            }*/
         }
     }
 
     static public void Spawn(Item item, Rule rule, Area area) {
-        //Debug.Log("Spawning: item - " + item.name + " in " + area.name + "x" + GameObject.Find(area.name));
         GameArea gameArea = GameObject.Find(area.name).GetComponent<GameArea>();
         bool found = false;
         for(int i = 0; i < gameArea.itemsInArea.Length; i++) {
@@ -41,7 +31,7 @@ public class Generator : MonoBehaviour {
             }
         }
         if (!found) {
-            // 04/03 specific spawn points for NPCs + 11/03 specific spawnpoints for an item 
+            // Addition: specific spawn points for NPCs + specific spawnpoints for an ground-level item 
             Vector3 nextSpawnPoint = new Vector3(0,0,0);
             if (item.GetPropertyWithName("floor") != null && item.GetPropertyWithName("floor").value == "True")
                 nextSpawnPoint = gameArea.GetNextSpawnPt(false, true);
@@ -53,7 +43,7 @@ public class Generator : MonoBehaviour {
                 nextSpawnPoint = gameArea.GetNextSpawnPt();
             Debug.Log("Spawn pt: " + nextSpawnPoint.ToString() + " ( " + item.name + " ) ");
             GameObject itemGO = (GameObject)Instantiate(item.itemPrefab,
-                nextSpawnPoint, Quaternion.identity);            //gameArea.GetNextSpawnPt() replaced by nextSpawnPoint
+                nextSpawnPoint, Quaternion.identity);            
             Debug.Log(itemGO.transform.position);
             itemGO.transform.SetParent(gameArea.gameObject.transform);
             itemGO.GetComponent<GameItem>().Setup(item.name, item);
@@ -78,6 +68,8 @@ public class Generator : MonoBehaviour {
         if (area.goals.Count > 0) {
             Term goal = area.goals[Random.Range(0, area.goals.Count)]; 
             Debug.Log("Area goal: " + goal.name);
+            //PuzzleTree.Instance.WriteAreaTree(area, false);
+            //PuzzleTree.Instance.WriteTree(goal.ToString(), 0, false);
             bool successfulInputs = GenerateInputs(goal, root, 0, area, accessibleAreas, itemsInTheScene);
             if (successfulInputs)
             {
@@ -100,7 +92,6 @@ public class Generator : MonoBehaviour {
 	// Recursively generate inputs
 	static bool GenerateInputs(Term startTerm, Rule parentRule, int depth, Area currentArea, List<Area> accessibleAreas, List<Item> itemsInTheScene) {
         List<Item> matchingItems = PuzzleManager.Instance.FindDBItemsFor(startTerm, accessibleAreas, itemsInTheScene);
-
         //Check if term of this type exists in DB before continuing
         if (matchingItems.Count == 0)
         {
@@ -126,9 +117,17 @@ public class Generator : MonoBehaviour {
         {       //Previously: foreach (Rule rule in RuleDatabase.GetAllObjects()) {
             //Debug.Log("Main Output: " + rule.outputs[0].name + " vs Start Term: " + startTerm.name + " Main Output? " + rule.MainOutputIs(startTerm));
             if (rule.MainOutputIs(startTerm)) {
-                if(debugMode && startTerm.dbItem != null) Debug.Log("Found matching rule " + rule.outputs[0].name +
+                if (debugMode && startTerm.dbItem != null)
+                {
+                    Debug.Log("Found matching rule " + rule.outputs[0].name +
                     " with output dbItem: " + startTerm.dbItem.name + " at depth: " + depth);
-                else if (debugMode) Debug.Log("Found matching rule with output: " + startTerm.name);
+                    //PuzzleTree.Instance.WriteTree(rule.ToString(), depth, false);
+                }
+                else if (debugMode)
+                {
+                    Debug.Log("Found matching rule with output: " + startTerm.name);
+                    //PuzzleTree.Instance.WriteTree(rule.ToString(), depth, false);
+                }
                 possibleRules.Add(rule);
             } 
         }
@@ -139,6 +138,7 @@ public class Generator : MonoBehaviour {
         // Pick a rule
         if (possibleRules.Count > 0 && depth < currentArea.maxDepth) {
             Rule chosenRule = possibleRules[Random.Range(0, possibleRules.Count)];
+            //PuzzleTree.Instance.WriteTree(chosenRule.ToString(), depth, false);
             chosenRule.outputs[0].dbItem = startTerm.dbItem;
             chosenRule.parent = parentRule;
             parentRule.AddChildRule(chosenRule);
