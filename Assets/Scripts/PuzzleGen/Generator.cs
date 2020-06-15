@@ -140,7 +140,17 @@ public class Generator : MonoBehaviour {
 
         // Pick a rule
         if (possibleRules.Count > 0 && depth < currentArea.maxDepth) {
+            string playerPrefKey = currentArea.name + depth;
+            string testPlayerPref = "Player pref original " + PlayerPrefs.GetString(playerPrefKey);
             Rule chosenRule = possibleRules[Random.Range(0, possibleRules.Count)];
+            if (possibleRules.Count > 1 && PlayerPrefs.HasKey(playerPrefKey))
+            {
+                while (chosenRule.ruleNumber == PlayerPrefs.GetString(playerPrefKey))
+                    chosenRule = possibleRules[Random.Range(0, possibleRules.Count)];
+                Debug.Log("Choosing a different rule. ");
+            }
+            PlayerPrefs.SetString(playerPrefKey, chosenRule.ruleNumber); //Key: area name
+            Debug.Log(testPlayerPref + " turns into " + PlayerPrefs.GetString(playerPrefKey));
             _puzzleString += chosenRule.ruleNumber + "_";
             chosenRule.outputs[0].dbItem = startTerm.dbItem;
             chosenRule.parent = parentRule;

@@ -91,7 +91,7 @@ public class PuzzleTree : MonoBehaviour
             GameItem[] existingGameItems = GameObject.Find(area.name).GetComponentsInChildren<GameItem>();
             for (int i = 0; i < existingGameItems.Length; i++)
             {
-                Debug.Log("Existing Game Items: " + existingGameItems[i].name);
+                //Debug.Log("Existing Game Items: " + existingGameItems[i].name);
                 itemsInTheScene.Add(existingGameItems[i].dbItem);
             }
             foreach (GameItem item in Player.Instance.GetInventory())
