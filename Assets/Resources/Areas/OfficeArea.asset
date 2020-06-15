@@ -21,8 +21,10 @@ MonoBehaviour:
       value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
-    description: Well that was an unproductive day. Should probably at least make
-      it look like I got something done...
+    description: I should leave behind some sign of productivity before leaving the
+      office...
+    hint: 'Well that was an unproductive day. Should probably at least make it look
+      like I got something done...with some inspiration the flipchart look less empty. '
   connectedTo:
   - {fileID: 11400000, guid: e2e87e817f6bfd446843afee9ab72ea4, type: 2}
   inGameArea: {fileID: 0}

@@ -21,6 +21,7 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   - name: Speech
     properties:
     - type: 0
@@ -29,11 +30,13 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   - name: Idea
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   inputs:
   - name: Door
     properties:
@@ -43,6 +46,7 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   - name: Envelope
     properties:
     - type: 2
@@ -51,6 +55,7 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   action: Open
   hint: 
   parent: {fileID: 0}
@@ -58,3 +63,4 @@ MonoBehaviour:
   automatic: 0
   selectedInput: 1
   inventory: 0
+  ruleNumber: 5

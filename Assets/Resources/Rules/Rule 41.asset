@@ -21,12 +21,14 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   inputs:
   - name: Jukebox
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   - name: Player
     properties:
     - type: 2
@@ -35,6 +37,7 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   action: Break Open
   hint: 
   parent: {fileID: 0}
@@ -42,3 +45,4 @@ MonoBehaviour:
   automatic: 0
   selectedInput: 1
   inventory: 0
+  ruleNumber: 41

@@ -21,7 +21,9 @@ MonoBehaviour:
       value: False
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
-    description: I really should get out of this building...but how? Lost my ID...again.
+    description: 'Time to get out of this building. '
+    hint: I really should get out of this building...but how? Lost my ID...again.
+      The secretaries here always have a spare. Maybe they could help me out?
   connectedTo:
   - {fileID: 11400000, guid: dc312a7573fa4c0439427ba9db62e983, type: 2}
   inGameArea: {fileID: 0}

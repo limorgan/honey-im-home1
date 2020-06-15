@@ -62,38 +62,63 @@ public class Player : MonoBehaviour {
         _properties = _dbItem.properties;
         CloseAllMenus();
         inventoryNotification.SetActive(false);
+        ShowObjective(true);
     }
 
     void Update() {
         if (!_gameOver) {            
             RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));         //Ray casts  were modified to suit 2D features
-            if (Input.GetMouseButtonDown(0) && !_actionMenuOpen && !_inventoryOpen && !_speechOpen && !_pauseMenuOpen) {
+            if (Input.GetMouseButtonDown(0) && !_actionMenuOpen && !_inventoryOpen && !_speechOpen && !_pauseMenuOpen)
+            {
                 Vector2 v = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-                if (hit) {
-                    if (hit.collider.GetComponentInParent<GameItem>() != null) {
+                if (hit)
+                {
+                    if (hit.collider.GetComponentInParent<GameItem>() != null)
+                    {
                         hit.collider.gameObject.GetComponentInParent<GameItem>().OnGameItemClicked(actionMenuContent, buttonPrefab, actionHeader);
                         OpenActionMenu();
-                        }
+                    }
                 }
-            } else if (_actionMenuOpen && Input.GetKeyDown(KeyCode.Q)) {
+            }
+            else if (Input.GetMouseButtonDown(1) && !_actionMenuOpen && !_inventoryOpen && !_speechOpen && !_pauseMenuOpen)
+            {       //right click to inspect quickly
+                Vector2 v = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+                if (hit)
+                {
+                    if (hit.collider.GetComponentInParent<GameItem>() != null)
+                    {
+                        hit.collider.gameObject.GetComponentInParent<GameItem>().Inspect();
+                    }
+                }
+            }
+            else if (_actionMenuOpen && Input.GetKeyDown(KeyCode.Q))
+            {
                 CloseActionMenu();
-            } else if (_speechOpen && Input.GetKeyDown(KeyCode.Q)) {
+            }
+            else if (_speechOpen && Input.GetKeyDown(KeyCode.Q))
+            {
                 CloseSpeechBubble();
-            } else if (Input.GetKeyDown(KeyCode.Tab) && !_actionMenuOpen) {
+            }
+            else if (Input.GetKeyDown(KeyCode.Tab) && !_actionMenuOpen)
+            {
                 if (_inventoryOpen)
                     CloseInventory();
                 else
                     OpenInventory();
-            } else if (hit && !_pauseMenuOpen){
+            }
+            else if (hit && !_pauseMenuOpen)
+            {
                 if (hit.collider.GetComponentInParent<GameItem>() != null)
-                    if(!_actionMenuOpen && !_inventoryOpen)
+                    if (!_actionMenuOpen && !_inventoryOpen)
                         hit.collider.gameObject.GetComponentInParent<GameItem>().OnGameItemMouseOver(UITextRef);
-            } else if (Input.GetKeyDown(KeyCode.Return) && _speechOpen)
+            }
+            else if (Input.GetKeyDown(KeyCode.Return) && _speechOpen)
                 CloseSpeechBubble();
-            else {
+            else
+            {
                 UITextRef.text = "";
                 if (_selectedItem != null)
-                    selectedItemField.SetActive(true);                    
+                    selectedItemField.SetActive(true);
             }
 
             if (_inventory.Count == 0)
@@ -323,13 +348,22 @@ public class Player : MonoBehaviour {
     {
         hintSystem.SetActive(true);
         StopAllCoroutines();
-        StartCoroutine(TypeSentenceSlowly(PuzzleManager.Instance.getHint(), hintSystem.GetComponentInChildren<Text>()));
+        StartCoroutine(TypeSentenceSlowly(PuzzleManager.Instance.GetHint(), hintSystem.GetComponentInChildren<Text>()));
     }
 
     public void CloseHint()
     {
-        hintSystem.SetActive(false);
-        hintSystem.GetComponentInChildren<Text>().text = "";
+        if(_isTyping)
+        {
+            StopAllCoroutines();
+            hintSystem.GetComponentInChildren<Text>().text = PuzzleManager.Instance.GetHint();
+            _isTyping = false;
+        }
+        else
+        {
+            hintSystem.SetActive(false);
+            hintSystem.GetComponentInChildren<Text>().text = "";
+        }
     }
 
     public void UpdateAreaName(string nextArea)
@@ -343,7 +377,31 @@ public class Player : MonoBehaviour {
         Appear(message, messageTime);*/
         //other option: play finished sound: 
         completeNoise.Play();
+        if (!_gameOver)
+            ShowObjective(false);
     }   
+
+    public void ShowObjective(bool first)
+    {
+        string objective = "";
+        if (!first)
+        {
+            objective += "That's done. ";
+            List<Area> connectedAreas = PuzzleManager.Instance.GetCurrentArea().connectedTo;
+            if (connectedAreas.Count > 0)
+            {
+                for (int i = 0; i < connectedAreas.Count; i++)
+                {
+                    if (i > 0)
+                        objective += " And...";
+                    objective += connectedAreas[i].GetObjective();
+                }
+            }
+        }
+        else
+            objective += PuzzleManager.Instance.GetCurrentArea().GetObjective();
+        ShowSpeechBubble(objective, "Objective");
+    }
 
     IEnumerator TypeSentenceSlowly(string sentence, Text goal)
     {//Brackeys, How to make a Dialogue System in Unity https://www.youtube.com/watch?v=_nRzoTzeyxU

@@ -18,11 +18,13 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   - name: Wallet
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   - name: Speech
     properties:
     - type: 0
@@ -31,12 +33,14 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   inputs:
   - name: Wallet
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   action: Grab Change
   hint: 
   parent: {fileID: 0}
@@ -44,3 +48,4 @@ MonoBehaviour:
   automatic: 0
   selectedInput: 0
   inventory: 1
+  ruleNumber: 6

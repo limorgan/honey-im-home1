@@ -21,6 +21,7 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   - name: Speech
     properties:
     - type: 0
@@ -30,17 +31,20 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   - name: ChalkOutline
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   inputs:
   - name: ChalkOutline
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   action: Investigate
   hint: 
   parent: {fileID: 0}
@@ -48,3 +52,4 @@ MonoBehaviour:
   automatic: 0
   selectedInput: 0
   inventory: 0
+  ruleNumber: 65

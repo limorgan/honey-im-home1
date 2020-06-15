@@ -21,6 +21,7 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   inputs:
   - name: Gate
     properties:
@@ -30,11 +31,13 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   - name: Crowbar
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   action: Break lock
   hint: 
   parent: {fileID: 0}
@@ -42,3 +45,4 @@ MonoBehaviour:
   automatic: 0
   selectedInput: 0
   inventory: 0
+  ruleNumber: 26

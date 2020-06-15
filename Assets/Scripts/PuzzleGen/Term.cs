@@ -8,6 +8,7 @@ public class Term {
     public Item dbItem;
     public GameItem gameItem;
     public string description = "";
+    public string hint = "";
 
     public Term() {
         properties = new List<Property>();

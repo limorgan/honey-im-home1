@@ -33,12 +33,6 @@ public class PuzzleManager : MonoBehaviour {
 
     private Dictionary<Area, string> puzzlesGenerated = new Dictionary<Area, string>();
 
-    /*[SerializeField]
-    public List<Item> _itemAssets = new List<Item>();
-    [SerializeField]
-    public List<Rule> _ruleAssets = new List<Rule>();
-    [SerializeField]
-    public List<Area> _areaAssets = new List<Area>();*/
     public Item[] _itemAssets;
     public Rule[] _ruleAssets;
     public Area[] _areaAssets;
@@ -156,7 +150,7 @@ public class PuzzleManager : MonoBehaviour {
             {
                 Debug.Log("Finished this area!");
                 Player.Instance.ShowFinishMessage(_currentArea.name);
-                if (area.isFinal())
+                if (area.IsFinal())
                     TriggerEnd();
                 else
                 {
@@ -380,9 +374,14 @@ public class PuzzleManager : MonoBehaviour {
         return false;
     }
 
-    public string getHint()
+    public string GetHint()
     {
-        return _currentArea.getHint();
+        return _currentArea.GetHint();
+    }
+
+    public string GetObjective()
+    {
+        return _currentArea.GetObjective();
     }
 
     public string GetCurrentAreaName()

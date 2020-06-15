@@ -21,8 +21,9 @@ MonoBehaviour:
       value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
-    description: Must have a look around the street and the pub to find a way home
-      - Taxi? Drive? A stroll through the park?
+    description: 'Time to get home. '
+    hint: Must have a look around the street and the pub to find a way home - I might
+      be able to call a taxi? Or drive? Or a nice stroll through the park?
   connectedTo: []
   inGameArea: {fileID: 0}
   maxDepth: 25

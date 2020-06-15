@@ -21,6 +21,7 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   - name: Speech
     properties:
     - type: 0
@@ -29,6 +30,7 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   - name: Flipchart
     properties:
     - type: 2
@@ -37,17 +39,20 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   inputs:
   - name: Flipchart
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   - name: Idea
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   action: Fake Productivity
   hint: 
   parent: {fileID: 0}
@@ -55,3 +60,4 @@ MonoBehaviour:
   automatic: 0
   selectedInput: 0
   inventory: 0
+  ruleNumber: 73

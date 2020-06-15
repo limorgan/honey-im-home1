@@ -18,11 +18,13 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   - name: Payphone
     properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   - name: Speech
     properties:
     - type: 0
@@ -31,6 +33,7 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   inputs:
   - name: Payphone
     properties:
@@ -40,6 +43,7 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
+    hint: 
   action: Call Taxi
   hint: 
   parent: {fileID: 0}
@@ -47,3 +51,4 @@ MonoBehaviour:
   automatic: 0
   selectedInput: 0
   inventory: 1
+  ruleNumber: 17

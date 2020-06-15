@@ -36,27 +36,32 @@ public class Area : ScriptableObject {
         connectedTo.RemoveAt(index);
     }
 
-    public void setCurrentGoal(Term goal)
+    public void SetCurrentGoal(Term goal)
     {
         currentGoal = goal;
     }
 
-    public Term getCurrentGoal()
+    public Term GetCurrentGoal()
     {
         return currentGoal;
     }
 
-    public string getHint()
+    public string GetHint()
+    {
+        return currentGoal.hint;
+    }
+
+    public string GetObjective()
     {
         return currentGoal.description;
     }
 
-    public void setFinal(bool final)        // 06/03 setting the area to be the last area
+    public void SetFinal(bool final)        // 06/03 setting the area to be the last area
     {
         isFinalScene = final;               
     }
 
-    public bool isFinal()                   // returns whether or not the area is the last one
+    public bool IsFinal()                   // returns whether or not the area is the last one
     {
         return isFinalScene;
     }

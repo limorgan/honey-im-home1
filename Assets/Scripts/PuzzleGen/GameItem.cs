@@ -443,6 +443,14 @@ public class GameItem : MonoBehaviour {
         return true;
     }
 
+    public void Inspect()
+    {
+        if (dbItem.longDescription == "")
+            Player.Instance.ShowSpeechBubble("I know nothing about this...", dbItem.description);
+        else
+            Player.Instance.ShowSpeechBubble(dbItem.longDescription, dbItem.description);
+    }
+
     public string ToString()
     {
         return name;

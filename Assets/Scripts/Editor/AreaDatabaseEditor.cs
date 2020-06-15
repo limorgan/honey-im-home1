@@ -23,6 +23,8 @@ public class AreaDatabaseEditor : EditorWindow {
         GUILayout.Space(10);
         GUILayout.BeginHorizontal();
         GUILayout.Label("Areas Editor", EditorStyles.boldLabel);
+        GUIStyle wordWrapStyle = new GUIStyle(EditorStyles.textArea);
+        wordWrapStyle.wordWrap = true;
 
         if (GUILayout.Button("Add Area")) {
             AreaDatabase.CreateAsset();
@@ -73,7 +75,15 @@ public class AreaDatabaseEditor : EditorWindow {
                     GUILayout.EndHorizontal();
                     EditorGUI.indentLevel++;
                     goal.name = EditorGUILayout.TextField("Goal Name", goal.name, GUILayout.MaxWidth(300));
-                    goal.description = EditorGUILayout.TextField("Hint text", goal.description);
+                    
+                    EditorGUILayout.LabelField("Objective:", EditorStyles.label);
+                    EditorStyles.textArea.wordWrap = true;
+                    goal.description = EditorGUILayout.TextArea(goal.description, wordWrapStyle);
+
+                    EditorGUILayout.LabelField("Hint:", EditorStyles.label);
+                    goal.hint = EditorGUILayout.TextArea(goal.hint, wordWrapStyle);
+
+
                     EditorGUILayout.LabelField("Properties:", EditorStyles.boldLabel);
                     for (int propIndx = 0; propIndx < goal.properties.Count; propIndx++) {
                         Property property = goal.properties[propIndx];
