@@ -18,8 +18,7 @@ public class RuleDatabaseEditor : EditorWindow {
     }
 
     void OnEnable() {
-        RuleDatabase.LoadDatabaseForce();
-        Debug.Log("Rule Editor - post force load: #Rules " + RuleDatabase.GetNumOfAssets());
+        RuleDatabase.LoadDatabase();
         for (int i = 0; i < RuleDatabase.GetNumOfAssets(); i++)
             foldedOut.Add(false);
     }
@@ -50,7 +49,9 @@ public class RuleDatabaseEditor : EditorWindow {
                 additionalProperties += " -I ";     //First output item is spawned directly in the inventory
             /*if (rule.automatic)
                 additionalProperties += " -A ";  */   //Such rules are excuted automatically
-            string ruleNumber = "#" + GetFileNameShort(rule) + ": ";
+            if (rule.ruleNumber != GetFileNameShort(rule))
+                rule.ruleNumber = GetFileNameShort(rule);
+            string ruleNumber = "#" + rule.ruleNumber + ": ";
             foldedOut[ruleIndx] = EditorGUILayout.Foldout(foldedOut[ruleIndx], ruleNumber + rule.GetRuleAsString() + additionalProperties);
 
             if (foldedOut[ruleIndx]) {

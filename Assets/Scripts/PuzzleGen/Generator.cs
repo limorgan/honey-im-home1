@@ -9,7 +9,9 @@ public class Generator : MonoBehaviour {
     public static Generator Instance { get { return _instance; } }
 
     [SerializeField]
-    private List<GameItem> _startingInventory = new List<GameItem>(); 
+    private List<GameItem> _startingInventory = new List<GameItem>();
+
+    private static string _puzzleString = "";
 
     void Awake() {
         if (_instance != null ) //& _instance != this)
@@ -77,6 +79,7 @@ public class Generator : MonoBehaviour {
                 if (goal.GetPropertyWithName("gameover") != null && goal.GetPropertyWithName("gameover").value == "True")   //setting area to be final
                     area.setFinal(true);
                 Debug.Log("SUCCESS");
+                PuzzleManager.Instance.AddPuzzle(area, _puzzleString);
             }
             else {
                 Debug.Log("FAILURE");
@@ -138,7 +141,7 @@ public class Generator : MonoBehaviour {
         // Pick a rule
         if (possibleRules.Count > 0 && depth < currentArea.maxDepth) {
             Rule chosenRule = possibleRules[Random.Range(0, possibleRules.Count)];
-            //PuzzleTree.Instance.WriteTree(chosenRule.ToString(), depth, false);
+            _puzzleString += chosenRule.ruleNumber + "_";
             chosenRule.outputs[0].dbItem = startTerm.dbItem;
             chosenRule.parent = parentRule;
             parentRule.AddChildRule(chosenRule);

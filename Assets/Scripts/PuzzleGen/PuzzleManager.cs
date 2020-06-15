@@ -31,6 +31,8 @@ public class PuzzleManager : MonoBehaviour {
     [SerializeField]
     public GameObject puzzleTree;
 
+    private Dictionary<Area, string> puzzlesGenerated = new Dictionary<Area, string>();
+
     /*[SerializeField]
     public List<Item> _itemAssets = new List<Item>();
     [SerializeField]
@@ -200,7 +202,24 @@ public class PuzzleManager : MonoBehaviour {
         return true;
     }
 
-    
+    //save puzzles generated for an area in string format
+    public void AddPuzzle(Area area, string puzzle)
+    {
+        puzzlesGenerated.Add(area, puzzle);
+        AddPuzzleToFile(area, puzzle);
+    }
+
+    //write puzzle generated to file
+    public void AddPuzzleToFile(Area area, string puzzle)
+    {
+        string path = "Assets/TestingResults/puzzlelog.txt";
+        using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(path, true))
+        {
+            file.WriteLine(System.DateTime.Now.ToString() + ", " + area.name.ToUpper() + ", " + puzzle);
+            //string subtree = 
+        }
+    }
 
     // == PREVIOUSLY ITEM DATABASE METHODS ==
 
