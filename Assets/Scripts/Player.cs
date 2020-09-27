@@ -88,6 +88,7 @@ public class Player : MonoBehaviour {
                     if (hit.collider.GetComponentInParent<GameItem>() != null)
                     {
                         hit.collider.gameObject.GetComponentInParent<GameItem>().Inspect();
+                        Statistics.Instance.UpdateInspects(PuzzleManager.Instance.GetCurrentArea());    // registering the number of "inspect" actions
                     }
                 }
             }
