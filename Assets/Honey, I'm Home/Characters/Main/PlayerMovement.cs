@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private bool zoomOut = false;
     private bool thisZoomOut = false;
     private string nextAreaName;
+    private Area nextArea;
     public CinemachineVirtualCamera cam1;
     public CinemachineVirtualCamera cam2;
     private string areaMessage;
@@ -46,9 +47,6 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        /*if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)
-            || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
-            */
         _moving = (movement.x != 0 || movement.y != 0);
 
         _run = (Input.GetKey(KeyCode.LeftShift) && _moving);
@@ -110,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
                 nextSpawnPoint = spawnp.transform.position;
                 thisZoomOut = collider.GetComponentInChildren<ChangeArea>().zoomOut;
                 this.nextAreaName = collider.GetComponentInChildren<ChangeArea>().nextAreaName;
+                this.nextArea = collider.GetComponentInChildren<ChangeArea>().nextArea;
                 //this.currentMusic = collider.GetComponentInChildren<ChangeArea>().currentMusic;
                 //this.nextMusic = collider.GetComponentInChildren<ChangeArea>().nextMusic;
             }
@@ -140,6 +139,10 @@ public class PlayerMovement : MonoBehaviour
         }
         rb.transform.position = nextSpawnPoint;
         Player.Instance.areaText.text = nextAreaName;
+
+        Statistics.Instance.UpdateTimePlayer();             //save time spent in area
+        Statistics.Instance.SetCurrentPlayerArea(nextArea); //updates player area, leaves puzzle area unchanged
+
         Player.Instance.AddToTranscript("-- Area: " + nextAreaName + " --");
         Player.Instance.CloseAllMenus();
         //foreach (MusicControl m in currentMusic)

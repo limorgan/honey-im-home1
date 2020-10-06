@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject interactionMenu;
     public GameObject transcriptMenu;
     public GameObject objectiveMenu;
+    public GameObject settingsMenu;
     public Text transcriptText;
     public Text objectiveText;
 
@@ -43,6 +44,7 @@ public class PauseMenu : MonoBehaviour
         interactionMenu.SetActive(true);
         Player.Instance.hintSystem.SetActive(true);
         Player.Instance.CloseHint();
+        Statistics.Instance.ResumeTimer();
         Player.Instance.PauseMenuStatus(false);
     }
 
@@ -53,6 +55,7 @@ public class PauseMenu : MonoBehaviour
         Player.Instance.hintSystem.SetActive(false);
         Player.Instance.PauseMenuStatus(true);
         Time.timeScale = 0f;
+        Statistics.Instance.PauseTimer();
         GameIsPaused = true;
     }
 

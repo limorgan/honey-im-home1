@@ -10,21 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 493f1bd9197f62d46ad66653acd49ceb, type: 3}
-  m_Name: StreetFinal
+  m_Name: Office
   m_EditorClassIdentifier: 
-  name: StreetFinal
+  name: Office
   goals:
-  - name: Home
+  - name: Flipchart
     properties:
     - type: 2
-      name: gameover
+      name: full
       value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
-    description: 'Time to get home. '
-    hint: Must have a look around the street and the pub to find a way home - I might
-      be able to call a taxi? Or drive? Or a nice stroll through the park?
-  connectedTo: []
+    description: I should leave behind some sign of productivity before leaving the
+      office...
+    hint: 'With some inspiration (or motivation) the flipchart might look less empty.  '
+  connectedTo:
+  - {fileID: 11400000, guid: e2e87e817f6bfd446843afee9ab72ea4, type: 2}
   inGameArea: {fileID: 0}
-  maxDepth: 25
+  maxDepth: 10
   areaObject: {fileID: 0}

@@ -10,23 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 493f1bd9197f62d46ad66653acd49ceb, type: 3}
-  m_Name: OfficeArea
+  m_Name: Street
   m_EditorClassIdentifier: 
-  name: OfficeArea
+  name: Street
   goals:
-  - name: Flipchart
+  - name: Home
     properties:
     - type: 2
-      name: full
+      name: gameover
       value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
-    description: I should leave behind some sign of productivity before leaving the
-      office...
-    hint: 'Well that was an unproductive day. Should probably at least make it look
-      like I got something done...with some inspiration the flipchart look less empty. '
-  connectedTo:
-  - {fileID: 11400000, guid: e2e87e817f6bfd446843afee9ab72ea4, type: 2}
+    description: 'Time to get home now. '
+    hint: I might be able to call a taxi? Or drive - break in or ask somebody for
+      a key? Or a nice stroll through the park?
+  connectedTo: []
   inGameArea: {fileID: 0}
-  maxDepth: 10
+  maxDepth: 25
   areaObject: {fileID: 0}

@@ -69,6 +69,7 @@ public class PuzzleManager : MonoBehaviour {
 
     void Start() {
         GenerateForArea(startArea);
+        Statistics.Instance.SetCurrentPlayerArea(startArea);        //provided player is spawned in area; TODO
     }
 
     public void GenerateForArea(Area area) {
@@ -79,7 +80,10 @@ public class PuzzleManager : MonoBehaviour {
         _leaves.Add(area, new List<Rule>());
         _puzzleRules.Add(area, new List<Rule>());
         FindLeaves(root, area);
-        _currentArea = area;    
+        _currentArea = area;
+
+        Statistics.Instance.AddArea(_currentArea);
+        Statistics.Instance.SetCurrentPuzzleArea(_currentArea);
 
         foreach (ConditionalObject CO in _conditionalObjects)
         {

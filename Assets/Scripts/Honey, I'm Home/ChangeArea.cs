@@ -8,6 +8,7 @@ public class ChangeArea : MonoBehaviour
     public bool zoomOut = false;
     public bool locked = true;
     public string nextAreaName = "";
+    public Area nextArea;
     //public List<MusicControl> currentMusic = new List<MusicControl>();
     //public List<MusicControl> nextMusic = new List<MusicControl>();
     

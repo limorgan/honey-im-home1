@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 493f1bd9197f62d46ad66653acd49ceb, type: 3}
-  m_Name: Landing
+  m_Name: Lobby
   m_EditorClassIdentifier: 
-  name: Landing
+  name: Lobby
   goals:
   - name: Elevator
     properties:
@@ -22,8 +22,7 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 'Time to get out of this building. '
-    hint: I really should get out of this building...but how? Lost my ID...again.
-      The secretaries here always have a spare. Maybe they could help me out?
+    hint: I lost my ID...again. But the secretaries here always have a spare.
   connectedTo:
   - {fileID: 11400000, guid: dc312a7573fa4c0439427ba9db62e983, type: 2}
   inGameArea: {fileID: 0}

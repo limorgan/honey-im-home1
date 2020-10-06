@@ -19,8 +19,8 @@ MonoBehaviour:
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: Time to get a little present to apologise for being late tonight.
-    hint: Uh, it's getting very late...might be a good idea to pick something nice
-      up on the way? To apologise for this mess...the pub could be a good start?
+    hint: 'Might be a good idea to pick something nice up on the way? The shops are
+      closed but there might be something in the pub. '
   - name: Postbox
     properties:
     - type: 2
