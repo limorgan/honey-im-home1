@@ -147,6 +147,7 @@ public class GameItem : MonoBehaviour {
         if (rule.action == "Inspect")
         {
             Player.Instance.ShowSpeechBubble(dbItem.longDescription, dbItem.description);
+            Statistics.Instance.UpdateInspects();
             return;
         }
         

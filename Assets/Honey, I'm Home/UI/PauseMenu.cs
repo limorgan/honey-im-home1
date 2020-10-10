@@ -15,8 +15,10 @@ public class PauseMenu : MonoBehaviour
     public GameObject transcriptMenu;
     public GameObject objectiveMenu;
     public GameObject settingsMenu;
+    public GameObject statisticsMenu;
     public Text transcriptText;
     public Text objectiveText;
+    public Text statisticsText;
 
     void Start()
     {
@@ -39,6 +41,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUi.SetActive(false);
         transcriptMenu.SetActive(false);
         objectiveMenu.SetActive(false);
+        statisticsMenu.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
         interactionMenu.SetActive(true);
@@ -125,5 +128,23 @@ public class PauseMenu : MonoBehaviour
     public void SetObjective()
     {
         objectiveText.text = PuzzleManager.Instance.GetCurrentArea().GetObjective();
+    }
+
+    public void OpenStatistics()
+    {
+        pauseMenuUi.SetActive(false);
+        statisticsMenu.SetActive(true);
+        SetStatistics();
+    }
+
+    public void CloseStatistics()
+    {
+        statisticsMenu.SetActive(false);
+        pauseMenuUi.SetActive(true);
+    }
+
+    public void SetStatistics()
+    {
+        statisticsText.text = Statistics.Instance.GetAllStatsAsString();
     }
 }
