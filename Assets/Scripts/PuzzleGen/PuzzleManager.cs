@@ -52,7 +52,7 @@ public class PuzzleManager : MonoBehaviour {
             Debug.Log("PuzzleManager instance created. ");
 
             _areaAssets = Resources.LoadAll<Area>("Areas");
-            Debug.Log("Areas loaded. ");
+            Debug.Log(_areaAssets.Length + " Areas loaded. ");
             _itemAssets = Resources.LoadAll<Item>("DBItems");
             Debug.Log("items loaded.");
             _ruleAssets = Resources.LoadAll<Rule>("Rules");

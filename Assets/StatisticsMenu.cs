@@ -69,11 +69,6 @@ public class StatisticsMenu : MonoBehaviour
 
     public void DisplayStatsPerArea(Area area, int index)
     {
-        /*Dictionary<string, int> stats = Statistics.Instance.GetAllStats(area);
-        GameObject statsBox = GameObject.Instantiate(statsBoxTemplate);
-        //GameObject statsHeader = GameObject.Instantiate(statsHeaderTemplate);
-        StatsBox.CreateComponent(statsBox, area, stats);
-        statsBox.transform.SetParent(statsMenu.transform);*/
         if(_areaBoxes.Count <= index)
         {
             Debug.Log("Insufficient area boxes");
