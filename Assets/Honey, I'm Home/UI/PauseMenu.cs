@@ -143,8 +143,19 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUi.SetActive(true);
     }
 
+    public void OpenSecondLevelStatistics()
+    {
+        statisticsMenu.SetActive(false);
+    }
+
+    public void CloseSecondLevelStatistics()
+    {
+        statisticsMenu.SetActive(true);
+    }
+
     public void SetStatistics()
     {
-        statisticsText.text = Statistics.Instance.GetAllStatsAsString();
+        //statisticsText.text = Statistics.Instance.GetAllStatsAsString();
+        statisticsText.text = Statistics.Instance.GetBasicStatsAsString();
     }
 }

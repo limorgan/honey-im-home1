@@ -70,6 +70,7 @@ public class PuzzleManager : MonoBehaviour {
     void Start() {
         GenerateForArea(startArea);
         Statistics.Instance.SetCurrentPlayerArea(startArea);        //provided player is spawned in area - in this case, they are
+        Statistics.Instance.SetNumberOfAreas(_areaAssets.Length);   //current assumption: all areas in resources folder area used in game
     }
 
     public void GenerateForArea(Area area) {
@@ -335,9 +336,7 @@ public class PuzzleManager : MonoBehaviour {
         //LoadDatabase();
         List<Area> objects = new List<Area>();
         foreach (Area asset in _areaAssets)
-        {
             objects.Add(ScriptableObject.Instantiate(asset) as Area);
-        }
         return objects;
     }
 

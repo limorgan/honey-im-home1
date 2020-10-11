@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class StatsBox : MonoBehaviour
 {
-    private GameItem _gameItem;
-    [SerializeField]
-    public Text textTemplate;
+    public Text statsText;
+    public Text header;
+    public Text status;
 
     // Start is called before the first frame update
     void Start()
@@ -21,15 +21,53 @@ public class StatsBox : MonoBehaviour
         
     }
 
-    public static StatsBox CreateComponent(GameObject where, Area area, Dictionary<string, int> stats)
+
+    public void DisplayBoxArea(Area area)
     {
-        StatsBox statsBox = where.AddComponent<StatsBox>();
-        string statsText = area.name;
-        foreach (KeyValuePair<string, int> stat in stats)
+        if (Statistics.Instance.IsDiscovered(area))
         {
-            statsText += "\n" + stat.Key + ":\t" + stat.Value;
+            if (Statistics.Instance.IsCurrentArea(area))
+                status.text = "* YOU ARE HERE *";
+            else
+                status.text = "";
+            header.text = area.name;
+            statsText.text = Statistics.Instance.GetAllStatsAsString(area, false, false);
         }
-        where.GetComponentInChildren<Text>().text = statsText;
-        return statsBox;
+        else
+            DisplayBoxUndiscovered(false);
+    }
+
+    public void DisplayBoxPuzzle(Area area, int number)
+    {
+        header.text = "Puzzle #" + number;
+        if (Statistics.Instance.IsCurrentPuzzle(area))
+            status.text = "* CURRENT *";
+        else if (Statistics.Instance.IsFinished(area))
+            status.text = "* COMPLETED *";
+        else
+        {
+            DisplayBoxUndiscovered(true);
+            return;
+        }
+        statsText.text = Statistics.Instance.GetAllStatsAsString(area, true, false);
+    }
+
+    public void DisplayBoxUndiscovered(bool puzzle)
+    {
+        if (puzzle)
+            status.text = "* NOT YET STARTED *";
+        else
+        {
+            status.text = "* NOT YET DISCOVERED *";
+            header.text = "???";
+        }
+        statsText.text = "";
+    }
+
+    public void DisplayBoxUndiscovered(bool puzzle, int index)
+    {
+        if (puzzle)
+            header.text = "Puzzle #" + index;
+        DisplayBoxUndiscovered(puzzle);
     }
 }

@@ -138,19 +138,22 @@ public class GameItem : MonoBehaviour {
 
     public void ExecuteRule(Rule rule) {
         //NOTE: These are rules which are automatically available if certain properties are fulfilled
-        if (rule.action == "PickUp") {
-            Player.Instance.AddItemToInventory(this);
-            Player.Instance.CloseActionMenu();
-            return;
-        }
-
+        
         if (rule.action == "Inspect")
         {
             Player.Instance.ShowSpeechBubble(dbItem.longDescription, dbItem.description);
             Statistics.Instance.UpdateInspects();
             return;
         }
-        
+
+        Statistics.Instance.UpdateActions();
+
+        if (rule.action == "PickUp") {
+            Player.Instance.AddItemToInventory(this);
+            Player.Instance.CloseActionMenu();
+            return;
+        }
+
         if (rule.action == "Drop")
         {
             Player.Instance.DeselectItemFromInventory(this);
@@ -213,7 +216,7 @@ public class GameItem : MonoBehaviour {
     {
         // Change:  This is normally part of the above ExecuteRule() function, but was separated to  
         //          be able to call if from within the puzzle manager script when executing "automatic"
-        //          rules -- isn't implemented fully though
+        //          rules -- has not yet been fully implemented
         // Check for items to destroy
         List<GameObject> objectsToDestroy = new List<GameObject>();
         for (int i = 0; i < rule.inputs.Count; i++)
