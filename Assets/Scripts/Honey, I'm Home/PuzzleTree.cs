@@ -21,8 +21,8 @@ public class PuzzleTree : MonoBehaviour
         }
         else
             _instance = this;
-        GetInfo();
-        FullPuzzleTree();
+        //GetInfo();
+        //FullPuzzleTree();
     }
 
     // Update is called once per frame

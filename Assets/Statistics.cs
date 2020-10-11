@@ -96,9 +96,9 @@ public class Statistics : MonoBehaviour
         if (!actionsPerArea.ContainsKey(area))
             actionsPerArea.Add(area, 0);
         actionsPerArea[area]++;
-        if (!actionsPerPuzzle.ContainsKey(area))
-            actionsPerPuzzle.Add(area, 0);
-        actionsPerPuzzle[area]++;
+        if (!actionsPerPuzzle.ContainsKey(_currentPuzzleArea))
+            actionsPerPuzzle.Add(_currentPuzzleArea, 0);
+        actionsPerPuzzle[_currentPuzzleArea]++;
         _totalActions++;
     }
 
@@ -112,9 +112,9 @@ public class Statistics : MonoBehaviour
         if (!inspectsPerArea.ContainsKey(area))
             inspectsPerArea.Add(area, 0);
         inspectsPerArea[area]++;
-        if (!inspectsPerPuzzle.ContainsKey(area))
+        if (!inspectsPerPuzzle.ContainsKey(_currentPuzzleArea))
             inspectsPerPuzzle.Add(area, 0);
-        inspectsPerPuzzle[area]++;
+        inspectsPerPuzzle[_currentPuzzleArea]++;
         _totalInspects++;
     }
 
@@ -326,13 +326,13 @@ public class Statistics : MonoBehaviour
                 if (_currentPuzzleArea == area)
                     stats += " * CURRENT *";
             }
-            stats += "\nActions: " + actionsPerPuzzle[area] + "\nInspections: " + inspectsPerPuzzle[area] + "\nTime: " + timePerPuzzle[area];            
+            stats += "\nActions: " + actionsPerPuzzle[area] + "\nInspections: " + inspectsPerPuzzle[area] + "\nTime: " + TimeToString(timePerPuzzle[area]);            
         }
         else
         {
             if (_currentPlayerArea == area  && full)
                 stats += " * YOU ARE HERE *";
-            stats += "\nActions:" + actionsPerArea[area] + "\nInspections:" + inspectsPerArea[area] + "\nTime: " + timePerArea[area];
+            stats += "\nActions:" + actionsPerArea[area] + "\nInspections:" + inspectsPerArea[area] + "\nTime: " + TimeToString(timePerArea[area]);
         }
         return stats;
     }

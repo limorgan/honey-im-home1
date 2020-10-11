@@ -29,7 +29,8 @@ public class PuzzleManager : MonoBehaviour {
     [SerializeField]
     public GameObject startingInventory;
     [SerializeField]
-    public GameObject puzzleTree;
+    //public GameObject puzzleTree;
+    public GameObject statistics;
 
     private Dictionary<Area, string> puzzlesGenerated = new Dictionary<Area, string>();
 
@@ -63,6 +64,7 @@ public class PuzzleManager : MonoBehaviour {
             startingInventory.SetActive(true);
             //puzzleTree.SetActive(true);
             generator.SetActive(true);
+            statistics.SetActive(true);
         }
     }
 
@@ -153,6 +155,7 @@ public class PuzzleManager : MonoBehaviour {
             else
             {
                 Debug.Log("Finished this area!");
+                Statistics.Instance.FinishPuzzle(area);
                 Player.Instance.ShowFinishMessage(_currentArea.name);
                 if (area.IsFinal())
                     TriggerEnd();
@@ -204,11 +207,11 @@ public class PuzzleManager : MonoBehaviour {
     public void AddPuzzle(Area area, string puzzle)
     {
         puzzlesGenerated.Add(area, puzzle);
-        AddPuzzleToFile(area, puzzle);
+        //AddPuzzleToFile(area, puzzle);
     }
 
     //write puzzle generated to file
-    public void AddPuzzleToFile(Area area, string puzzle)
+    /*public void AddPuzzleToFile(Area area, string puzzle)
     {
         string path = "Assets/TestingResults/puzzlelog.txt";
         using (System.IO.StreamWriter file =
@@ -217,7 +220,7 @@ public class PuzzleManager : MonoBehaviour {
             file.WriteLine(System.DateTime.Now.ToString() + ", " + area.name.ToUpper() + ", " + puzzle);
             //string subtree = 
         }
-    }
+    }*/
 
     // == PREVIOUSLY ITEM DATABASE METHODS ==
 
