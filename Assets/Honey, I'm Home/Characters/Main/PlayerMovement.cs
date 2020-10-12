@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     public CinemachineVirtualCamera cam1;
     public CinemachineVirtualCamera cam2;
     private string areaMessage;
+    private bool miniArea = false;
     
     // Start is called before the first frame update
     private void Start()
@@ -109,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
                 thisZoomOut = collider.GetComponentInChildren<ChangeArea>().zoomOut;
                 this.nextAreaName = collider.GetComponentInChildren<ChangeArea>().nextAreaName;
                 this.nextArea = collider.GetComponentInChildren<ChangeArea>().nextArea;
+                this.miniArea = collider.GetComponentInChildren<ChangeArea>().miniArea;
                 //this.currentMusic = collider.GetComponentInChildren<ChangeArea>().currentMusic;
                 //this.nextMusic = collider.GetComponentInChildren<ChangeArea>().nextMusic;
             }
@@ -141,7 +143,8 @@ public class PlayerMovement : MonoBehaviour
         Player.Instance.areaText.text = nextAreaName;
 
         Statistics.Instance.UpdateTimePlayer();             //save time spent in area
-        Statistics.Instance.SetCurrentPlayerArea(nextArea); //updates player area, leaves puzzle area unchanged
+        if(!miniArea)
+            Statistics.Instance.SetCurrentPlayerArea(nextArea); //updates player area, leaves puzzle area unchanged
 
         Player.Instance.AddToTranscript("-- Area: " + nextAreaName + " --");
         Player.Instance.CloseAllMenus();

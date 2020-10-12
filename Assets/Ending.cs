@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Ending : MonoBehaviour
 {
     public GameObject endScreen;
     public GameObject credits;
+    public GameObject statistics;
+    public Text statsText;
 
     public void Start()
     {
@@ -33,6 +36,18 @@ public class Ending : MonoBehaviour
     {
         endScreen.SetActive(false);
         credits.SetActive(true);
+    }
+
+    public void ShowStatistics()
+    {
+        endScreen.SetActive(false);
+        statistics.SetActive(true);
+        statsText.text = Statistics.Instance.GetBasicStatsAsString();
+    }
+
+    public void CloseStatistics()
+    {
+        statistics.SetActive(false);
     }
 
     public void ReturnToEndScreen()

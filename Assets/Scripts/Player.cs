@@ -378,8 +378,9 @@ public class Player : MonoBehaviour {
         Appear(message, messageTime);*/
         //other option: play finished sound: 
         completeNoise.Play();
-        if (!_gameOver)
-            ShowObjective(false);
+        Debug.Log("Player Ping!");
+        /*if (!_gameOver)
+            ShowObjective(false);*/
     }   
 
     public void ShowObjective(bool first)
@@ -389,13 +390,18 @@ public class Player : MonoBehaviour {
         {
             objective += "That's done. ";
             List<Area> connectedAreas = PuzzleManager.Instance.GetCurrentArea().connectedTo;
+            Debug.Log("Connected area issue. ");
             if (connectedAreas.Count > 0)
             {
+                Debug.Log("We have a connection. ");
                 for (int i = 0; i < connectedAreas.Count; i++)
                 {
                     if (i > 0)
                         objective += " And...";
+                    Debug.Log("Is it the GetObjective issue?");
+                    Debug.Log("Connected area: " + connectedAreas[i]);
                     objective += connectedAreas[i].GetObjective();
+                    Debug.Log("Nope.");
                 }
             }
         }

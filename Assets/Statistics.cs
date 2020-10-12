@@ -28,6 +28,7 @@ public class Statistics : MonoBehaviour
     private float _timeSinceClick;
     private Vector3 _mousePosition;
     public PauseMenu pauseMenu;
+    private bool isEndScreen = false;
 
     public Dictionary<string, Dictionary<Area, int>> fullStats = new Dictionary<string, Dictionary<Area, int>>();
 
@@ -51,6 +52,7 @@ public class Statistics : MonoBehaviour
         }
         else
         {
+            DontDestroyOnLoad(gameObject);
             _instance = this;
             Debug.Log("Statistics instance created. ");
         }
@@ -61,7 +63,7 @@ public class Statistics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_timerOn)
+        if (_timerOn && !isEndScreen)
         {
             _timerTotal += Time.deltaTime;
             _timerPlayer += Time.deltaTime;
@@ -168,10 +170,13 @@ public class Statistics : MonoBehaviour
         _timeSinceClick = 0;
     }
 
-    public void TriggerPause()          //used to trigger pause menu after inactivity; TODO
+    public void TriggerPause()          //used to trigger pause menu after inactivity
     {
-        PauseTimer();
-        pauseMenu.Pause();
+        if (!isEndScreen)
+        {
+            PauseTimer();
+            pauseMenu.Pause();
+        }
     }
 
     public void ResetPuzzleTimer()      //to be used when starting a new puzzle
@@ -197,6 +202,11 @@ public class Statistics : MonoBehaviour
 
     
     // == AREA STATISTICS ==
+
+    public void SetEndScreen()
+    {
+        isEndScreen = true;
+    }
 
     public void AddArea(Area area)      //when a game area has been entered for the first time
     {
@@ -224,6 +234,8 @@ public class Statistics : MonoBehaviour
     {
         if (!_puzzlesFinished.Contains(area))
             _puzzlesFinished.Add(area);
+        UpdateTime(area, (int) _timerPuzzle, false);
+        ResetPuzzleTimer();
     }
 
     public void SetNumberOfAreas(int areas) //setting the total number of available ares/puzzles, called in PuzzleManager on loading areas

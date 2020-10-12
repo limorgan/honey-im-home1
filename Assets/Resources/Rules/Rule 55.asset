@@ -22,6 +22,12 @@ MonoBehaviour:
     gameItem: {fileID: 0}
     description: 
     hint: 
+  - name: output
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+    hint: 
   inputs:
   - name: Postbox
     properties: []

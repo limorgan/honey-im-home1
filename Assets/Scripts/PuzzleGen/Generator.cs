@@ -23,7 +23,9 @@ public class Generator : MonoBehaviour {
     }
 
     static public void Spawn(Item item, Rule rule, Area area) {
-        GameArea gameArea = GameObject.Find(area.name).GetComponent<GameArea>();
+        //GameArea gameArea = GameObject.Find(area.name).GetComponent<GameArea>();
+        GameArea gameArea = GameObject.FindGameObjectWithTag(area.name).GetComponent<GameArea>();
+        Debug.Log("Found game area '" + area.name + "'? " + (GameObject.Find("Street").GetComponent<GameArea>() == null));
         bool found = false;
         for(int i = 0; i < gameArea.itemsInArea.Length; i++) {
             if (gameArea.itemsInArea[i].name == item.name) {

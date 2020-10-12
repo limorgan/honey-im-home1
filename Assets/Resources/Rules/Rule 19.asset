@@ -22,6 +22,15 @@ MonoBehaviour:
     gameItem: {fileID: 0}
     description: 
     hint: 
+  - name: Speech
+    properties:
+    - type: 0
+      name: text
+      value: That should do it.
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+    hint: 
   inputs:
   - name: Envelope
     properties: []
@@ -41,5 +50,5 @@ MonoBehaviour:
   children: []
   automatic: 0
   selectedInput: 0
-  inventory: 0
+  inventory: 1
   ruleNumber: 19

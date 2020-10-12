@@ -10,14 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14c0f1671eef434985582687594e133, type: 3}
-  m_Name: Rule 32
+  m_Name: Rule 85
   m_EditorClassIdentifier: 
   outputs:
-  - name: Envelope
-    properties:
-    - type: 2
-      name: story
-      value: True
+  - name: ID
+    properties: []
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+    hint: 
+  - name: Carla
+    properties: []
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
@@ -25,30 +28,30 @@ MonoBehaviour:
   - name: Speech
     properties:
     - type: 0
+      name: name
+      value: Carla
+    - type: 0
       name: text
-      value: Looks important.ish. Just send it off now...
+      value: Sure...go on now.
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
     hint: 
   inputs:
-  - name: Envelope
-    properties: []
+  - name: Carla
+    properties:
+    - type: 2
+      name: happy
+      value: True
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
     hint: 
-  - name: Scribbles
-    properties: []
-    dbItem: {fileID: 0}
-    gameItem: {fileID: 0}
-    description: 
-    hint: 
-  action: Collect & Stamp
+  action: Ask for ID
   hint: 
   parent: {fileID: 0}
   children: []
   automatic: 0
   selectedInput: 0
   inventory: 1
-  ruleNumber: 32
+  ruleNumber: 85

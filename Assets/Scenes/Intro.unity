@@ -1836,9 +1836,9 @@ MonoBehaviour:
   sentences:
   - "To walk, use either W-A-S-D or the arrow keys. \n\nTo run, hold down the left-shift
     button while walking."
-  - "Hovering the cursor over an interactible item will show its name. \n\nClicking
-    on the item will give you all possible interactions, such as picking it up or
-    examining it more closely."
+  - "Hovering the cursor over an interactible item will show its name. \n\nLeft-clicking
+    on the item will give you all possible interactions.\n\nRight-clicking on the
+    item will allow you to \"inspect\" an item more quickly."
   - 'Picking up an item adds it to your inventory.
 
 
@@ -1854,8 +1854,9 @@ MonoBehaviour:
 
     Clicking your selected item gives you options too, e.g. deselect, drop or any
     other action currently available to that item.'
-  - 'To complete this chapter and get home you must gather and combine items and interact
-    with the people around you. '
+  - "To complete this chapter and get home you must gather and combine items and interact
+    with the people around you. \n\nYou will hear an oven timer go off at the completion
+    of each stage and you will receive a new objective.  "
   - "New items to help along the way pop up next to you when you make the right move.
     \n\nSome other items might appear directly in your inventory and you will see
     a notification pop up on the inventory button."
@@ -1869,7 +1870,8 @@ MonoBehaviour:
 
     Looking at - inspecting - objects along the way also provide you with more information
     (useful or not).'
-  - 'If you would like to pause the game, press ESC or the pause button
+  - 'If you would like to pause the game, press ESC or the pause button. You can also
+    find information - objectives, statistics, transcripts etc. - in the pause menu.
 
 
     Your inventory can be accessed using either the inventory button on screen or
@@ -1877,7 +1879,7 @@ MonoBehaviour:
 
 
     To close a speech bubble or the action menu of an item, press Q.'
-  - This shouldn't take too long - so there is no save option.
+  - This shouldn't take too long - so your progress cannot be saved.
   textBox: {fileID: 1322917385}
   lastPart: 1
   nextInterface: {fileID: 583270073}

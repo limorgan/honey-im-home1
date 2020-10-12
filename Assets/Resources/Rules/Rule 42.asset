@@ -25,6 +25,15 @@ MonoBehaviour:
     gameItem: {fileID: 0}
     description: 
     hint: 
+  - name: Speech
+    properties:
+    - type: 0
+      name: text
+      value: A family favourite. I'm sure nobody'll miss it.
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+    hint: 
   inputs:
   - name: Jukebox
     properties:

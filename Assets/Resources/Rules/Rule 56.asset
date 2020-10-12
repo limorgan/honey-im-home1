@@ -54,5 +54,5 @@ MonoBehaviour:
   children: []
   automatic: 0
   selectedInput: 0
-  inventory: 0
+  inventory: 1
   ruleNumber: 56

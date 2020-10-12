@@ -53,6 +53,8 @@ public class Area : ScriptableObject {
 
     public string GetObjective()
     {
+        Debug.Log("Getting objective. ");
+        Debug.Log("Current Goal: " + currentGoal.name);
         return currentGoal.description;
     }
 

@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -476,6 +476,7 @@ MonoBehaviour:
   locked: 0
   nextAreaName: Office
   nextArea: {fileID: 11400000, guid: c5dfd47d7bc15b4489bac53722ada490, type: 2}
+  miniArea: 0
 --- !u!1 &16292535
 GameObject:
   m_ObjectHideFlags: 0
@@ -7694,7 +7695,8 @@ MonoBehaviour:
   zoomOut: 1
   locked: 0
   nextAreaName: Street
-  nextArea: {fileID: 0}
+  nextArea: {fileID: 11400000, guid: dba5ef4086bd9844bbe8a68f991f46b0, type: 2}
+  miniArea: 0
 --- !u!1 &441666670
 GameObject:
   m_ObjectHideFlags: 0
@@ -8811,7 +8813,8 @@ MonoBehaviour:
   zoomOut: 1
   locked: 0
   nextAreaName: Roof
-  nextArea: {fileID: 0}
+  nextArea: {fileID: 11400000, guid: dba5ef4086bd9844bbe8a68f991f46b0, type: 2}
+  miniArea: 1
 --- !u!61 &500758054
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9027,7 +9030,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505827437}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1370.47, y: -11.545801, z: -10}
+  m_LocalPosition: {x: -1406.77, y: -15.545801, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 799100817}
@@ -12758,7 +12761,7 @@ GameObject:
   - component: {fileID: 650859068}
   m_Layer: 8
   m_Name: Pub
-  m_TagString: Untagged
+  m_TagString: Pub
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13508,7 +13511,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692381246}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1378.0701, y: 202.97, z: -10}
+  m_LocalPosition: {x: -1380.77, y: 201.87001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 951160815}
@@ -15043,6 +15046,7 @@ MonoBehaviour:
   locked: 1
   nextAreaName: Street
   nextArea: {fileID: 11400000, guid: dba5ef4086bd9844bbe8a68f991f46b0, type: 2}
+  miniArea: 0
 --- !u!212 &815542407
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17871,7 +17875,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 970164634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1378.0701, y: 202.97, z: -10}
+  m_LocalPosition: {x: -1380.77, y: 201.87001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -18024,7 +18028,7 @@ GameObject:
   - component: {fileID: 991559050}
   m_Layer: 8
   m_Name: Lobby
-  m_TagString: Untagged
+  m_TagString: Lobby
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18239,7 +18243,7 @@ GameObject:
   - component: {fileID: 1008465006}
   m_Layer: 8
   m_Name: Office
-  m_TagString: Untagged
+  m_TagString: Office
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24188,12 +24192,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1271433964}
+  - component: {fileID: 1271433967}
   - component: {fileID: 1271433965}
   - component: {fileID: 1271433966}
-  - component: {fileID: 1271433967}
   m_Layer: 8
   m_Name: Street
-  m_TagString: Untagged
+  m_TagString: Street
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28537,6 +28541,7 @@ MonoBehaviour:
   locked: 0
   nextAreaName: Lobby
   nextArea: {fileID: 11400000, guid: e2e87e817f6bfd446843afee9ab72ea4, type: 2}
+  miniArea: 0
 --- !u!212 &1500157066
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -41488,6 +41493,7 @@ MonoBehaviour:
   locked: 1
   nextAreaName: Street
   nextArea: {fileID: 11400000, guid: dba5ef4086bd9844bbe8a68f991f46b0, type: 2}
+  miniArea: 0
 --- !u!1 &3606295377760172885
 GameObject:
   m_ObjectHideFlags: 0
@@ -41554,12 +41560,12 @@ PrefabInstance:
     - target: {fileID: 858248475450001907, guid: d0fa3492ec4a40346a09bbde908d0646,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1377.3
+      value: -1380
       objectReference: {fileID: 0}
     - target: {fileID: 858248475450001907, guid: d0fa3492ec4a40346a09bbde908d0646,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 191.2
+      value: 190.1
       objectReference: {fileID: 0}
     - target: {fileID: 858248475450001907, guid: d0fa3492ec4a40346a09bbde908d0646,
         type: 3}
@@ -46269,6 +46275,7 @@ MonoBehaviour:
   locked: 0
   nextAreaName: Pub
   nextArea: {fileID: 11400000, guid: dc312a7573fa4c0439427ba9db62e983, type: 2}
+  miniArea: 0
 --- !u!4 &5377659919150103687
 Transform:
   m_ObjectHideFlags: 0
@@ -48691,6 +48698,7 @@ MonoBehaviour:
   locked: 0
   nextAreaName: Lobby
   nextArea: {fileID: 11400000, guid: e2e87e817f6bfd446843afee9ab72ea4, type: 2}
+  miniArea: 0
 --- !u!4 &5941141160477230203 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5941141160161208231, guid: b3bdd6ebc3925064fbf837a50f31b6d0,

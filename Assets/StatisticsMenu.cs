@@ -7,6 +7,8 @@ public class StatisticsMenu : MonoBehaviour
     public GameObject statsMenu;
     public GameObject areaStats;
     public GameObject puzzleStats;
+    [SerializeField]
+    private bool isEndScreen;
     
     [SerializeField]
     private List<StatsBox> _areaBoxes = new List<StatsBox>();
@@ -16,7 +18,8 @@ public class StatisticsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (isEndScreen)
+            Statistics.Instance.SetEndScreen();
     }
 
     // Update is called once per frame

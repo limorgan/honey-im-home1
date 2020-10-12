@@ -156,15 +156,21 @@ public class PuzzleManager : MonoBehaviour {
             {
                 Debug.Log("Finished this area!");
                 Statistics.Instance.FinishPuzzle(area);
-                Player.Instance.ShowFinishMessage(_currentArea.name);
+                Player.Instance.ShowFinishMessage(_currentArea.name);     //oven timer sound
+                Debug.Log("Added to finished areas.");
+                
+                Debug.Log("Ping.");
                 if (area.IsFinal())
                     TriggerEnd();
                 else
                 {
+                    Debug.Log("Checking for next areas. ");
                     foreach (Area connectedArea in area.connectedTo)
                     {
+                        Debug.Log("Attempting to generate puzzle for " + connectedArea.name);
                         GenerateForArea(connectedArea);
                     }
+                    Player.Instance.ShowObjective(false);
                 }
             }
         }

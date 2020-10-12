@@ -26,7 +26,7 @@ MonoBehaviour:
     properties:
     - type: 0
       name: text
-      value: Inspiring.........uh.
+      value: Inspiring.........uh. Listen closely...
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 

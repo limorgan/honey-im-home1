@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Item
   - Door
+  - Street
+  - Pub
+  - Office
+  - Lobby
   layers:
   - Default
   - TransparentFX

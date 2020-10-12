@@ -22,6 +22,15 @@ MonoBehaviour:
     gameItem: {fileID: 0}
     description: 
     hint: 
+  - name: Speech
+    properties:
+    - type: 0
+      name: text
+      value: And now for a lovely midnight stroll..
+    dbItem: {fileID: 0}
+    gameItem: {fileID: 0}
+    description: 
+    hint: 
   inputs:
   - name: Gate
     properties:

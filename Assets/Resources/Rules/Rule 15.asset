@@ -29,7 +29,8 @@ MonoBehaviour:
       value: Carla
     - type: 0
       name: text
-      value: I'm dying to leave...I just can't seem to be able to find my bag....
+      value: I'm in a rush and my brain is frazzled. Let me know if you find anything
+        of mine lying around.
     dbItem: {fileID: 0}
     gameItem: {fileID: 0}
     description: 
